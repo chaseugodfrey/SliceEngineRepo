@@ -9,6 +9,27 @@ namespace SliceEngine
 	{
 
 	}
+
+	void SessionManager::Init()
+	{
+
+	}
+
+	void SessionManager::Update()
+	{
+		UpdateTime();
+	}
+
+	void SessionManager::Exit()
+	{
+
+	}
+
+	SessionManager::~SessionManager()
+	{
+		
+	}
+
 	void SessionManager::UpdateTime()
 	{
 		m_SessionCurrentTime = TimePoint::clock::now();

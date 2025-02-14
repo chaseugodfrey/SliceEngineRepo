@@ -11,4 +11,8 @@
 #include <algorithm>
 #include <optional>
 
+#include "../src/AppModules/IModule.h"
+using TimePoint = std::chrono::high_resolution_clock::time_point;
+
+
 #endif

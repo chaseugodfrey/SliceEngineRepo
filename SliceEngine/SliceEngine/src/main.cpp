@@ -6,7 +6,7 @@
 
 int main()
 {
-	SliceEngine::Core app;
+	SliceEngine::Application app;
 	app.Init();
 	app.Run();
 	app.Destroy();
