@@ -5,13 +5,16 @@ namespace SliceEngine
 {
 	void App::Init()
 	{
+		if (!glfwInit())
+			return;
+
 		isRunning = true;
 		appWindow.CreateDefaultWindow();
 	}
 
 	void App::Update()
 	{
-		while (!appWindow.isWindowClosed())
+		while (isRunning && !appWindow.isWindowClosed())
 		{
 			glfwPollEvents();
 
@@ -35,6 +38,13 @@ namespace SliceEngine
 
 			wasRPressed = isRPressed;
 			wasFPressed = isFPressed;
+
+			Vec2f vec1{ 232, -14 };
+			Vec2f vec2 = vec1.normal();
+			Vec2f vec3 = vec1.normalUnit();
+
+			SLICE_LOG_VALUES(vec2, vec3);
+
 			glfwSwapBuffers(appWindow.GetWindow());
 
 		}

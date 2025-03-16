@@ -8,8 +8,23 @@ namespace SliceEngine
 {
 	void AppWindow::CreateDefaultWindow()
 	{
-		glfwInit();
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+
+		//glClearColor(0.f, 0.f, 0.f, 1.f);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
+		glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
+		glfwWindowHint(GLFW_DEPTH_BITS, 24);
+		glfwWindowHint(GLFW_RED_BITS, 8); 
+		glfwWindowHint(GLFW_GREEN_BITS, 8);
+		glfwWindowHint(GLFW_BLUE_BITS, 8); 
+		glfwWindowHint(GLFW_ALPHA_BITS, 8);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
 		m_appWindow = glfwCreateWindow(900, 600, "Me", nullptr, nullptr);
 
 		for (int i = 1; i < 6; i++)

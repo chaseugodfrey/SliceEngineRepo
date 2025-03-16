@@ -19,6 +19,17 @@
 #include <algorithm>
 #include <functional>
 #include <algorithm>
+#include <type_traits>
+
+#include <math.h>
+
+// Logger
+#include "src/Logger.h"
+
+// Common Types
+#include "src/Vectors/Vector2.h"
+#include "src/Vectors/Vector3.h"
+
 
 // glfw
 #include <GLFW/glfw3.h>
