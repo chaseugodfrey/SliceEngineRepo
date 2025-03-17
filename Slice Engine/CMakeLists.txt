@@ -1,21 +1,66 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
+﻿# CMakeList.txt : CMake project for Slice Engine, include source and define
+# project specific logic here.
 #
+
 cmake_minimum_required (VERSION 3.26)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+# Add source to this project's executable.
+project(SliceEngine)
+set(CMAKE_CXX_STANDARD 17)
+
+# ---- SUBDIRS-----
+add_subdirectory("Engine")
+# EDITOR OPTION
+option(USE_EDITOR "Build Editor" OFF)
+if (USE_EDITOR)
+    add_subdirectory("Editor")
+    add_compile_definitions(EDITOR PRIVATE USE_EDITOR=1)
 endif()
 
-project ("Slice Engine")
+# ---- COMPILE DEFINITIONS -----
+add_compile_definitions(LIB_DIR="${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/")
+add_compile_definitions(ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/Assets/")
+add_compile_definitions(RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/Resources/")
 
-# Include sub-projects.
-add_subdirectory ("Slice Engine")
+# ---- LIBRARIES -----
+add_library(glfw STATIC IMPORTED)
+set_target_properties(glfw PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/lib-vc2022/glfw3.lib)
+target_include_directories(glfw INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include)
 
-# libraries
+target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+if (USE_EDITOR)
+target_include_directories(Editor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+endif()
+
+# ---- COMPILATION -----
+# Retrieves all filenames with .cpp and adds it to variable SLICE_SOURCES
+file (GLOB_RECURSE SLICE_SOURCES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+add_executable (SliceEngine "main.cpp" ${SLICE_SOURCES})
+
+# ---- LINKING -----
+target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}ThirdParty)
+target_link_libraries(SliceEngine PRIVATE glfw) 
+target_link_libraries(SliceEngine PRIVATE Engine)
+if (USE_EDITOR)
+    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=1)
+    target_link_libraries(SliceEngine PRIVATE Editor)
+else()
+    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=0)
+endif()
 
 
+# target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/assets/")
 
-# includes
+# ----- PCH -----
+target_precompile_headers(SliceEngine PUBLIC pch.h)
+set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
+
+
+# ----- POST BUILD -----
+# Copies all content from source assets folder into bin assets folder
+add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_CURRENT_SOURCE_DIR}/assets
+                ${CMAKE_CURRENT_BINARY_DIR}/assets)

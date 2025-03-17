@@ -1,9 +1,0 @@
-# ninja log v6
-3	951	7637729333544659	CMakeFiles/main.dir/cmake_pch.cxx.obj	e15fd4a51fc624e7
-952	990	7637729343027302	CMakeFiles/main.dir/main.cpp.obj	ebb212aab78def4e
-954	996	7637729343053828	CMakeFiles/main.dir/src/App.cpp.obj	8a520c92ef0ac8a
-956	1013	7637729343074248	CMakeFiles/main.dir/src/AppWindow.cpp.obj	d3adf8621a1a3ca6
-13	655	7637729890864576	CMakeFiles/main.dir/cmake_pch.cxx.obj	e15fd4a51fc624e7
-655	693	7637729897280268	CMakeFiles/main.dir/main.cpp.obj	ebb212aab78def4e
-658	695	7637729897306114	CMakeFiles/main.dir/src/App.cpp.obj	8a520c92ef0ac8a
-660	716	7637729897326630	CMakeFiles/main.dir/src/AppWindow.cpp.obj	d3adf8621a1a3ca6

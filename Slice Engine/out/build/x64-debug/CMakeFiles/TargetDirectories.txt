@@ -1,5 +1,9 @@
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir
 C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/edit_cache.dir
 C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir
-C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/edit_cache.dir
-C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/rebuild_cache.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Engine/CMakeFiles/Engine.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Engine/CMakeFiles/edit_cache.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Engine/CMakeFiles/rebuild_cache.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor/CMakeFiles/Editor.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor/CMakeFiles/edit_cache.dir
+C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor/CMakeFiles/rebuild_cache.dir

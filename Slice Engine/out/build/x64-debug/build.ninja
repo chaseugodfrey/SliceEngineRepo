@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Slice Engine
+# Project: SliceEngine
 # Configurations: Debug
 # =============================================================================
 
@@ -40,6 +40,86 @@ include CMakeFiles\rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\out\build\x64-debug\
+# =============================================================================
+# Object build statements for EXECUTABLE target SliceEngine
+
+
+#############################################
+# Order-only phony target for SliceEngine
+
+build cmake_object_order_depends_target_SliceEngine: phony || cmake_object_order_depends_target_Editor cmake_object_order_depends_target_Engine
+
+build CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\out\build\x64-debug\CMakeFiles\SliceEngine.dir\cmake_pch.cxx | CMakeFiles\SliceEngine.dir\cmake_pch.hxx || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Assets/\"" -DEDITOR -DLIB_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/ThirdParty/\"" -DPRIVATE -DRESOURCE_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Resources/\"" -DUSE_EDITOR=1
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi "/YcC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice EngineThirdParty" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\include" -external:W0
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\SliceEngine.dir
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_PDB = SliceEngine.pdb
+
+
+#############################################
+# Additional output files.
+
+build CMakeFiles\SliceEngine.dir\.\cmake_pch.cxx.pch: phony CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj
+
+build CMakeFiles\SliceEngine.dir\main.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\main.cpp | CMakeFiles\SliceEngine.dir\cmake_pch.hxx CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Assets/\"" -DEDITOR -DLIB_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/ThirdParty/\"" -DPRIVATE -DRESOURCE_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Resources/\"" -DUSE_EDITOR=1
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice EngineThirdParty" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\include" -external:W0
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\SliceEngine.dir
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_PDB = SliceEngine.pdb
+
+build CMakeFiles\SliceEngine.dir\src\App.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\src\App.cpp | CMakeFiles\SliceEngine.dir\cmake_pch.hxx CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Assets/\"" -DEDITOR -DLIB_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/ThirdParty/\"" -DPRIVATE -DRESOURCE_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Resources/\"" -DUSE_EDITOR=1
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice EngineThirdParty" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\include" -external:W0
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\SliceEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_PDB = SliceEngine.pdb
+
+build CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\src\AppWindow.cpp | CMakeFiles\SliceEngine.dir\cmake_pch.hxx CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Assets/\"" -DEDITOR -DLIB_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/ThirdParty/\"" -DPRIVATE -DRESOURCE_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Resources/\"" -DUSE_EDITOR=1
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice EngineThirdParty" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\include" -external:W0
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\SliceEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_PDB = SliceEngine.pdb
+
+build CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\src\Logger.cpp | CMakeFiles\SliceEngine.dir\cmake_pch.hxx CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Assets/\"" -DEDITOR -DLIB_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/ThirdParty/\"" -DPRIVATE -DRESOURCE_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Resources/\"" -DUSE_EDITOR=1
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice EngineThirdParty" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\include" -external:W0
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\SliceEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_PDB = SliceEngine.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target SliceEngine
+
+
+#############################################
+# Link the executable SliceEngine.exe
+
+build SliceEngine.exe: CXX_EXECUTABLE_LINKER__SliceEngine_Debug CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj CMakeFiles\SliceEngine.dir\main.cpp.obj CMakeFiles\SliceEngine.dir\src\App.cpp.obj CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj | C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\ThirdParty\glfw\lib-vc2022\glfw3.lib Engine\Engine.lib Editor\Editor.lib || Editor\Editor.lib Engine\Engine.lib
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\ThirdParty\glfw\lib-vc2022\glfw3.lib"  Engine\Engine.lib  Editor\Editor.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = CMakeFiles\SliceEngine.dir
+  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory "C:/Users/User/Documents/SliceEngineRepo/Slice Engine/assets" "C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/assets""
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\SliceEngine.dir\
+  TARGET_FILE = SliceEngine.exe
+  TARGET_IMPLIB = SliceEngine.lib
+  TARGET_PDB = SliceEngine.pdb
+
 
 #############################################
 # Utility command for edit_cache
@@ -69,123 +149,138 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
-# Object build statements for EXECUTABLE target SliceEngine
+# Object build statements for STATIC_LIBRARY target Engine
 
 
 #############################################
-# Order-only phony target for SliceEngine
+# Order-only phony target for Engine
 
-build cmake_object_order_depends_target_SliceEngine: phony || .
+build cmake_object_order_depends_target_Engine: phony || .
 
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\out\build\x64-debug\Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YcC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
-
-
-#############################################
-# Additional output files.
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\.\cmake_pch.cxx.pch: phony Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\main.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\App.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir\src"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\AppWindow.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir\src"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\Logger.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir\src"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
-
-build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\SceneManager.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\SceneManager.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
-  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
-  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir\src"
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
+build Engine\CMakeFiles\Engine.dir\SliceEngine.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Engine\SliceEngine.cpp || cmake_object_order_depends_target_Engine
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Engine" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine"
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir
+  TARGET_COMPILE_PDB = Engine\CMakeFiles\Engine.dir\Engine.pdb
+  TARGET_PDB = Engine\Engine.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target SliceEngine
+# Link build statements for STATIC_LIBRARY target Engine
 
 
 #############################################
-# Link the executable Slice Engine\SliceEngine.exe
+# Link the static library Engine\Engine.lib
 
-build Slice$ Engine\SliceEngine.exe: CXX_EXECUTABLE_LINKER__SliceEngine_Debug Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\SceneManager.cpp.obj | C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\libs\glfw\lib-vc2022\glfw3.lib
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -MDd -ZI
-  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\libs\glfw\lib-vc2022\glfw3.lib"  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
-  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Slice Engine" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory "C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets" "C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/assets""
+build Engine\Engine.lib: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine\CMakeFiles\Engine.dir\SliceEngine.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
-  TARGET_FILE = "Slice Engine\SliceEngine.exe"
-  TARGET_IMPLIB = "Slice Engine\SliceEngine.lib"
-  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
+  TARGET_COMPILE_PDB = Engine\CMakeFiles\Engine.dir\Engine.pdb
+  TARGET_FILE = Engine\Engine.lib
+  TARGET_PDB = Engine\Engine.pdb
 
 
 #############################################
 # Utility command for edit_cache
 
-build Slice$ Engine\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Slice Engine" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+build Engine\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Engine" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build Slice$ Engine\edit_cache: phony Slice$ Engine\CMakeFiles\edit_cache.util
+build Engine\edit_cache: phony Engine\CMakeFiles\edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build Slice$ Engine\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Slice Engine" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -S"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -B"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug""
+build Engine\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Engine" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -S"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -B"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build Slice$ Engine\rebuild_cache: phony Slice$ Engine\CMakeFiles\rebuild_cache.util
+build Engine\rebuild_cache: phony Engine\CMakeFiles\rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/User/Documents/SliceEngineRepo/Slice Engine/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Editor
+
+
+#############################################
+# Order-only phony target for Editor
+
+build cmake_object_order_depends_target_Editor: phony || .
+
+build Editor\CMakeFiles\Editor.dir\SliceEditor.cpp.obj: CXX_COMPILER__Editor_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Editor\SliceEditor.cpp || cmake_object_order_depends_target_Editor
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi
+  INCLUDES = -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Editor" -I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine"
+  OBJECT_DIR = Editor\CMakeFiles\Editor.dir
+  OBJECT_FILE_DIR = Editor\CMakeFiles\Editor.dir
+  TARGET_COMPILE_PDB = Editor\CMakeFiles\Editor.dir\Editor.pdb
+  TARGET_PDB = Editor\Editor.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Editor
+
+
+#############################################
+# Link the static library Editor\Editor.lib
+
+build Editor\Editor.lib: CXX_STATIC_LIBRARY_LINKER__Editor_Debug Editor\CMakeFiles\Editor.dir\SliceEditor.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = Editor\CMakeFiles\Editor.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = Editor\CMakeFiles\Editor.dir\Editor.pdb
+  TARGET_FILE = Editor\Editor.lib
+  TARGET_PDB = Editor\Editor.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build Editor\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Editor" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Editor\edit_cache: phony Editor\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Editor\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug\Editor" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -S"C:\Users\User\Documents\SliceEngineRepo\Slice Engine" -B"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\out\build\x64-debug""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Editor\rebuild_cache: phony Editor\CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
 
-build SliceEngine: phony Slice$ Engine\SliceEngine.exe
+build Editor: phony Editor\Editor.lib
 
-build SliceEngine.exe: phony Slice$ Engine\SliceEngine.exe
+build Editor.lib: phony Editor\Editor.lib
+
+build Engine: phony Engine\Engine.lib
+
+build Engine.lib: phony Engine\Engine.lib
+
+build SliceEngine: phony SliceEngine.exe
 
 # =============================================================================
 # Folder targets.
@@ -195,14 +290,21 @@ build SliceEngine.exe: phony Slice$ Engine\SliceEngine.exe
 #############################################
 # Folder: C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug
 
-build all: phony Slice$ Engine\all
+build all: phony SliceEngine.exe Engine\all Editor\all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine
+# Folder: C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor
 
-build Slice$ Engine\all: phony Slice$ Engine\SliceEngine.exe
+build Editor\all: phony Editor\Editor.lib
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Engine
+
+build Engine\all: phony Engine\Engine.lib
 
 # =============================================================================
 # Built-in targets
@@ -211,14 +313,14 @@ build Slice$ Engine\all: phony Slice$ Engine\SliceEngine.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\CMakeLists.txt CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Editor\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Engine\CMakeLists.txt CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\CMakeLists.txt CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake: phony
+build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Editor\CMakeLists.txt C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Engine\CMakeLists.txt CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake: phony
 
 
 #############################################

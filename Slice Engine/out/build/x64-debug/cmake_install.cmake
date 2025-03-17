@@ -34,7 +34,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/cmake_install.cmake")
+  include("C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Engine/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
