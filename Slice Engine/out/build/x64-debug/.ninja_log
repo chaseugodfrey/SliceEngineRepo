@@ -1,13 +1,11 @@
 # ninja log v6
-13	423	7639521152960568	Engine/CMakeFiles/Engine.dir/SliceEngine.cpp.obj	52c2eda3e0a1cf8b
-15	543	7639531583725186	Editor/CMakeFiles/Editor.dir/SliceEditor.cpp.obj	3886726a35486e61
-423	453	7639521157061753	Engine/Engine.lib	5df28f59858061a3
-543	570	7639531589008730	Editor/Editor.lib	f592d3805199b391
-752	793	7639531591096534	CMakeFiles/SliceEngine.dir/main.cpp.obj	1e9946b8601646c0
-12	752	7639531583694255	CMakeFiles/SliceEngine.dir/cmake_pch.cxx.obj	8d69492aa0da861c
-754	794	7639531591117256	CMakeFiles/SliceEngine.dir/src/App.cpp.obj	c0a877551cf84309
-758	801	7639531591158739	CMakeFiles/SliceEngine.dir/src/Logger.cpp.obj	6910208f805fa01a
-13	21	7639521152692804	clean	8c45b54705a541e8
-757	809	7639531591143280	CMakeFiles/SliceEngine.dir/src/AppWindow.cpp.obj	3a2d370a1f11e0b
-809	922	7639531591663845	SliceEngine.exe	5f8bc7f3b09fbe31
-11	97	7639536884167423	build.ninja	983147ea9b239e46
+6	671	7639556263654928	Engine/CMakeFiles/Engine.dir/SliceEngine.cpp.obj	52c2eda3e0a1cf8b
+8	673	7639556263670391	Editor/CMakeFiles/Editor.dir/SliceEditor.cpp.obj	3886726a35486e61
+7	34	7639556766660449	Engine/Engine.lib	5df28f59858061a3
+11	38	7639556766696406	Editor/Editor.lib	f592d3805199b391
+837	881	7639556774956284	CMakeFiles/SliceEngine.dir/main.cpp.obj	86f9741135a88e8a
+5	836	7639556766634739	CMakeFiles/SliceEngine.dir/cmake_pch.cxx.obj	6f1c55944b1bda5f
+839	880	7639556774971753	CMakeFiles/SliceEngine.dir/src/App.cpp.obj	10fa5546e8bc2e2c
+842	888	7639556775012846	CMakeFiles/SliceEngine.dir/src/Logger.cpp.obj	2517e168a92dfbcc
+841	895	7639556774992225	CMakeFiles/SliceEngine.dir/src/AppWindow.cpp.obj	43773f2cf940f260
+895	1116	7639556775534602	SliceEngine.exe	2cbee48d603b129f

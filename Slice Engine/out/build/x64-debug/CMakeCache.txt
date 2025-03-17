@@ -195,9 +195,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//No help, variable specified on the command line.
-EDITOR:STRING=ON
-
 //Value Computed by CMake
 Editor_BINARY_DIR:STATIC=C:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Editor
 

@@ -36,4 +36,10 @@
 // glfw
 #include "ThirdParty/glfw/include/glfw3.h"
 
+#if defined EDITOR
+#include "ThirdParty/imgui/include/imgui.h"
+#include "ThirdParty/imgui/include/imgui_internal.h"
+#include "ThirdParty/imgui/include/imgui_impl_glfw.h"
+#endif
+
 #endif 
