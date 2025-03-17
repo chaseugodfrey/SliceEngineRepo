@@ -1,8 +1,29 @@
 # ninja log v6
-7	14	7637879794722197	clean	8c45b54705a541e8
+9	18	7638250993821479	clean	8c45b54705a541e8
 8	662	7637879794912314	Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.cxx.obj	a20462cf6606fad2
 662	701	7637879801451266	Slice Engine/CMakeFiles/SliceEngine.dir/main.cpp.obj	60b04ed92559a435
 668	715	7637879801505849	Slice Engine/CMakeFiles/SliceEngine.dir/src/Logger.cpp.obj	11e0d22f5d3cccb3
 666	724	7637879801490526	Slice Engine/CMakeFiles/SliceEngine.dir/src/AppWindow.cpp.obj	cdeffd423211a184
 664	724	7637879801469827	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	31a568af05a17cad
 724	842	7637879802069824	Slice Engine/SliceEngine.exe	4360356aaa3ff057
+4	1024	7638266224147008	Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.cxx.obj	2d2e767efc609b0
+1025	1063	7638266234356700	Slice Engine/CMakeFiles/SliceEngine.dir/main.cpp.obj	785f0358f84e8864
+1031	1092	7638266234425044	Slice Engine/CMakeFiles/SliceEngine.dir/src/Logger.cpp.obj	8ebdf8191a0f2718
+1029	1093	7638266234399394	Slice Engine/CMakeFiles/SliceEngine.dir/src/AppWindow.cpp.obj	cc4d0e850f1639ff
+1027	1106	7638266234377205	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+1033	1115	7638266234445601	Slice Engine/CMakeFiles/SliceEngine.dir/src/SceneManager.cpp.obj	c24d6c294860642a
+1115	1467	7638266235259978	Slice Engine/SliceEngine.exe	597474b1933967cc
+17	96	7638266444289231	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+96	218	7638266445079816	Slice Engine/SliceEngine.exe	597474b1933967cc
+16	79	7638266559567157	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+80	236	7638266560207396	Slice Engine/SliceEngine.exe	597474b1933967cc
+20	82	7638266947791577	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+82	193	7638266948412424	Slice Engine/SliceEngine.exe	597474b1933967cc
+17	77	7638267487927537	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+20	99	7638267487958221	Slice Engine/CMakeFiles/SliceEngine.dir/src/SceneManager.cpp.obj	c24d6c294860642a
+99	223	7638267488746459	Slice Engine/SliceEngine.exe	597474b1933967cc
+19	102	7638269135620891	Slice Engine/CMakeFiles/SliceEngine.dir/src/SceneManager.cpp.obj	c24d6c294860642a
+102	221	7638269136454902	Slice Engine/SliceEngine.exe	597474b1933967cc
+22	83	7638269413005692	Slice Engine/CMakeFiles/SliceEngine.dir/src/App.cpp.obj	f29689ce83f83d51
+25	104	7638269413041496	Slice Engine/CMakeFiles/SliceEngine.dir/src/SceneManager.cpp.obj	c24d6c294860642a
+104	224	7638269413827816	Slice Engine/SliceEngine.exe	597474b1933967cc

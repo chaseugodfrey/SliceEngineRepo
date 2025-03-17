@@ -1,5 +1,6 @@
 #include "../Slice_pch.h"
 #include "App.h"
+#include "TestClass.h"
 
 namespace SliceEngine
 {
@@ -10,6 +11,9 @@ namespace SliceEngine
 
 		isRunning = true;
 		appWindow.CreateDefaultWindow();
+
+		TestLoadSceneFile();
+
 	}
 
 	void App::Update()
@@ -38,12 +42,6 @@ namespace SliceEngine
 
 			wasRPressed = isRPressed;
 			wasFPressed = isFPressed;
-
-			Vec2f vec1{ 232, -14 };
-			Vec2f vec2 = vec1.normal();
-			Vec2f vec3 = vec1.normalUnit();
-
-			SLICE_LOG_VALUES(vec2, vec3);
 
 			glfwSwapBuffers(appWindow.GetWindow());
 

@@ -21,6 +21,8 @@
 #include <algorithm>
 #include <type_traits>
 
+#include <thread>
+
 #include <math.h>
 
 // Logger

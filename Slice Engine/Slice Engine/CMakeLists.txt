@@ -21,7 +21,7 @@ add_executable (SliceEngine "main.cpp" ${SLICE_SOURCES})
 # add_executable(main main.cpp  "Slice_pch.h" "src/App.h"  "src/App.cpp" )
 target_link_libraries(SliceEngine PRIVATE glfw) 
  
-# target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC RESOURCES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/resources/")
+add_compile_definitions(ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets/")
 # target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/assets/")
 
 # ----- PCH -----

@@ -78,6 +78,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 build cmake_object_order_depends_target_SliceEngine: phony || .
 
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\out\build\x64-debug\Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YcC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
   INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
   OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
@@ -92,6 +93,7 @@ build Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj: CXX_COMPILER__
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\.\cmake_pch.cxx.pch: phony Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj
 
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\main.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
   INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
   OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
@@ -100,6 +102,7 @@ build Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj: CXX_COMPILER__Slice
   TARGET_PDB = "Slice Engine\SliceEngine.pdb"
 
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\App.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
   INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
   OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
@@ -108,6 +111,7 @@ build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj: CXX_COMPILER__Sl
   TARGET_PDB = "Slice Engine\SliceEngine.pdb"
 
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\AppWindow.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
   INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
   OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
@@ -116,6 +120,16 @@ build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj: CXX_COMPIL
   TARGET_PDB = "Slice Engine\SliceEngine.pdb"
 
 build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\Logger.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
+  INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
+  OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
+  OBJECT_FILE_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir\src"
+  TARGET_COMPILE_PDB = "Slice Engine\CMakeFiles\SliceEngine.dir\\"
+  TARGET_PDB = "Slice Engine\SliceEngine.pdb"
+
+build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\SceneManager.cpp.obj: CXX_COMPILER__SliceEngine_unscanned_Debug C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\src\SceneManager.cpp | Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.hxx Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.pch || cmake_object_order_depends_target_SliceEngine
+  DEFINES = -DASSET_DIR="\"C:/Users/User/Documents/SliceEngineRepo/Slice Engine/Slice Engine/assets/\""
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++17 -MDd -ZI "/YuC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx" "/FpC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/./cmake_pch.cxx.pch" "/FIC:/Users/User/Documents/SliceEngineRepo/Slice Engine/out/build/x64-debug/Slice Engine/CMakeFiles/SliceEngine.dir/cmake_pch.hxx"
   INCLUDES = -external:I"C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\includes" -external:W0
   OBJECT_DIR = "Slice Engine\CMakeFiles\SliceEngine.dir"
@@ -131,7 +145,7 @@ build Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the executable Slice Engine\SliceEngine.exe
 
-build Slice$ Engine\SliceEngine.exe: CXX_EXECUTABLE_LINKER__SliceEngine_Debug Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj | C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\libs\glfw\lib-vc2022\glfw3.lib
+build Slice$ Engine\SliceEngine.exe: CXX_EXECUTABLE_LINKER__SliceEngine_Debug Slice$ Engine\CMakeFiles\SliceEngine.dir\cmake_pch.cxx.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\main.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\App.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\AppWindow.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\Logger.cpp.obj Slice$ Engine\CMakeFiles\SliceEngine.dir\src\SceneManager.cpp.obj | C$:\Users\User\Documents\SliceEngineRepo\Slice$ Engine\Slice$ Engine\libs\glfw\lib-vc2022\glfw3.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -MDd -ZI
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = "C:\Users\User\Documents\SliceEngineRepo\Slice Engine\Slice Engine\libs\glfw\lib-vc2022\glfw3.lib"  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
