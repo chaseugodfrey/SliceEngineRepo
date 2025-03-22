@@ -27,6 +27,13 @@ namespace SliceEngine
 
 		m_appWindow = glfwCreateWindow(900, 600, "Me", nullptr, nullptr);
 
+		glfwMakeContextCurrent(m_appWindow);
+		GLenum err = glewInit();
+		if (err != GLEW_OK) {
+			SLICE_LOG("GLEW initialization failed: %s", glewGetErrorString(err));
+			return;
+		}
+
 		for (int i = 1; i < 6; i++)
 		{
 			sizes.push_back({ 100 * i, 100 * i });
