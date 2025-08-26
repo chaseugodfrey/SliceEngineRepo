@@ -1,10 +1,14 @@
-#ifndef SLICE_ENGINE_H
-#define SLICE_ENGINE_H
+#ifndef ENGINE_H
+#define ENGINE_H
+
+#include "Window.h"
 
 namespace SliceEngine
 {
 	class Engine
 	{
+		GLFWwindow* window;
+
 	public:
 		void Init();
 		void Update();
@@ -12,4 +16,4 @@ namespace SliceEngine
 	};
 }
 
-#endif
+#endif 

@@ -1,10 +1,10 @@
-﻿#include "src/App.h"
+﻿#include "src/Engine.h"
 
 int main()
 {
-	SliceEngine::App app{};
-	app.Init();
-	app.Update();
-	app.Exit();
+	SliceEngine::Engine engine{};
+	engine.Init();
+	engine.Update();
+	engine.Exit();
 	return 0;
 }

@@ -17,15 +17,15 @@ add_compile_definitions(GLEW_STATIC) # Ensure GLEW_STATIC is defined
 
 
 # ---- SUBDIRS-----
-add_subdirectory("Engine")
-target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+#add_subdirectory("Engine")
+#target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # EDITOR OPTION
-option(USE_EDITOR "Build Editor" ON)
-if (USE_EDITOR)
-    add_subdirectory("Editor")
-    add_compile_definitions(EDITOR PUBLIC USE_EDITOR=1)
-endif()
+#option(USE_EDITOR "Build Editor" ON)
+#if (USE_EDITOR)
+#    add_subdirectory("Editor")
+#    add_compile_definitions(EDITOR PUBLIC USE_EDITOR=1)
+#endif()
 
 # ---- LIBRARIES -----
 # GLFW
@@ -39,21 +39,20 @@ add_library(glew STATIC IMPORTED)
 set_target_properties(glew PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glew/glew32s.lib)
 target_include_directories(glew INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glew/GL)
 
-if (USE_EDITOR)
+#if (USE_EDITOR)
 # IMGUI
-file(GLOB_RECURSE IMGUI_SOURCES 
-    "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp"
-)
-add_library(imgui STATIC ${IMGUI_SOURCES})
-target_include_directories(imgui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui)
+#file(GLOB_RECURSE IMGUI_SOURCES 
+#    "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp"
+#)
+#target_include_directories(imgui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui)
 
-target_link_libraries(imgui PUBLIC glew glfw)
-endif()
+#target_link_libraries(imgui PUBLIC glew glfw)
+#endif()
 
-if (USE_EDITOR)
-target_include_directories(Editor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+#if (USE_EDITOR)
+#target_include_directories(Editor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # target_include_directories(imgui INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include)
-endif()
+#endif()
 
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SLICE_SOURCES
@@ -62,22 +61,20 @@ add_executable (SliceEngine "main.cpp" ${SLICE_SOURCES})
 
 # ----- PCH -----
 target_precompile_headers(SliceEngine PUBLIC pch.h)
-target_compile_definitions(SliceEngine PRIVATE ENGINE)
-target_compile_definitions(SliceEngine PRIVATE EDITOR)
 set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
-target_link_libraries(SliceEngine PRIVATE glew glfw Engine ${OPENGL_LIBRARIES})
+target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 
-if (USE_EDITOR)
-    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=1)
-    target_link_libraries(SliceEngine PRIVATE Editor)
-
-else()
-    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=0)
-endif()
+#if (USE_EDITOR)
+#    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=1)
+#    target_link_libraries(SliceEngine PRIVATE Editor)
+#
+#else()
+#    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=0)
+#endif()
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder

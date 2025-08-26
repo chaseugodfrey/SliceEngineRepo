@@ -228,7 +228,7 @@ SliceEngine_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 SliceEngine_SOURCE_DIR:STATIC=C:/Users/chaseu/Documents/SliceEngineRepo/Slice Engine
 
-//Build Editor
+//No help, variable specified on the command line.
 USE_EDITOR:STRING=ON
 
 
@@ -322,7 +322,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

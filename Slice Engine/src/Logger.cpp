@@ -24,7 +24,7 @@ namespace Logger
 		std::cout
 			<< std::put_time(&local_tm, "%Y-%m-%d %H:%M:%S")
 			<< LogLevelToColor(level) << " [" << LogLevelToString(level) << "] " << RESET
-			<< function_name << " - "
+			<< '(' << function_name << ") - "
 			<< message << '\n';
 	}
 
