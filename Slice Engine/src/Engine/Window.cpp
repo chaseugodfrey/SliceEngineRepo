@@ -1,4 +1,4 @@
-#include "pch.h"
+#include <pch.h>
 #include "Window.h"
 
 namespace SliceEngine
@@ -11,7 +11,6 @@ namespace SliceEngine
 
 		//glClearColor(0.f, 0.f, 0.f, 1.f);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 		glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
 		glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
 		glfwWindowHint(GLFW_DEPTH_BITS, 24);
@@ -39,5 +38,16 @@ namespace SliceEngine
 		SLICE_LOG("Main Window Created.");
 
 		return window;
+	}
+
+	void Window::ResizeWindow(GLFWwindow* window, int width, int height)
+	{
+		glfwSetWindowSize(window, width, height);
+	}
+
+	void Window::CloseWindow(GLFWwindow* window)
+	{
+		glfwDestroyWindow(window);
+		SLICE_LOG("Main Window Destroyed.");
 	}
 }

@@ -9,7 +9,8 @@ namespace SliceEngine
 	{
 	public:
 		static GLFWwindow* CreateWindow();
-
+		static void ResizeWindow(GLFWwindow* window, int width, int height);
+		static void CloseWindow(GLFWwindow* window);
 	};
 }
 

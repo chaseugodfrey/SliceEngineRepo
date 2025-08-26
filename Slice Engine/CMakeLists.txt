@@ -56,7 +56,7 @@ target_include_directories(glew INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty
 
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SLICE_SOURCES
-file (GLOB_RECURSE SLICE_SOURCES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file (GLOB_RECURSE SLICE_SOURCES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
 add_executable (SliceEngine "main.cpp" ${SLICE_SOURCES})
 
 # ----- PCH -----
