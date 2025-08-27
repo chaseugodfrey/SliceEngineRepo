@@ -34,18 +34,13 @@
 
 
 // glfw
-#include "ThirdParty/glew/GL/glew.h"
-#include "ThirdParty/glfw/include/glfw3.h"
+#include <glew.h>
+#include <glfw3.h>
 
-#ifdef EDITOR
-
-#include <include/imgui.h>
-#include <include/imgui_internal.h>
-#include <include/imgui_impl_glfw.h>
-#include <include/imgui_impl_opengl3.h>
-
-#endif
-
-
+// imgui
+#include <imgui.h>
+#include <imgui_internal.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 #endif 

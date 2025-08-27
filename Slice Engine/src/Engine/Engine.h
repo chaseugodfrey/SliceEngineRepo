@@ -4,6 +4,10 @@
 #include "Window.h"
 #include "InputSystem.h"
 
+#ifdef EDITOR
+#include "../Editor/Editor.h"
+#endif
+
 namespace SliceEngine
 {
 	class Engine
@@ -12,11 +16,15 @@ namespace SliceEngine
 		bool isRunning;
 		
 		std::unique_ptr<InputSystem> inputs;
-
+		
+#ifdef EDITOR
+		std::unique_ptr<Editor> editor;
+#endif
 	public:
 		void Init();
 		void Update();
 		void Exit();
+
 	};
 }
 
