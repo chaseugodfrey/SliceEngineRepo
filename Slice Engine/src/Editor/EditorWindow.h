@@ -1,10 +1,15 @@
 #ifndef EDITOR_WINDOW_H
 #define EDITOR_WINDOW_H
 
-struct Window
+namespace SliceEngine
 {
-	void Draw();
-};
+	class EditorWindow
+	{
+	public:
+		virtual void Draw() = 0;
+		virtual ~EditorWindow() = default;
+	};
 
+}
 
 #endif

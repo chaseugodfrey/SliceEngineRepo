@@ -3,6 +3,7 @@
 
 #include "Window.h"
 #include "InputSystem.h"
+#include "AudioManager.h"
 
 #ifdef EDITOR
 #include "../Editor/Editor.h"
@@ -16,6 +17,7 @@ namespace SliceEngine
 		bool isRunning;
 		
 		std::unique_ptr<InputSystem> inputs;
+		std::unique_ptr<AudioManager> audio;
 		
 #ifdef EDITOR
 		std::unique_ptr<Editor> editor;

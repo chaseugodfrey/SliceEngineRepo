@@ -37,6 +37,12 @@
 #include <glew.h>
 #include <glfw3.h>
 
+// fmod
+#include <fmod/include/fmod.hpp>
+#include <fmod/include/fmod_common.h>
+#include <fmod/include/fmod_studio.hpp>
+#include <fmod/include/fmod_studio_common.h>
+
 // imgui
 #include <imgui.h>
 #include <imgui_internal.h>
