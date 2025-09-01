@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Engine.h"
+#include "PhysicSystem.h"
 
 namespace SliceEngine
 {
@@ -12,6 +13,19 @@ namespace SliceEngine
 
 	void Engine::Update()
 	{
+		entt::registry reg;
+
+		PhysicSystem physics;
+		physics.Bind(reg);
+
+		entt::entity entity = reg.create();
+		reg.emplace<Transform>(entity, 0.5f);
+		reg.emplace<RigidBody>(entity, false);
+
+		physics(2.0f);
+
+		reg.remove<RigidBody>(entity);
+
 		while (1)
 		{
 			glfwPollEvents();

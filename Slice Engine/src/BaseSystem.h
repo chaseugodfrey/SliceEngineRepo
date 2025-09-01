@@ -1,12 +1,14 @@
 #include "entt/entt.hpp"
 
-template<class Derived, class ActiveTag, class... Required>
+template<class Derived, class SystemTag, class... Required>
 class BaseSystem {
 
 public:
 	void Bind(entt::registry& reg)
 	{
-
+		mRegistry = &reg;
+		(reg.on_construct<Required>().connect<&BaseSystem::SystemOnEnter>(*this), ...);
+		(reg.on_destroy<Required>().connect<&BaseSystem::SystemOnExit>(*this), ...);
 	}
 
 	void Unbind()
@@ -14,18 +16,20 @@ public:
 		if (!mRegistry)
 			return;
 
+		(mRegistry->on_construct<Required>().disconnect<&BaseSystem::SystemOnEnter>(*this), ...);
+		(mRegistry->on_destroy<Required>().disconnect<&BaseSystem::SystemOnExit>(*this), ...);
+		mRegistry = nullptr;
 	}
 
 	template<class... Excluded>
 	void operator()(float dt)
 	{
 		auto& reg = *mRegistry;
-		auto view = reg.view<activeTag, Required...>(entt::exclude<Excluded...>);
+		auto view = reg.view<SystemTag, Required...>(entt::exclude<Excluded...>);
 		for (auto entity : view)
 		{
-			static_cast<Derived*>(this)->EntityOnUpdate(
-				reg, entity, view.template get<Required>(entity)..., dt
-			);
+			EntityOnUpdate(reg, entity, dt);
+			//static_cast<Derived*>(this)->EntityOnUpdate(reg, entity, dt);
 		}
 	}
 
@@ -35,32 +39,39 @@ public:
 	}
 
 protected:
-	void EntityOnEnter(entt::entity entity)
+	
+
+	virtual void EntityOnEnter(entt::registry& reg, entt::entity entity)
 	{
-		static_cast<Derived*>(this)->OnEnter(*mRegistry, entity);
+		//static_cast<Derived*>(this)->EntityOnEnter(*mRegistry, entity);
 	}
 
-	void EntityOnExit(entt::entity entity)
+	virtual void EntityOnExit(entt::registry& reg, entt::entity entity)
 	{
-		static_cast<Derived*>(this)->EntityOnExit(*mRegistry, entity);
+		//static_cast<Derived*>(this)->EntityOnExit(*mRegistry, entity);
+	}
+
+	virtual void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt)
+	{
+
 	}
 
 private:
 	void SystemOnEnter(entt::registry& reg, entt::entity entity)
 	{
-		if (reg.all_of<Required...>(entity) && !reg.any_of<ActiveTag>(entity))
+		if (reg.all_of<Required...>(entity) && !reg.any_of<SystemTag>(entity))
 		{
-			reg.emplace<ActiveTag>(entity);
-			EntityOnEnter(entity);
+			reg.emplace<SystemTag>(entity);
+			EntityOnEnter(reg, entity);
 		}
 	}
 
 	void SystemOnExit(entt::registry& reg, entt::entity entity)
 	{
-		if (reg.any_of<ActiveTag>(entity))
+		if (reg.any_of<SystemTag>(entity))
 		{
-			//EntityOnExit(entity);
-			reg.remove<ActiveTag>(entity);
+			EntityOnExit(reg, entity);
+			reg.remove<SystemTag>(entity);
 		}
 	}
 
