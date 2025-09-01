@@ -17,7 +17,7 @@ struct RigidBody
 // for keeping track of entities that belong to physics system
 struct PhysicEntity {};
 
-struct PhysicSystem : BaseSystem<PhysicSystem, PhysicEntity, Transform, RigidBody>
+struct PhysicSystem : BaseSystem<PhysicEntity, Transform, RigidBody>
 {
 	void EntityOnEnter(entt::registry& reg, entt::entity entity) override
 	{

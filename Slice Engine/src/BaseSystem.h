@@ -1,6 +1,20 @@
 #include "entt/entt.hpp"
 
-template<class Derived, class SystemTag, class... Required>
+/// <summary>
+/// System Tag - Used to keep track of entities within the system
+/// ... Required - All components that is used in this system
+/// Example : PhysicSystem : BaseSystem<PhysicEntity, Transform, RigidBody> 
+/// 
+/// Only EntityOnEnter, EntityOnExit and EntityOnUpdate has to be written
+/// 
+/// Bind and Unbind handles checking when an entity is added or removed
+/// This is an immediate function call. If we need a delayed effect then
+/// I'll change to smth else.
+/// 
+/// calling system(dt) used for updating entities in the system
+/// 
+/// </summary>
+template<class SystemTag, class... Required>
 class BaseSystem {
 
 public:
@@ -29,7 +43,6 @@ public:
 		for (auto entity : view)
 		{
 			EntityOnUpdate(reg, entity, dt);
-			//static_cast<Derived*>(this)->EntityOnUpdate(reg, entity, dt);
 		}
 	}
 
@@ -38,23 +51,11 @@ public:
 		Unbind();
 	}
 
-protected:
-	
+	virtual void EntityOnEnter(entt::registry& reg, entt::entity entity) {}
 
-	virtual void EntityOnEnter(entt::registry& reg, entt::entity entity)
-	{
-		//static_cast<Derived*>(this)->EntityOnEnter(*mRegistry, entity);
-	}
+	virtual void EntityOnExit(entt::registry& reg, entt::entity entity) {}
 
-	virtual void EntityOnExit(entt::registry& reg, entt::entity entity)
-	{
-		//static_cast<Derived*>(this)->EntityOnExit(*mRegistry, entity);
-	}
-
-	virtual void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt)
-	{
-
-	}
+	virtual void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt) {}
 
 private:
 	void SystemOnEnter(entt::registry& reg, entt::entity entity)
