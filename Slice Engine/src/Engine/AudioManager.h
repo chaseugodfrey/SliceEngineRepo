@@ -53,6 +53,7 @@ namespace SliceEngine
 		void Update();
 		void Exit();
 
+		void LoadSound(const std::string& soundName, const std::string& soundFile);
 		void PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
 		void StopSound();
 		void SwitchSound();
