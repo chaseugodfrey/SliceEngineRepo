@@ -5,9 +5,16 @@
 
 namespace SliceEngine
 {
-	struct ContentBrowserState
+	struct DirectoryNode
 	{
 		std::filesystem::path path;
+	};
+
+	struct ContentBrowserState
+	{
+		std::vector<DirectoryNode> nodes;
+		DirectoryNode* root;
+		DirectoryNode* current;
 	};
 }
 

@@ -11,6 +11,8 @@ namespace SliceEngine
 
 	public:
 		void Init();
+
+		void RebuildDirectory();
 	};
 
 }

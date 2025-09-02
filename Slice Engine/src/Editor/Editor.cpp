@@ -7,6 +7,7 @@ namespace SliceEngine
 	{
 		SLICE_LOG("Initializing Editor.");
 		InitImGUI(window);
+		InitEditorState();
 		InitWindowManager();
 	}
 
