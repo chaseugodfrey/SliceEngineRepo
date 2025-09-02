@@ -38,6 +38,14 @@ set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_D
 set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_studio.dll)
 target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/inc)
 
+# JOLT
+add_library(jolt STATIC IMPORTED)
+set_target_properties(jolt PROPERTIES
+    IMPORTED_LOCATION_DEBUG   ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib/Debug/Jolt.lib
+    IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib/Release/Jolt.lib
+)
+target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib)
+
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES})

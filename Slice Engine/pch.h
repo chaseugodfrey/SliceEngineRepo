@@ -49,4 +49,16 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+// jolt
+#include <JoltLib/Jolt/RegisterTypes.h>
+#include <JoltLib/Jolt/Core/Factory.h>
+#include <JoltLib/Jolt/Core/TempAllocator.h>
+#include <JoltLib/Jolt/Core/JobSystemThreadPool.h>
+#include <JoltLib/Jolt/Physics/PhysicsSettings.h>
+#include <JoltLib/Jolt/Physics/PhysicsSystem.h>
+#include <JoltLib/Jolt/Physics/Collision/Shape/BoxShape.h>
+#include <JoltLib/Jolt/Physics/Collision/Shape/SphereShape.h>
+#include <JoltLib/Jolt/Physics/Body/BodyCreationSettings.h>
+#include <JoltLib/Jolt/Physics/Body/BodyActivationListener.h>
+
 #endif 
