@@ -27,6 +27,16 @@ namespace SliceEngine
 		DrawMainMenu();
 		DrawDockspace();
 
+#pragma region Test Dummy Windows
+		ImGui::Begin("A");
+		ImGui::Text("A");
+		ImGui::End();
+
+		ImGui::Begin("B");
+		ImGui::Text("B");
+		ImGui::End();
+#pragma endregion
+
 		//std::for_each(windowManager->list.begin(), windowManager->list.end(), [](auto& window) { window.draw(); });
 		for (auto& window : windowManager->list)
 		{

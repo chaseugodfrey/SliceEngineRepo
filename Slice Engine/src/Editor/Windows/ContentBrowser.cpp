@@ -6,14 +6,14 @@ namespace SliceEngine
 	void ContentBrowser::Draw()
 	{
 		ImGui::Begin("Content Browser");
+		//ImGuiID contentDock = ImGui::GetID("contentDock");
+		//ImGui::DockSpace(contentDock, ImVec2(0, 0), ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_PassthruCentralNode);
 
-		ImGui::BeginChild("Hierarchy",ImVec2(200,150));
 		ImGui::Text("Hierarchy Here");
-		ImGui::EndChild();
-
-		ImGui::BeginChild("Current Folder", ImVec2(300,300));
-		ImGui::Text("Current Folder");
-		ImGui::EndChild();
+		ImGui::Text("Hierarchy Here");
+		ImGui::Text("Hierarchy Here");
+		ImGui::Text("Hierarchy Here");
+		ImGui::Text("Hierarchy Here");
 
 		ImGui::End();
 	}
