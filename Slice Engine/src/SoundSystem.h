@@ -11,6 +11,7 @@ struct SoundFile
 	std::string filePath;
 	float currentVolume;
 	bool isLoop;
+	bool is3D;
 };
 
 // for keeping track of entities that belong to sound system
@@ -20,7 +21,13 @@ struct PhysicSystem : BaseSystem<SoundEntity, SoundFile>
 {
 	void EntityOnEnter(entt::registry& reg, entt::entity entity) override
 	{
+		auto& soundFile = reg.get<SoundFile>(entity);
+
+		auto& audio = SliceEngine::AudioManager::Get();
+		audio.LoadSound(soundFile.filePath, soundFile.filePath, soundFile.is3D, soundFile.isLoop);
+		audio.PlaySound(soundFile.filePath, SliceEngine::SoundCategory::SFX, /*internal*/{}, soundFile.isLoop, soundFile.currentVolume);
 		std::cout << "Entity entering sound system" << std::endl;
+
 	}
 
 	void EntityOnExit(entt::registry& reg, entt::entity entity) override

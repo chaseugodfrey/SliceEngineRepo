@@ -41,23 +41,39 @@ namespace SliceEngine
 
 		//FMOD::Studio::System* system;
 		FMOD::System* mSoundSystem;
+		const int MAX_CHANNELS = 256;
+
 		FMOD::Sound* sound;
 		//std::vector<std::unique_ptr<SoundTrack>> mSound[SOUND_MAX_SOUNDS];
+		std::unordered_map<std::string, std::unique_ptr<SoundTrack>> mLoadedSounds;
 		std::unordered_map<SoundCategory, float> mCategoryVolumes;
 		const float defaultVolume = 1.0f;
+
 		
 
 	public:
+		static AudioManager& Get()
+		{
+			static AudioManager instance;
+			return instance;
+		}
+
 
 		void Init();
 		void Update();
 		void Exit();
 
-		void LoadSound(const std::string& soundName, const std::string& soundFile);
+		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop = true);
 		void PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
 		void StopSound();
 		void SwitchSound();
 		
+	private:
+		AudioManager() = default;
+		~AudioManager() = default;
+
+		AudioManager(const AudioManager&) = delete;
+		AudioManager& operator=(const AudioManager&) = delete;
 		
 	};
 }
