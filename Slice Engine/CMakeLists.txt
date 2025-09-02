@@ -13,19 +13,12 @@ add_compile_definitions(LIB_DIR="${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/")
 add_compile_definitions(ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/Assets/")
 add_compile_definitions(RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/Resources/")
 add_compile_definitions(GLEW_STATIC) # Ensure GLEW_STATIC is defined
-# Generate a function to create a preprocessor definition for A
-
-
-# ---- SUBDIRS-----
-#add_subdirectory("Engine")
-#target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # EDITOR OPTION
-#option(USE_EDITOR "Build Editor" ON)
-#if (USE_EDITOR)
-#    add_subdirectory("Editor")
-#    add_compile_definitions(EDITOR PUBLIC USE_EDITOR=1)
-#endif()
+option(USE_EDITOR "Build Editor" ON)
+if (USE_EDITOR)
+    add_compile_definitions(EDITOR PUBLIC USE_EDITOR=1)
+endif()
 
 # ---- LIBRARIES -----
 # GLFW
@@ -39,25 +32,26 @@ add_library(glew STATIC IMPORTED)
 set_target_properties(glew PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glew/glew32s.lib)
 target_include_directories(glew INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glew/GL)
 
-#if (USE_EDITOR)
+# FMOD
+add_library(fmod STATIC IMPORTED)
+set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll)
+set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_studio.dll)
+target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/inc)
+
 # IMGUI
-#file(GLOB_RECURSE IMGUI_SOURCES 
-#    "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp"
-#)
-#target_include_directories(imgui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui)
-
-#target_link_libraries(imgui PUBLIC glew glfw)
-#endif()
-
-#if (USE_EDITOR)
-#target_include_directories(Editor PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-# target_include_directories(imgui INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include)
-#endif()
+file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
+add_library(imgui STATIC ${IMGUI_SOURCES})
+target_include_directories(imgui
+    PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include
+)
+target_link_libraries(imgui INTERFACE glfw)
 
 # ---- COMPILATION -----
-# Retrieves all filenames with .cpp and adds it to variable SLICE_SOURCES
-file (GLOB_RECURSE SLICE_SOURCES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-add_executable (SliceEngine "main.cpp" ${SLICE_SOURCES})
+# Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
+file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
+file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
+add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES})
 
 # ----- PCH -----
 target_precompile_headers(SliceEngine PUBLIC pch.h)
@@ -67,14 +61,7 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
-
-#if (USE_EDITOR)
-#    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=1)
-#    target_link_libraries(SliceEngine PRIVATE Editor)
-#
-#else()
-#    target_compile_definitions(SliceEngine PRIVATE USE_EDITOR=0)
-#endif()
+target_link_libraries(SliceEngine PRIVATE imgui)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder

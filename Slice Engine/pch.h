@@ -26,26 +26,27 @@
 #include <math.h>
 
 // Logger
-#include "src/Logger.h"
+#include "src/Engine/Logger.h"
 
 // Common Types
-#include "src/Vectors/Vector2.h"
-#include "src/Vectors/Vector3.h"
+#include "src/Engine/Vectors/Vector2.h"
+#include "src/Engine/Vectors/Vector3.h"
 
 
 // glfw
-#include "ThirdParty/glew/GL/glew.h"
-#include "ThirdParty/glfw/include/glfw3.h"
+#include <glew.h>
+#include <glfw3.h>
 
-#ifdef EDITOR
+// fmod
+#include <fmod/include/fmod.hpp>
+#include <fmod/include/fmod_common.h>
+#include <fmod/include/fmod_studio.hpp>
+#include <fmod/include/fmod_studio_common.h>
 
-#include <include/imgui.h>
-#include <include/imgui_internal.h>
-#include <include/imgui_impl_glfw.h>
-#include <include/imgui_impl_opengl3.h>
-
-#endif
-
-
+// imgui
+#include <imgui.h>
+#include <imgui_internal.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 #endif 
