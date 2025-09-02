@@ -1,7 +1,7 @@
 .vs*
 
 // Cmake Specific
-out/
+**/out/
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
