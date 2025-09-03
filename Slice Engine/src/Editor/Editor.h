@@ -17,9 +17,6 @@ namespace SliceEngine
 		void InitEditorState();
 		void InitWindowManager(EditorState& editorState);
 
-		void DrawMainMenu();
-		void DrawDockspace();
-
 	public:
 
 		void Init(GLFWwindow* window);

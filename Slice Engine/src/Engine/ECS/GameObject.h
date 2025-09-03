@@ -12,9 +12,13 @@ namespace SliceEngine
 	public:
 		friend class GOFactory;
 
-		GameObject(Registry& reg) : mRegistry(reg)
+		GameObject() = default;
+
+		GameObject(Registry& reg) 
 		{
-			mEntity = mRegistry.create();
+			mRegistry = &reg;
+
+			mEntity = mRegistry->create();
 		};
 
 		~GameObject()
@@ -65,8 +69,8 @@ namespace SliceEngine
 
 	private:
 		Entity mEntity{};
-		std::string mName;
-		Registry& mRegistry;
+		std::string mName{};
+		Registry* mRegistry{ nullptr };
 
 	};
 

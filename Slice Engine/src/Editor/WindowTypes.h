@@ -1,7 +1,7 @@
 #ifndef WINDOW_TYPES_H
 #define WINDOW_TYPES_H
 
-#include "Windows/ContentBrowser.h"
+#include "Windows/EW_ContentBrowser.h"
 
 namespace SliceEngine
 {
