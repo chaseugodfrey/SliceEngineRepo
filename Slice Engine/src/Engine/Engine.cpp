@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Engine.h"
-#include "../ECS/ECSTypes.h"
-#include "../ECS/PhysicSystem.h"
+#include "ECS/ECSTypes.h"
+#include "ECS/PhysicSystem.h"
 
 namespace SliceEngine
 {
