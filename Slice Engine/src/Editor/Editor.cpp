@@ -23,9 +23,6 @@ namespace SliceEngine
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
 
-		DrawMainMenu();
-		DrawDockspace();
-
 #pragma region Test Dummy Windows
 		/*ImGui::Begin("A");
 		ImGui::Text("A");
@@ -37,10 +34,7 @@ namespace SliceEngine
 #pragma endregion
 
 		//std::for_each(windowManager->list.begin(), windowManager->list.end(), [](auto& window) { window.draw(); });
-		for (auto& window : windowManager->list)
-		{
-			window->Draw();
-		}
+		windowManager->Render();
 		
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
