@@ -2,9 +2,9 @@
 
 namespace SliceEngine
 {
-	void WindowManager::Init()
+	void WindowManager::Init(EditorState& editorState)
 	{
-		AddWindow<ContentBrowser>();
+		AddWindow<ContentBrowser>(editorState);
 	}
 
 	void WindowManager::Render()

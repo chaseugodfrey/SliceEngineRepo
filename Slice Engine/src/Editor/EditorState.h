@@ -7,9 +7,10 @@ namespace SliceEngine
 {
 	class EditorState
 	{
-		std::unique_ptr<ContentBrowserState> contentBrowserState;
 
 	public:
+		std::unique_ptr<ContentBrowserState> contentBrowserState;
+		
 		void Init();
 
 		void RebuildDirectory();

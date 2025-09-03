@@ -8,7 +8,7 @@ namespace SliceEngine
 		SLICE_LOG("Initializing Editor.");
 		InitImGUI(window);
 		InitEditorState();
-		InitWindowManager();
+		InitWindowManager(*editorState);
 	}
 
 	void Editor::Update()
@@ -28,13 +28,13 @@ namespace SliceEngine
 		DrawDockspace();
 
 #pragma region Test Dummy Windows
-		ImGui::Begin("A");
+		/*ImGui::Begin("A");
 		ImGui::Text("A");
 		ImGui::End();
 
 		ImGui::Begin("B");
 		ImGui::Text("B");
-		ImGui::End();
+		ImGui::End();*/
 #pragma endregion
 
 		//std::for_each(windowManager->list.begin(), windowManager->list.end(), [](auto& window) { window.draw(); });
@@ -82,11 +82,11 @@ namespace SliceEngine
 		editorState->Init();
 	}
 
-	void Editor::InitWindowManager()
+	void Editor::InitWindowManager(EditorState& editorState)
 	{
 		SLICE_LOG("EDITOR: Creating Window Manager.");
 		windowManager = std::make_unique<WindowManager>();
-		windowManager->Init();
+		windowManager->Init(editorState);
 	}
 
 	void Editor::DrawMainMenu()

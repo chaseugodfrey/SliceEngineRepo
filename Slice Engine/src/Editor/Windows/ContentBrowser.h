@@ -9,11 +9,17 @@ namespace SliceEngine
 {
 	class ContentBrowser : public EditorWindow
 	{
-		//ContentBrowserState& contentBrowser;
+		EditorState& editorState;
 
-		//ContentBrowser(EditorState& editorState);
+
 	public:
+		ContentBrowser(EditorState& editorState);
+
+		void Init();
+
 		void Draw() override final;
+
+		void DisplayFolders(ContentBrowserState& contentBrowser);
 	};
 }
 

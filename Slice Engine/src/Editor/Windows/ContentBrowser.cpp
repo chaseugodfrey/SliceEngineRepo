@@ -4,20 +4,14 @@
 namespace SliceEngine
 {
 
-	//ContentBrowser::ContentBrowser(EditorState& editorState) : contentBrowser(editorState->contentBrowserState)
-	//{ }
+	ContentBrowser::ContentBrowser(EditorState& editorState) : editorState(editorState)
+	{ }
 
 	void ContentBrowser::Draw()
 	{
 		ImGui::Begin("Content Browser");
 		//ImGuiID contentDock = ImGui::GetID("contentDock");
 		//ImGui::DockSpace(contentDock, ImVec2(0, 0), ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_PassthruCentralNode);
-
-		ImGui::Text("Hierarchy Here");
-		ImGui::Text("Hierarchy Here");
-		ImGui::Text("Hierarchy Here");
-		ImGui::Text("Hierarchy Here");
-		ImGui::Text("Hierarchy Here");
 
 		if (ImGui::Button("Reload"))
 		{
@@ -34,6 +28,8 @@ namespace SliceEngine
 
 		if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
 		{
+
+			DisplayFolders(*editorState.contentBrowserState);
 			ImGui::Text("Directory Here!");
 
 			ImGui::EndChild();
@@ -51,6 +47,22 @@ namespace SliceEngine
 		}
 
 		ImGui::End();
+	}
+
+	void ContentBrowser::DisplayFolders(ContentBrowserState& contentBrowser)
+	{
+		if (!contentBrowser.root)
+		{
+			ImGui::Text("No Root found!");
+		}
+		else if(contentBrowser.root.get()->path.empty())
+		{
+			ImGui::Text("No Path found!");
+		}
+		else
+		{
+			ImGui::Text(contentBrowser.root.get()->path.string().c_str());
+		}
 	}
 
 }
