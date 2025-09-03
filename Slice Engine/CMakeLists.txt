@@ -55,7 +55,7 @@ set(PROFILER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE)       # -> JPH_PROFILE
 # Pull in Jolt build and target ("Jolt")
 include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 
-# Link both your test and engine against the freshly built Jolt
+# Link both your test and engine against the freshly built Jolt(will delete for testing purpose)
 add_executable(JoltTest src/test.cpp)
 target_link_libraries(JoltTest PRIVATE Jolt)
 
