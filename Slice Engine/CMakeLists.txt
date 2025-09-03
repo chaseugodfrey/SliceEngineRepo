@@ -46,12 +46,6 @@ set_target_properties(jolt PROPERTIES
 )
 target_include_directories(jolt INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
 
-# Add Jolt-specific compile definitions (IMPORTANT!)
-add_compile_definitions(JPH_SUPPRESS_WARNINGS_STD_BEGIN=)
-add_compile_definitions(JPH_SUPPRESS_WARNINGS_STD_END=)
-add_compile_definitions(JPH_NAMESPACE_BEGIN=)
-add_compile_definitions(JPH_NAMESPACE_END=)
-
 # Add Jolt-specific compile definitions
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(JPH_DEBUG_RENDERER)
