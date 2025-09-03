@@ -3,6 +3,7 @@
 
 namespace SliceEngine
 {
+
 	void ContentBrowser::Draw()
 	{
 		ImGui::Begin("Content Browser");
@@ -14,6 +15,11 @@ namespace SliceEngine
 		ImGui::Text("Hierarchy Here");
 		ImGui::Text("Hierarchy Here");
 		ImGui::Text("Hierarchy Here");
+
+		if (ImGui::Button("Reload"))
+		{
+
+		}
 
 		ImGui::End();
 	}

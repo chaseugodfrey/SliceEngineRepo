@@ -2,12 +2,14 @@
 #define WINDOW_MANAGER_H
 
 #include "WindowTypes.h"
+#include "EditorState.h"
 
 namespace SliceEngine
 {
 
 	class WindowManager
 	{
+		std::shared_ptr<EditorState> editorState;
 
 	public:
 		
