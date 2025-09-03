@@ -5,6 +5,9 @@
 #include "InputSystem.h"
 #include "AudioManager.h"
 
+#include "JSONSerializer.h"
+#include "CSVSerializer.h"
+
 #ifdef EDITOR
 #include "../Editor/Editor.h"
 #endif
