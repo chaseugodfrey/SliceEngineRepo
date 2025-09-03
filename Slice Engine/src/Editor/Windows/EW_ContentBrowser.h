@@ -1,5 +1,5 @@
-#ifndef CONTENT_BROWSER_H
-#define CONTENT_BROWSER_H
+#ifndef EDITOR_CONTENT_BROWSER_H
+#define EDITOR_CONTENT_BROWSER_H
 
 #include "../EditorWindow.h"
 #include "../ContentBrowserState.h"
