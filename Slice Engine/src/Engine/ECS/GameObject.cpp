@@ -14,7 +14,7 @@ namespace SliceEngine
 
 	void GameObject::Destroy()
 	{
-		mRegistry.destroy(mEntity);
+		mRegistry->destroy(mEntity);
 	}
 
 	Entity GameObject::GetEntity()
