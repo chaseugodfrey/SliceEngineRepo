@@ -8,9 +8,7 @@ namespace SliceEngine
 {
 	class ContentBrowser : public EditorWindow
 	{
-		ContentBrowserState& state;
 	public:
-		ContentBrowser(ContentBrowserState& m_state);
 		void Draw() override final;
 	};
 }

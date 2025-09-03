@@ -14,7 +14,7 @@ namespace SliceEngine
 	public:
 		
 		std::vector<std::unique_ptr<EditorWindow>> list;
-		void Init(EditorState& state);
+		void Init();
 		void Render();
 
 		template <typename T>
@@ -25,7 +25,7 @@ namespace SliceEngine
 	template <typename T>
 	void WindowManager::AddWindow()
 	{
-		list.push_back(std::make_unique<T>(EditorState& state));
+		list.push_back(std::make_unique<T>());
 	}
 
 }
