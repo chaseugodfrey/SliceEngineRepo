@@ -38,6 +38,27 @@ set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_D
 set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_studio.dll)
 target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/inc)
 
+# JOLT
+# --- Build Jolt from source (no prebuilt .lib) ---
+
+# Tell Jolt where your ThirdParty root is (it expects PHYSICS_REPO_ROOT/Jolt)
+set(PHYSICS_REPO_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty")
+
+# Choose features so your app and Jolt agree
+set(ENABLE_OBJECT_STREAM OFF CACHE BOOL "" FORCE)               # -> JPH_OBJECT_STREAM OFF
+set(FLOATING_POINT_EXCEPTIONS_ENABLED OFF CACHE BOOL "" FORCE)  # -> JPH_FLOATING_POINT_EXCEPTIONS_ENABLED OFF
+
+# Keep debug renderer & profiler enebled in all configs
+set(DEBUG_RENDERER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE) # -> JPH_DEBUG_RENDERER
+set(PROFILER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE)       # -> JPH_PROFILE_ENABLED
+
+# Pull in Jolt build and target ("Jolt")
+include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
+
+# Link both your test and engine against the freshly built Jolt(will delete for testing purpose)
+add_executable(JoltTest src/test.cpp)
+target_link_libraries(JoltTest PRIVATE Jolt)
+
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES})
@@ -62,6 +83,7 @@ target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
+target_link_libraries(SliceEngine PRIVATE Jolt)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder
