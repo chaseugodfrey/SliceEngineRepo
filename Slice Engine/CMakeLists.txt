@@ -41,10 +41,10 @@ target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty
 # JOLT
 add_library(jolt STATIC IMPORTED)
 set_target_properties(jolt PROPERTIES
-    IMPORTED_LOCATION_DEBUG   ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib/Debug/Jolt.lib
-    IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib/Release/Jolt.lib
+    IMPORTED_LOCATION_DEBUG   ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/lib/Debug/Jolt.lib
+    IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/lib/Release/Jolt.lib
 )
-target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/JoltLib)
+target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt)
 
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
@@ -70,6 +70,7 @@ target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
+target_link_libraries(SliceEngine PRIVATE jolt)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder
