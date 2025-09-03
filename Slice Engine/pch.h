@@ -50,6 +50,7 @@
 #include <imgui_impl_opengl3.h>
 
 // jolt
+#include <Jolt/Jolt.h>
 #include <Jolt/RegisterTypes.h>
 #include <Jolt/Core/Factory.h>
 #include <Jolt/Core/TempAllocator.h>

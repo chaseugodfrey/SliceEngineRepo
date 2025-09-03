@@ -44,7 +44,19 @@ set_target_properties(jolt PROPERTIES
     IMPORTED_LOCATION_DEBUG   ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/lib/Debug/Jolt.lib
     IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/lib/Release/Jolt.lib
 )
-target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt)
+target_include_directories(jolt INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+
+# Add Jolt-specific compile definitions (IMPORTANT!)
+add_compile_definitions(JPH_SUPPRESS_WARNINGS_STD_BEGIN=)
+add_compile_definitions(JPH_SUPPRESS_WARNINGS_STD_END=)
+add_compile_definitions(JPH_NAMESPACE_BEGIN=)
+add_compile_definitions(JPH_NAMESPACE_END=)
+
+# Add Jolt-specific compile definitions
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(JPH_DEBUG_RENDERER)
+    add_compile_definitions(JPH_PROFILE_ENABLED)
+endif()
 
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
