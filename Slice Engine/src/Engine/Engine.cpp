@@ -17,6 +17,11 @@ namespace SliceEngine
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+		mResource = std::make_unique<ResourceManager>();
+		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
+		mResource->LoadModel("Assets/Cube.txt");
+		mRender = std::make_unique<RenderManager>();
+
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
@@ -41,7 +46,7 @@ namespace SliceEngine
 #ifdef EDITOR
 			editor->Render(window);
 #endif
-
+			mRender->Render(window, mResource.get());
 
 			glfwSwapBuffers(window);
 

@@ -1,10 +1,10 @@
 #include <pch.h>
 #include "ResourceManager.h"
-#include "WorldSpaceGraphicsManager.h"
+#include "WorldSpaceGraphicsSystem.h"
 
 namespace SliceEngine
 {
-	void SliceEngine::WorldSpaceGraphicsManager::Render(GLFWwindow* window, ResourceManager* rcManager)
+	void SliceEngine::WorldSpaceGraphicsSystem::Render(GLFWwindow* window, ResourceManager* rcManager)
 	{
 		glClearColor(0.75294f, 1.f, 0.93333f, 1.f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
