@@ -34,9 +34,9 @@ target_include_directories(glew INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty
 
 # FMOD
 add_library(fmod STATIC IMPORTED)
-set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll)
-set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_studio.dll)
-target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/inc)
+set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_vc.lib)
+#set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_studio.dll)
+target_include_directories(fmod INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/include)
 
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
@@ -62,6 +62,7 @@ target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
+target_link_libraries(SliceEngine PRIVATE fmod)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder
@@ -71,4 +72,7 @@ add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
                 ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty
         COMMAND ${CMAKE_COMMAND} -E copy_directory
                 ${CMAKE_CURRENT_SOURCE_DIR}/Assets
-                ${CMAKE_CURRENT_BINARY_DIR}/Assets)
+                ${CMAKE_CURRENT_BINARY_DIR}/Assets
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll
+                $<TARGET_FILE_DIR:${PROJECT_NAME}>)

@@ -17,15 +17,15 @@ struct SoundFile
 // for keeping track of entities that belong to sound system
 struct SoundEntity {};
 
-struct PhysicSystem : BaseSystem<SoundEntity, SoundFile>
+struct SoundSystem : BaseSystem<SoundEntity, SoundFile>
 {
 	void EntityOnEnter(entt::registry& reg, entt::entity entity) override
 	{
-		auto& soundFile = reg.get<SoundFile>(entity);
+		//auto& soundFile = reg.get<SoundFile>(entity);
 
-		auto& audio = SliceEngine::AudioManager::Get();
-		audio.LoadSound(soundFile.filePath, soundFile.filePath, soundFile.is3D, soundFile.isLoop);
-		audio.PlaySound(soundFile.filePath, SliceEngine::SoundCategory::SFX, /*internal*/{}, soundFile.isLoop, soundFile.currentVolume);
+		//auto& audio = SliceEngine::AudioManager::Get();
+		//audio.LoadSound(soundFile.filePath, soundFile.filePath, soundFile.is3D, soundFile.isLoop);
+		//audio.PlaySound(soundFile.filePath, SliceEngine::SoundCategory::SFX, /*internal*/{}, soundFile.isLoop, soundFile.currentVolume);
 		std::cout << "Entity entering sound system" << std::endl;
 
 	}

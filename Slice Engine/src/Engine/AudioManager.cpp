@@ -20,7 +20,7 @@ namespace SliceEngine
 		}
 	}
 
-	void AudioManager::LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop = true)
+	void AudioManager::LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop)
 	{
 		FMOD_MODE eMode = FMOD_DEFAULT;
 
@@ -52,6 +52,8 @@ namespace SliceEngine
 			track->isLooping = loop;
 
 			mLoadedSounds.try_emplace(soundName, std::move(track));
+			SLICE_LOG("Sound Loaded");
+			return;
 		}
 	}
 
@@ -60,13 +62,13 @@ namespace SliceEngine
 		
 	}
 
-	void AudioManager::PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume)
+	bool AudioManager::PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume)
 	{
 		auto it = mLoadedSounds.find(soundName);
 		if (it == mLoadedSounds.end())
 		{
 			SLICE_LOG("Sound not loaded");
-			return;
+			return false;
 		}
 
 		SoundTrack* track = it->second.get();
@@ -76,7 +78,7 @@ namespace SliceEngine
 		if (result != FMOD_OK)
 		{
 			SLICE_LOG("Failed to play sound");
-			return;
+			return false;
 		}
 
 		track->channel = channel;
@@ -89,9 +91,12 @@ namespace SliceEngine
 			channel->setVolume(volume);
 
 			channel->setMode(isLoop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
+
+			mSound[internalCategory].emplace_back(std::move(track));
+			return true;
 		}
 
-
+		return false;
 		
 	}
 	
