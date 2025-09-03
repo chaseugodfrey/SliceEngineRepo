@@ -10,9 +10,6 @@ namespace SliceEngine
 	class WindowManager
 	{
 		std::shared_ptr<EditorState> editorState;
-		void DrawMainMenu();
-		void DrawDockspace();
-		void DrawPreferenceWindow();
 
 	public:
 		
