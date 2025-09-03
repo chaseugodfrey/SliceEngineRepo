@@ -32,6 +32,31 @@ namespace SliceEngine
 			return output;
 		}
 
+		GameObject RecursiveDeserialize(json const& input)
+		{
+			//GameObject go;
+
+			////Examples
+			//if (input.contains("transform"))
+			//{
+			//	//Assign transforms
+			//}
+
+
+			//node.name = input.at("name").get<std::string>();
+			//node.value = input.at("value").get<int>();
+
+			//if (j.contains("children"))
+			//{
+			//	for (const auto& child_json : j["children"])
+			//	{
+			//		node.children.push_back(DeserializeNode(child_json)); // recursion!
+			//	}
+			//}
+
+			//return node;
+		}
+		
 		static void TestSerialize()
 		{
 			json test;

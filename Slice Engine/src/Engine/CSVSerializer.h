@@ -17,8 +17,8 @@ namespace SliceEngine
 			int num_cols{};
 
 			//preserving original order for serialization if/when serialization is needed
-			//std::vector<std::string> row_keys;
-			//std::vector<std::string> col_keys;
+			std::vector<std::string> row_keys;
+			std::vector<std::string> col_keys;
 
 			std::unordered_map<std::string, std::unordered_map<std::string, std::string>> data;
 		};

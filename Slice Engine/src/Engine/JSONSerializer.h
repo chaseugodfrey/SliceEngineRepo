@@ -3,6 +3,7 @@
 
 #include "../ThirdParty/nlohmann/include/json.hpp"
 #include "Logger.h"
+#include "../ECS/GameObject.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,8 +14,9 @@ namespace SliceEngine
 {
 	namespace JSONSerializer
 	{
-		void Serialize(json const& sceneJSON, std::string const& filePath);
+		void Serialize(json const& input, std::string const& filePath);
 		json Deserialize(std::string const& filePath);
+		GameObject RecursiveDeserialize(json const&);
 
 		void Test();
 	}	
