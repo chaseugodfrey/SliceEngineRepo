@@ -4,8 +4,8 @@ namespace SliceEngine
 {
 	namespace JSONSerializer
 	{
-		//Save json (the data structure) to JSON (the file)
-		void Serialize(json const& JSON, std::string const& filePath)
+		//Save json (the data structure) to JSON (the file) Note: This replaces the file in the filepath with data in the given json
+		void Serialize(json const& input, std::string const& filePath)
 		{
 			std::ofstream ofs(filePath);
 			if (!ofs.is_open())
@@ -13,11 +13,11 @@ namespace SliceEngine
 				Logger::LogError("JSONSerializer::Serialize", "Unable to write JSON to path: " + filePath);
 				return;
 			}
-			ofs << JSON;
+			ofs << input;
 			ofs.close();
 		}
 
-		//Returns a json (the data structure) that can be accessed as if its a vector
+		//Loads JSON (the file) and returns it as a json (the data structure) that can be accessed and edited
 		json Deserialize(std::string const& filePath)
 		{
 			std::ifstream ifs(filePath);
@@ -27,9 +27,9 @@ namespace SliceEngine
 				return json{};
 			}
 
-			json SceneJSON;
-			ifs >> SceneJSON;
-			return SceneJSON;
+			json output;
+			ifs >> output;
+			return output;
 		}
 
 		static void TestSerialize()
@@ -39,43 +39,26 @@ namespace SliceEngine
 			std::string root("Scene");
 			int num_objects_in_test_scene{ 10 };
 
-			// add a number stored as double (note the implicit conversion of j to an object)
+			//add a number stored as double
 			test["Examples"]["pi"] = 3.141;
 
-			// add a Boolean stored as bool
+			//add a Boolean stored as bool
 			test["Examples"]["happy"] = true;
 
-			// add a string stored as std::string
+			//add a string stored as std::string
 			test["Examples"]["name"] = "Niels";
 
-			// add another null object by passing nullptr
+			//add another null object by passing nullptr
 			test["Examples"]["nothing"] = nullptr;
 
-			// add an object inside the object
+			//add an object inside the object
 			test["Examples"]["answer"]["everything"] = 42;
 
-			// add an array stored as std::vector (using an initializer list)
+			//add an array stored as std::vector (using an initializer list)
 			test["Examples"]["list"] = { 1, 0, 2 };
 
-			// add another object (using an initializer list of pairs)
+			//add another object (using an initializer list of pairs)
 			test["Examples"]["object"] = { {"currency", "SGD"}, {"value", 42.99} };
-
-			/* Example output
-			{
-				"pi": 3.141,
-				"happy": true,
-				"name": "Niels",
-				"nothing": null,
-				"answer": {
-				"everything": 42
-				},
-				"list": [1, 0, 2],
-				"object": {
-				"currency": "SGD",
-				"value": 42.99
-				}
-			}
-			*/
 
 			for (int i{}; i < num_objects_in_test_scene; ++i)
 			{
@@ -85,19 +68,19 @@ namespace SliceEngine
 				test[root][i]["Transform"]["Scale"] = { 1.0f, 2.0f, 3.0f };				
 			}
 
-			Serialize(test, "Assets/TestSerialize.scene");
+			Serialize(test, "Testing/Temporary/TestSerialize.scene");
 		}
 
 		static void TestDeserialize()
 		{
-			json test = Deserialize("Assets/TestSerialize.scene");			
+			json test = Deserialize("Testing/Temporary/TestSerialize.scene");			
 			if (test != json{})
 			{
-				Logger::LogValue("JSONSerializer::Test", "JSON Serialization and Deserialization succeeded with no errors and result is in Assets/TestSerialize.scene.");
+				Logger::LogValue("JSONSerializer::Test", "JSON Serialization and Deserialization succeeded with no errors and result is in Testing/Temporary/TestSerialize.scene.");
 			}
 		}
 
-		//Creates a file called TestSerialize.scene to test serialization and deserialization with end result being in Assets/TestSerialize.scene
+		//Creates a file called TestSerialize.scene to test serialization and deserialization with end result being in Assets/Temporary/TestSerialize.scene
 		void Test()
 		{
 			JSONSerializer::TestSerialize();

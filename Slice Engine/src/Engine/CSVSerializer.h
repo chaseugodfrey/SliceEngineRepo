@@ -11,24 +11,30 @@ namespace SliceEngine
 {
 	namespace CSVSerializer
 	{
-		struct Parsed_CSV_Row_Data
-		{
-			int row{};
-			std::vector<std::string> associated_data{};
-		};
-
-		struct Parsed_CSV
+		struct csv
 		{
 			int num_rows{};
 			int num_cols{};
-			std::vector<Parsed_CSV_Row_Data> comma_seperated_data{};
 
-			Parsed_CSV_Row_Data* Find_Row_With_ID(std::string const& _search_string, unsigned int const _col = 0);
+			//preserving original order for serialization if/when serialization is needed
+			//std::vector<std::string> row_keys;
+			//std::vector<std::string> col_keys;
+
+			std::unordered_map<std::string, std::unordered_map<std::string, std::string>> data;
 		};
 
-		Parsed_CSV Parse_CSV(std::string const& _path);
+		//NOT DOING IF NOT NEEDED: Alot of work so I'll ask designers if serialization is even needed or just need to load csv data and use it rather than edit and save it back into readable csv
+		void Serialize(csv const& input, std::string const& path);
 
-		void Append_CSV(std::string const& _path, std::string const& _string_to_append);
+		csv Deserialize(std::string const& path);
+
+		void Append(std::string const& path, std::string const& string_to_append);
+
+		//Debug
+		void Print(csv const& input);
+
+		//Uses Testing/Units.csv in deserializing it and 
+		void Test();
 	}
 }
 

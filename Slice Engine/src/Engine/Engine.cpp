@@ -35,7 +35,7 @@ namespace SliceEngine
 
 
 			// Main Body
-			inputs->Update(window);
+			inputs->Update(window);			
 			//
 
 #ifdef EDITOR
