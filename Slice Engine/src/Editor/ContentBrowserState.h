@@ -8,13 +8,19 @@ namespace SliceEngine
 	struct DirectoryNode
 	{
 		std::filesystem::path path;
+		DirectoryNode* parent = nullptr;
+		std::vector<DirectoryNode> children;
 	};
 
 	struct ContentBrowserState
 	{
-		std::vector<DirectoryNode> nodes;
-		DirectoryNode* root;
-		DirectoryNode* current;
+		ContentBrowserState()
+		{
+			root = std::make_unique<DirectoryNode>();
+
+			root->path = std::filesystem::path(ASSET_DIR);
+		}
+		std::unique_ptr<DirectoryNode> root;
 	};
 }
 

@@ -4,14 +4,32 @@ namespace SliceEngine
 {
 	void EditorState::RebuildDirectory()
 	{
-		std::filesystem::path current_path = ASSET_DIR;
+		contentBrowserState->root = std::make_unique<DirectoryNode>();
+		contentBrowserState->root->path = ASSET_DIR;
 
-		for (const auto& entry : std::filesystem::directory_iterator(current_path))
+		std::queue<DirectoryNode*> queue;
+		queue.push(contentBrowserState->root.get());
+
+		while (!queue.empty())
 		{
+			auto currentNode = queue.front();
+			queue.pop();
 			
+			for (auto& entry : std::filesystem::directory_iterator(currentNode->path))
+			{
+				DirectoryNode node{};
+				node.path = entry;
+				node.parent = currentNode;
+
+				currentNode->children.push_back(node);
+
+				if (entry.is_directory())
+				{
+					queue.push(&node);
+				}
+			}
 		}
 
-		contentBrowserState->current = contentBrowserState->root;
 	}
 
 	void EditorState::Init()
