@@ -17,6 +17,7 @@ namespace SliceEngine
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+		inputs->Init(window);
 		audio = std::make_unique<AudioManager>();
 		mResource = std::make_unique<ResourceManager>();
 
@@ -27,6 +28,7 @@ namespace SliceEngine
 		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
 		mResource->LoadModel("Assets/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
+
 
 
 #ifdef EDITOR
