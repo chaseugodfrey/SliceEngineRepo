@@ -29,7 +29,7 @@ namespace SliceEngine
 		if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
 		{
 
-			DisplayFolders(*editorState.contentBrowserState);
+			DisplayFolders(editorState.contentBrowserState->root);
 			ImGui::Text("Directory Here!");
 
 			ImGui::EndChild();
@@ -49,19 +49,29 @@ namespace SliceEngine
 		ImGui::End();
 	}
 
-	void ContentBrowser::DisplayFolders(ContentBrowserState& contentBrowser)
+	void ContentBrowser::DisplayFolders(std::unique_ptr<DirectoryNode>& node)
 	{
-		if (!contentBrowser.root)
+		if (!node)
 		{
 			ImGui::Text("No Root found!");
+			return;
 		}
-		else if(contentBrowser.root.get()->path.empty())
+
+		if (node->path.empty())
 		{
-			ImGui::Text("No Path found!");
+			ImGui::Text("No Path Found!");
+			return;
 		}
 		else
 		{
-			ImGui::Text(contentBrowser.root.get()->path.string().c_str());
+			
+			ImGui::Text(node->path.string().c_str());
+			for (auto& entry : node->children)
+			{
+				ImGui::Indent();
+				DisplayFolders(entry);
+				ImGui::Unindent();
+			}
 		}
 	}
 
