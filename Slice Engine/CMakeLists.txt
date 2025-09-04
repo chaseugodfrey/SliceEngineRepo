@@ -59,6 +59,34 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 add_executable(JoltTest src/test.cpp)
 target_link_libraries(JoltTest PRIVATE Jolt)
 
+# DOTNET
+# --- Adding dotnet framework ---
+
+# Add external include directory
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/dotnet/include)
+
+# Set output directories for the Core project
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/build/lib)  # For .lib files (static libraries)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/build/bin)   # For .dll files (shared libraries)
+
+# Add the Core library
+add_library(Core STATIC 
+    src/DotNetApp/Application.cpp
+    src/DotNetApp/Application.h
+)
+# Define the source directory of the DLLs
+#set(DLL_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/dotnet/bin")
+
+# Define the output directory for the build
+#set(DLL_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
+
+# Add a custom command for the post-build event
+#add_custom_command(TARGET your_target POST_BUILD
+#    COMMAND ${CMAKE_COMMAND} -E copy_directory
+#    ${DLL_SOURCE_DIR} ${DLL_OUTPUT_DIR}
+#    COMMENT "Copying DLLs to output directory"
+#)
+
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES})
@@ -72,7 +100,11 @@ target_link_libraries(imgui INTERFACE glfw)
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
 file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
 file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
+file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/DotNetApp/*.cpp")
 add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES})
+
+# Add DLL_API_EXPORT to the preprocessor definitions for the target
+target_compile_definitions(SliceEngine PRIVATE DLL_API_EXPORT)
 
 # ----- PCH -----
 target_precompile_headers(SliceEngine PUBLIC pch.h)
