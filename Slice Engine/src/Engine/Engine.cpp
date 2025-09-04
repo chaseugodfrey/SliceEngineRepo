@@ -2,20 +2,30 @@
 #include "Engine.h"
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
+#include "Physics/PhysicsDebug.h"
 
 namespace SliceEngine
 {
+
 	void Engine::Init()
 	{
 		SLICE_LOG("Initializing Slice Engine.");
 		glfwInit();
 		window = Window::CreateWindow();
 
-
 		// Set up Engine Systems
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+
+		SLICE_LOG("Register default allocator for Jolt Function Pointer");
+		//Jolt uses function pointers for memory allocation, sets up the function pointers Jolt uses internally.
+		JPH::RegisterDefaultAllocator(); 
+
+		SLICE_LOG("Hook Jolt Tracer to SliceEngine Logger");
+		//Jolt has a global function pointer "Trace" for debugging and logging messages
+		//Hook Jolt Trace into SliceEngine’s logger.
+		JPH::Trace = JoltTraceImpl;
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();

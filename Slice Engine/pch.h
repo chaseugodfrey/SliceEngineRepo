@@ -21,6 +21,9 @@
 #include <algorithm>
 #include <type_traits>
 
+#include <cstdarg>
+#include <cstdio>
+
 #include <thread>
 
 #include <math.h>
