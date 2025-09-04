@@ -2,35 +2,37 @@
 
 namespace SliceEngine
 {
-	//void EditorState::RebuildDirectory()
-	//{
-	//	contentBrowserState->root = std::make_unique<DirectoryNode>();
-	//	contentBrowserState->root->path = ASSET_DIR;
+	void EditorState::ResetRootDirectory()
+	{
+		contentBrowserState->root = std::make_unique<DirectoryNode>();
+		contentBrowserState->root->path = ASSET_DIR;
+		contentBrowserState->root->fileName = "Assets";
+	}
 
-	//	std::queue<std::unique_ptr<DirectoryNode>> queue;
-	//	queue.push(contentBrowserState->root.get());
+	void EditorState::CreateDirectory(DirectoryNode& node)
+	{
+		if (node.path.has_extension())
+		{
+			return;
+		}
 
-	//	while (!queue.empty())
-	//	{
-	//		auto currentNode = queue.front();
-	//		queue.pop();
-	//		
-	//		for (auto& entry : std::filesystem::directory_iterator(currentNode->path))
-	//		{
-	//			auto& node = std::make_unique<DirectoryNode>();
-	//			node->path = entry;
-	//			node->parent = currentNode;
+		for (const auto& entry : std::filesystem::directory_iterator(node.path))
+		{
+			DirectoryNode child = {};
+			child.path = entry.path();
+			child.parent = &node;
+			child.fileName = entry.path().filename().string();
 
-	//			currentNode->children.push_back(node);
+			if (entry.is_directory())
+			{
+				node.children.push_back(child);
+			}
 
-	//			if (entry.is_directory())
-	//			{
-	//				queue.push(*node);
-	//			}
-	//		}
-	//	}
+			CreateDirectory(child);
 
-	//}
+		}
+		return;
+	}
 
 	void EditorState::Init()
 	{

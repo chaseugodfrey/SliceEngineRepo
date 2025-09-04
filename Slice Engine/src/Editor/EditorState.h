@@ -10,10 +10,14 @@ namespace SliceEngine
 
 	public:
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
+
+		DirectoryNode& selectedNode;
 		
 		void Init();
 
-		void RebuildDirectory();
+		void ResetRootDirectory();
+
+		void CreateDirectory(DirectoryNode& node);
 	};
 
 }

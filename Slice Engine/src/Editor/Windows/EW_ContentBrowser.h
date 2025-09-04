@@ -19,7 +19,7 @@ namespace SliceEngine
 
 		void Draw() override final;
 
-		void DisplayFolders(std::unique_ptr<DirectoryNode>& node);
+		void DisplayFolders(DirectoryNode& node);
 	};
 }
 

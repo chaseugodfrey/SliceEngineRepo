@@ -5,7 +5,9 @@ namespace SliceEngine
 {
 
 	ContentBrowser::ContentBrowser(EditorState& editorState) : editorState(editorState)
-	{ }
+	{
+		editorState.CreateDirectory(*editorState.contentBrowserState->root);
+	}
 
 	void ContentBrowser::Draw()
 	{
@@ -15,7 +17,8 @@ namespace SliceEngine
 
 		if (ImGui::Button("Reload"))
 		{
-
+			editorState.ResetRootDirectory();
+			editorState.CreateDirectory(*editorState.contentBrowserState->root);
 		}
 
 		/*Setting the ItemSpacing Style to 0, 0 for the 2 child windows*/
@@ -29,8 +32,8 @@ namespace SliceEngine
 		if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
 		{
 
-			DisplayFolders(editorState.contentBrowserState->root);
-			ImGui::Text("Directory Here!");
+			DisplayFolders(*editorState.contentBrowserState->root);
+			//ImGui::Text("Directory Here!");
 
 			ImGui::EndChild();
 		}
@@ -49,29 +52,27 @@ namespace SliceEngine
 		ImGui::End();
 	}
 
-	void ContentBrowser::DisplayFolders(std::unique_ptr<DirectoryNode>& node)
+	void ContentBrowser::DisplayFolders(DirectoryNode& node)
 	{
-		if (!node)
-		{
-			ImGui::Text("No Root found!");
-			return;
-		}
 
-		if (node->path.empty())
+		if (node.path.empty())
 		{
 			ImGui::Text("No Path Found!");
 			return;
 		}
 		else
 		{
-			
-			ImGui::Text(node->path.string().c_str());
-			for (auto& entry : node->children)
+			if (ImGui::TreeNodeEx(node.fileName.c_str()))
 			{
-				ImGui::Indent();
-				DisplayFolders(entry);
-				ImGui::Unindent();
+				for (auto& entry : node.children)
+				{
+					//ImGui::Indent();
+					DisplayFolders(entry);
+					//ImGui::Unindent();
+				}
+				ImGui::TreePop();
 			}
+			
 		}
 	}
 

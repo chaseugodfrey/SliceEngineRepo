@@ -9,8 +9,8 @@ namespace SliceEngine
 	{
 		std::filesystem::path path;
 		DirectoryNode* parent = nullptr;
-		bool isDirectory = true;
-		std::vector<std::unique_ptr<DirectoryNode>> children;
+		std::vector<DirectoryNode> children;
+		std::string fileName;
 	};
 
 	struct ContentBrowserState
@@ -22,11 +22,8 @@ namespace SliceEngine
 			root = std::make_unique<DirectoryNode>();
 
 			root->path = std::filesystem::path(ASSET_DIR);
-
-			CreateDirectory(*root);
+			root->fileName = "Assets";
 		}
-
-		void CreateDirectory(DirectoryNode& node);
 	};
 }
 
