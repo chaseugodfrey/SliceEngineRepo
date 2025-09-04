@@ -89,8 +89,14 @@ namespace SliceEngine
 		if (channel)
 		{
 			channel->setVolume(volume);
-
 			channel->setMode(isLoop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
+
+			// Only track the channel, not duplicate the sound
+			auto track = std::make_unique<SoundTrack>();
+			track->channel = channel;
+			track->category = category;
+			track->isLooping = isLoop;
+			track->currentSoundVolume = volume;
 
 			mSound[internalCategory].emplace_back(std::move(track));
 			return true;
@@ -116,10 +122,42 @@ namespace SliceEngine
 
 	void AudioManager::Exit()
 	{
-		for (int i{}; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
+		/*for (int i{}; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
 		{
 
 			StopSound(static_cast<InternalSound>(i));
+
+		}*/
+
+		for (int i = 0; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
+		{
+			for (auto& track : mSound[static_cast<InternalSound>(i)])
+			{
+				if (track->channel)
+				{
+					track->channel->stop();
+					track->channel = nullptr;
+				}
+			}
+			mSound[static_cast<InternalSound>(i)].clear();
+		}
+
+		// Now release sounds only once, from mLoadedSounds
+		for (auto& pair : mLoadedSounds)
+		{
+			if (pair.second->sound)
+			{
+				pair.second->sound->release();
+				pair.second->sound = nullptr;
+			}
+		}
+		mLoadedSounds.clear();
+
+		if (mSoundSystem)
+		{
+			mSoundSystem->close();
+			mSoundSystem->release();
+			mSoundSystem = nullptr;
 		}
 		SLICE_LOG("Shutting down FMOD Studio.");
 	}

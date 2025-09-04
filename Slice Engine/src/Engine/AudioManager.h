@@ -67,6 +67,7 @@ namespace SliceEngine
 		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop = true);
 		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
 		void StopSound(InternalSound SoundCategory);
+		void CleanUpStoppedSounds();
 		void SwitchSound();
 		
 	private:

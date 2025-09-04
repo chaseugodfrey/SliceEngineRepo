@@ -16,6 +16,11 @@ namespace SliceEngine
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+		audio = std::make_unique<AudioManager>();
+
+		audio->Init();
+		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
+		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
@@ -41,7 +46,7 @@ namespace SliceEngine
 
 		reg.remove<RigidBody>(entity);
 
-		while (1)
+		while (isRunning)
 		{
 			glfwMakeContextCurrent(window);
 			glfwPollEvents();
@@ -64,6 +69,7 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
+		audio->Exit();
 #ifdef EDITOR
 		editor->Exit();
 #endif

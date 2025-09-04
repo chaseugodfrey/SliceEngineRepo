@@ -3,12 +3,10 @@
 int main()
 {
 	SliceEngine::Engine engine{};
-	SliceEngine::AudioManager audioManager{};
+	
 
 	engine.Init();
-	audioManager.Init();
-	audioManager.LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
-	audioManager.PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
+	
 	engine.Update();
 
 	engine.Exit();
