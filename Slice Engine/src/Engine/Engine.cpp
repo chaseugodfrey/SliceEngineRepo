@@ -24,7 +24,7 @@ namespace SliceEngine
 
 		SLICE_LOG("Hook Jolt Tracer to SliceEngine Logger");
 		//Jolt has a global function pointer "Trace" for debugging and logging messages
-		//Hook Jolt Trace into SliceEngine’s logger.
+		//Hook Jolt Trace to SliceEngine’s logger.
 		JPH::Trace = JoltTraceImpl;
 
 #ifdef EDITOR
