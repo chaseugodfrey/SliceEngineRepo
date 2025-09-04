@@ -2,15 +2,16 @@
 #define PHYSICS_SYSTEM_H
 
 #include "BaseSystem.h"
+#include "ECSTypes.h"
 #include <iostream>
 // for testing purpose
 // ill create the struct here to see if systems work
 namespace SliceEngine
 {
-	struct Transform
-	{
-		float rot{};
-	};
+	//struct Transform
+	//{
+	//	float rot{};
+	//};
 
 	struct RigidBody
 	{
@@ -36,7 +37,7 @@ namespace SliceEngine
 		{
 			auto& transform = reg.get<Transform>(entity);
 
-			std::cout << "Update Entity " << transform.rot << std::endl;
+			//std::cout << "Update Entity " << transform.rot << std::endl;
 		}
 	};
 

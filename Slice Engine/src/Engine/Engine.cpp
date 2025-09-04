@@ -36,17 +36,18 @@ namespace SliceEngine
 
 		PhysicSystem physics;
 		physics.Bind(reg);
-
+		mRender->Init(reg);
 
 		entt::entity entity = reg.create();
-		reg.emplace<Transform>(entity, 0.5f);
+		reg.emplace<Transform>(entity, glm::vec3(1,5,0));
 		reg.emplace<RigidBody>(entity, false);
+		reg.emplace<Renderer>(entity);
 
 		physics(2.0f);
 
 		reg.remove<RigidBody>(entity);
 
-		while (1)
+		while (isRunning)
 		{
 			glfwMakeContextCurrent(window);
 			glfwPollEvents();
