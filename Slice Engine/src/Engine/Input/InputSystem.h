@@ -17,11 +17,9 @@ DigiPen Institute of Technology is prohibited.
 
 #ifndef INPUT_SYSTEM_H
 #define INPUT_SYSTEM_H
-#include "ECS/BaseSystem.h"
-#include "GLFW/glfw3.h"
-#include "Input/InputTypes.h"
-#include "Singleton.h"
-#include "Math/Vec2.h"
+#include "../ECS/BaseSystem.h"
+#include <glfw/include/glfw3.h>
+#include "InputTypes.h"
 #include <array>
 #include <queue>
 #include <tuple>
@@ -30,7 +28,7 @@ DigiPen Institute of Technology is prohibited.
 // create struct for GLFWwindow to avoid including GLFW in header
 struct GLFWwindow;
 
-namespace Slice
+namespace SliceEngine
 {
     class InputSystem
     {

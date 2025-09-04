@@ -16,26 +16,45 @@ DigiPen Institute of Technology is prohibited.
 --------------------------------------------------------------------------------------------------*/
 
 #include "pch.h"
-#include "Input/InputSystem.h"
-#include <GLFW/glfw3.h>
+#include "InputSystem.h"
 #include <iostream>
 
-namespace Slice
+namespace SliceEngine
 {
     #pragma region GLFW callbacks
 	// callbacks from GLFW
     static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
+        //UNUSED(window);
+        //UNUSED(mods);
+
+        // assign input variable to the singleton instance
         auto& input = InputSystem::Get();
+
         if (action == GLFW_PRESS)
         {
+            // update that particular key to pressed state
             input.UpdateKeyMap(key, KeyStates::PRESS);
+
+            // try GLFW's printable name first
+            const char* printable = glfwGetKeyName(key, scancode);
+
+            // glfwGetKeyName returns nullptr for non-printable keys
+            if (printable && *printable)
+            {
+                std::cout << "Pressed: " << printable << std::endl;
+            }
+            else
+            {
+                std::cout << "Pressed: " << InputSystem::KeyNameFallback(key) << std::endl;
+            }
         }
         else if (action == GLFW_RELEASE)
         {
             input.UpdateKeyMap(key, KeyStates::RELEASE);
         }
     }
+
 
     static void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
     {
@@ -150,38 +169,6 @@ namespace Slice
     #pragma endregion
 
 	// func to convert keycode to string
-    static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-    {
-		UNUSED(window);
-		UNUSED(mods);
-
-		// assign input variable to the singleton instance
-        auto& input = InputSystem::Get();
-
-        if (action == GLFW_PRESS)
-        {
-			// update that particular key to pressed state
-            input.UpdateKeyMap(key, KeyStates::PRESS);
-
-            // try GLFW's printable name first
-            const char* printable = glfwGetKeyName(key, scancode);
-
-			// glfwGetKeyName returns nullptr for non-printable keys
-            if (printable && *printable) 
-            {
-                std::cout << "Pressed: " << printable << std::endl;
-            }
-            else 
-            {
-                std::cout << "Pressed: " << InputSystem::KeyNameFallback(key) << std::endl;
-            }
-        }
-        else if (action == GLFW_RELEASE)
-        {
-            input.UpdateKeyMap(key, KeyStates::RELEASE);
-        }
-    }
-
 	// for chars that are not printable, provide own fallback names
     const char* InputSystem::KeyNameFallback(int key)
     {

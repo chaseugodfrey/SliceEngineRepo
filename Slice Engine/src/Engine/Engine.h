@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 #include "Window.h"
-#include "InputSystem.h"
+#include "Input/InputSystem.h"
 #include "AudioManager.h"
 
 #ifdef EDITOR

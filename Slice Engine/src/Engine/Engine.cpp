@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
+#include "Window.h"
 
 namespace SliceEngine
 {
@@ -27,6 +28,8 @@ namespace SliceEngine
 
 	void Engine::Update()
 	{
+	
+		
 		Registry reg;
 
 		PhysicSystem physics;
@@ -48,7 +51,7 @@ namespace SliceEngine
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// Main Body
-			inputs->Update(window);
+			inputs->Update();
 			//
 
 #ifdef EDITOR

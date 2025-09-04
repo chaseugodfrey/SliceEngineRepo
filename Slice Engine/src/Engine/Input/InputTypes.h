@@ -16,10 +16,13 @@ DigiPen Institute of Technology is prohibited.
 #ifndef INPUT_TYPES_H
 #define INPUT_TYPES_H
 
-#include <Windows.h>
-#include <GLFW/glfw3.h>
+//#include <Windows.h>
+// note for micah: dont include windows.h
+// it fks up glfw window 
 
-namespace Carmicah
+#include <glfw/include/glfw3.h>
+
+namespace SliceEngine
 {
     // i am not sure i need this anymore tbh
     /*
