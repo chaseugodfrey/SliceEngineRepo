@@ -12,7 +12,6 @@ namespace SliceEngine
 		glfwInit();
 		window = Window::CreateWindow();
 
-
 		// Set up Engine Systems
 		isRunning = true;
 
@@ -24,28 +23,27 @@ namespace SliceEngine
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
 		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
 
-		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
-		mResource->LoadModel("Assets/Cube.txt");
+		mResource->LoadShader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
 
 		InitSystem(mPhysicsTest);
+		InitSystem(mTransform);
+		mRender->Init(mRegistry);
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
 		editor->Init(window);
 #endif
-
-
 	}
 
 	void Engine::Update()
 	{
 	
 		//physics.Bind(mRegistry);
-		mRender->Init(mRegistry);
 
 		entt::entity entity = mRegistry.create();
-		mRegistry.emplace<Transform>(entity, glm::vec3(1,5,0));
+		mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
 		mRegistry.emplace<RigidBody>(entity, false);
 		mRegistry.emplace<Renderer>(entity);
 

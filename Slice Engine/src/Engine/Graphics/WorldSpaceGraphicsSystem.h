@@ -19,7 +19,8 @@ namespace SliceEngine
 		void EntityOnExit(entt::registry& reg, entt::entity entity) override;
 		void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt) override;
 
-		Shader thisShader;
+		Shader mShader;
+		bool testParent;
 	};
 }
 
