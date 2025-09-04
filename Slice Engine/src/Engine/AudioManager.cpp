@@ -99,10 +99,28 @@ namespace SliceEngine
 		return false;
 		
 	}
+
+	void AudioManager::StopSound(InternalSound InternalCategory)
+	{
+		for (auto it = mSound[InternalCategory].begin(); it != mSound[InternalCategory].end(); ++it)
+		{
+			if (it->get()->channel)
+			{
+				it->get()->channel->stop();
+			}
+		}
+
+		mSound[InternalCategory].clear();
+	}
 	
 
 	void AudioManager::Exit()
 	{
+		for (int i{}; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
+		{
+
+			StopSound(static_cast<InternalSound>(i));
+		}
 		SLICE_LOG("Shutting down FMOD Studio.");
 	}
 }
