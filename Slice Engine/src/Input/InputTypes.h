@@ -21,26 +21,28 @@ DigiPen Institute of Technology is prohibited.
 
 namespace Carmicah
 {
-    enum Keys
+    // i am not sure i need this anymore tbh
+    /*
+    enum Keys : int
     {
         // Special and Unknown Keys
         KEY_UNKNOWN = GLFW_KEY_UNKNOWN,
 
         // Printable Keys
         KEY_SPACEBAR = GLFW_KEY_SPACE,
-        KEY_APOSTROPHE = GLFW_KEY_APOSTROPHE,      /* ' */
-        KEY_COMMA = GLFW_KEY_COMMA,           /* , */
-        KEY_MINUS = GLFW_KEY_MINUS,           /* - */
-        KEY_PERIOD = GLFW_KEY_PERIOD,          /* . */
-        KEY_SLASH = GLFW_KEY_SLASH,           /* / */
-        KEY_SEMICOLON = GLFW_KEY_SEMICOLON,       /* ; */
-        KEY_EQUAL = GLFW_KEY_EQUAL,           /* = */
-        KEY_LEFT_BRACKET = GLFW_KEY_LEFT_BRACKET,    /* [ */
-        KEY_BACKSLASH = GLFW_KEY_BACKSLASH,       /* \ */
-        KEY_RIGHT_BRACKET = GLFW_KEY_RIGHT_BRACKET,   /* ] */
-        KEY_GRAVE_ACCENT = GLFW_KEY_GRAVE_ACCENT,    /* ` */
-        KEY_WORLD_1 = GLFW_KEY_WORLD_1,         /* non-US #1 */
-        KEY_WORLD_2 = GLFW_KEY_WORLD_2,         /* non-US #2 */
+        KEY_APOSTROPHE = GLFW_KEY_APOSTROPHE,          
+        KEY_COMMA = GLFW_KEY_COMMA,                     
+        KEY_MINUS = GLFW_KEY_MINUS,                     
+        KEY_PERIOD = GLFW_KEY_PERIOD,                   
+        KEY_SLASH = GLFW_KEY_SLASH,                     
+        KEY_SEMICOLON = GLFW_KEY_SEMICOLON,             
+        KEY_EQUAL = GLFW_KEY_EQUAL,                     
+        KEY_LEFT_BRACKET = GLFW_KEY_LEFT_BRACKET,       
+        KEY_BACKSLASH = GLFW_KEY_BACKSLASH,             
+        KEY_RIGHT_BRACKET = GLFW_KEY_RIGHT_BRACKET,     
+        KEY_GRAVE_ACCENT = GLFW_KEY_GRAVE_ACCENT,       
+        KEY_WORLD_1 = GLFW_KEY_WORLD_1,                 
+        KEY_WORLD_2 = GLFW_KEY_WORLD_2,                 
 
         KEY_0 = GLFW_KEY_0,
         KEY_1 = GLFW_KEY_1,
@@ -127,12 +129,13 @@ namespace Carmicah
 
         MAX_KEYBOARD_KEYS
     };
+    */
 
     enum MouseButtons
     {
-        MOUSE_BUTTON_LEFT = GLFW_MOUSE_BUTTON_LEFT,
-        MOUSE_BUTTON_RIGHT = GLFW_MOUSE_BUTTON_RIGHT,
-        MOUSE_BUTTON_MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
+        LEFT = GLFW_MOUSE_BUTTON_LEFT,
+        RIGHT = GLFW_MOUSE_BUTTON_RIGHT,
+        MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
         MAX_MOUSE_BUTTONS
     };
 

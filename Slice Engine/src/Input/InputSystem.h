@@ -1,16 +1,15 @@
 /* File Documentation -----------------------------------------------------------------------------
 file:           InputSystem.h
 
-\author			Micah Lim (80%), Gideon Francis (20%)
+\author			Micah Lim [100%]
 
 email:          micahshengyao.lim@digipen.edu
 
-brief:          This file declares the InputSystem class, which manages the input handling for
-				keyboard and mouse events in a game engine. It includes functionality for tracking
-				key and mouse states, handling drag events, and converting keycodes to string
-				representations. The InputSystem class integrates GLFW for callback handling.
+brief:          This file declares the InputSystem class, responsible for handling keyboard and mouse
+				input events in the application. It provides methods to query the state of keys and
+				mouse buttons, as well as tracking mouse position and scroll offsets.
 
-Copyright (C) 2024 DigiPen Institute of Technology.
+Copyright (C) 2025 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior written consent of
 DigiPen Institute of Technology is prohibited.
 --------------------------------------------------------------------------------------------------*/
@@ -20,120 +19,68 @@ DigiPen Institute of Technology is prohibited.
 #define INPUT_SYSTEM_H
 #include "ECS/BaseSystem.h"
 #include "GLFW/glfw3.h"
-#include <array>
 #include "Input/InputTypes.h"
 #include "Singleton.h"
 #include "Math/Vec2.h"
+#include <array>
+#include <queue>
+#include <tuple>
+#include <unordered_map>
 
+// create struct for GLFWwindow to avoid including GLFW in header
+struct GLFWwindow;
 
-namespace Carmicah
+namespace Slice
 {
-	class InputSystem : public BaseSystem
-	{
-	private:
-		GLFWwindow* windowRef;
-		std::unordered_map<int, KeyStates> mKeyMap;
-		std::unordered_map<int, KeyStates> mMouseMap;
-		std::queue<std::tuple<bool, int, KeyStates>> mChangedKeyQueue;// true is key, false is mouse
+    class InputSystem
+    {
+    private:
+		GLFWwindow* windowRef = nullptr; // reference to the GLFW window
+		std::unordered_map<int, KeyStates> keyMap; // keycode, keystate
+		std::unordered_map<int, KeyStates> mouseMap; // buttoncode, buttonstate
+		std::queue<std::tuple<bool, int, KeyStates>> changedQueue; // isKey, code, state
 
-		Vector2D<double> mCurrMousePos;
-		Vector2D<double> mPrevMousePos;
-		float mScrollAmt;
+        Vec2d currMousePos{ 0.0, 0.0 }; // reset mouse positions
+        Vec2d prevMousePos{ 0.0, 0.0 }; // reset mouse positions
+		float scrollDelta = 0.0f; // reset scroll delta
 
-		const double sScreenHeight = 1080;
-	public:
-		bool mNotFullScreen{};
-		Vec2i mWindowScale{};
+    public:
+        static InputSystem& Get()
+        {
+            static InputSystem instance;
+            return instance;
+        }
 
+		// func to convert keycode to string
+        static const char* KeyNameFallback(int key);
 
-		InputSystem() : windowRef(nullptr), mScrollAmt(0.0f) {}
-		~InputSystem() {};
+        void Init(GLFWwindow* window);
+        void Update();
+        void UpdatePrevInput();
 
-		// Not using the inherited singleton template class cause we want the base system inheritance
-		static InputSystem* GetInstance()
-		{
-			static InputSystem instance;
-			return &instance;
-		}
+        // key queries
+        bool IsKeyPressed(int key);
+        bool IsKeyReleased(int key);
+        bool IsKeyDown(int key);
 
-		void CloseGame();
+        // mouse queries
+        bool IsMousePressed(MouseButtons button);
+        bool IsMouseReleased(MouseButtons button);
+        bool IsMouseDown(MouseButtons button);
 
-		void ToggleFullScreen();
+        // mouse position
+        Vec2d GetMousePosition() const { return currMousePos; }
+        double GetMouseX() const { return currMousePos.x; }
+        double GetMouseY() const { return currMousePos.y; }
 
+        // scroll
+        float GetScrollDelta() const { return scrollDelta; }
 
-#pragma region Init & Update
-
-		void Init(GLFWwindow* ref);
-		void Update();
-		void UpdatePrevInput();
-
-#pragma endregion
-
-
-#pragma region Key & Mouse State Methods
-		bool IsDragging(MouseButtons button);
-		bool IsMouseOver(Vec2d& position, Vec2d& size);
-
-		bool IsKeyPressed(Keys key);
-		bool IsKeyReleased(Keys key);
-		bool IsKeyHold(Keys key);
-		bool IsKeyDown(Keys key);
-
-		bool IsMousePressed(MouseButtons button);
-		bool IsMouseReleased(MouseButtons button);
-		bool IsMouseHold(MouseButtons button);
-
-		bool WasKeyPressed(Keys key);
-		bool WasKeyReleased(Keys key);
-		bool WasKeyHold(Keys key);
-
-		bool WasMousePressed(MouseButtons button);
-		bool WasMouseReleased(MouseButtons button);
-		bool WasMouseHold(MouseButtons button);
-
-#pragma endregion
-
-
-#pragma region Key & Mouse Map Update Methods
-
-		void UpdateKeyMap(int key, KeyStates state);
-		void UpdateMouseMap(int key, KeyStates state);
-
-#pragma endregion
-
-
-#pragma region Mouse Position Getters
-
-		double GetMouseX();
-		double GetMouseY();
-		Vector2D<double> GetMousePosition();
-		Vector2D<float> GetMouseWorldPosition();
-		void SetMousePosition(double xPos, double yPos);
-		void SetMousePosition(Vector2D<double> pos);
-
-#pragma endregion
-
-
-#pragma region Drag & Held Tracking, Getters & Setters
-
-		//void SetDragging(bool dragging);
-
-		//void SetDragStartPos(const Vector2D<double>& pos);
-		//void SetDragEndPos(const Vector2D<double>& pos);
-		//void SetDragCurrentPos(const Vector2D<double>& pos);
-
-		Vector2D<double> GetDragStartPos() const;
-		Vector2D<double> GetDragEndPos() const;
-		Vector2D<double> GetDragCurrentPos() const;
-		void SetScrollOffset(const double& in);
-		const float& GetScrollOffset() const;
-#pragma endregion
-
-
-		void ProxySend(Message*);
-		const char* KeycodeToString(int key);
-	};
-
-	static InputSystem& Input = *InputSystem::GetInstance(); // so people can call "Input.IsKeyPressed" 
+        // updates from callbacks
+        void UpdateKeyMap(int key, KeyStates state);
+        void UpdateMouseMap(int button, KeyStates state);
+        void SetMousePosition(double x, double y);
+        void SetScrollOffset(double offset);
+    };
 }
 #endif
