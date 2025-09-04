@@ -28,6 +28,7 @@ namespace SliceEngine
 		mResource->LoadModel("Assets/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
 
+		InitSystem(mPhysicsTest);
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
@@ -40,21 +41,18 @@ namespace SliceEngine
 	void Engine::Update()
 	{
 	
-		
-		Registry reg;
+		//physics.Bind(mRegistry);
+		mRender->Init(mRegistry);
 
-		PhysicSystem physics;
-		physics.Bind(reg);
-		mRender->Init(reg);
+		entt::entity entity = mRegistry.create();
+		mRegistry.emplace<Transform>(entity, glm::vec3(1,5,0));
+		mRegistry.emplace<RigidBody>(entity, false);
+		mRegistry.emplace<Renderer>(entity);
 
-		entt::entity entity = reg.create();
-		reg.emplace<Transform>(entity, glm::vec3(1,5,0));
-		reg.emplace<RigidBody>(entity, false);
-		reg.emplace<Renderer>(entity);
+		mPhysicsTest->Update(2.0f);
+		//physics(2.0f);
 
-		physics(2.0f);
-
-		reg.remove<RigidBody>(entity);
+		mRegistry.remove<RigidBody>(entity);
 
 		while (isRunning)
 		{
@@ -80,6 +78,12 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
+		mRender->Exit();
+		for (auto& system : mSystems)
+		{
+			system->Unbind();
+		}
+
 		audio->Exit();
 #ifdef EDITOR
 		editor->Exit();

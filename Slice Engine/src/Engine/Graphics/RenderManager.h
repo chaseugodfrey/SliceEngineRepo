@@ -12,6 +12,7 @@ namespace SliceEngine
 	public:
 		RenderManager();
 		void Init(Registry& reg);
+		void Exit();
 
 
 		void Render(GLFWwindow* window, ResourceManager* rcManager);

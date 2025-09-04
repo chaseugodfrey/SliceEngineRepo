@@ -22,6 +22,11 @@ namespace SliceEngine
 		mWorldSpaceGraphics->Bind(reg);
 	}
 
+	void RenderManager::Exit()
+	{
+		mWorldSpaceGraphics->Unbind();
+	}
+
 	void RenderManager::Render(GLFWwindow* window, ResourceManager* rcManager)
 	{
 		UpdateCamera(cam, window, 0.f, 0.f);

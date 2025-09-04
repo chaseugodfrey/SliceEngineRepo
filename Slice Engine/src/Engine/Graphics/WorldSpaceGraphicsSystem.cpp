@@ -19,7 +19,8 @@ namespace SliceEngine
 		Model& cube = rcManager->GetModel();
 		glBindVertexArray(cube.vao);
 		
-		operator()(1.f);
+		//operator()(1.f);
+		Update(1.0f);
 		glDrawArrays(cube.drawMode, 0, cube.drawCnt);
 	}
 
