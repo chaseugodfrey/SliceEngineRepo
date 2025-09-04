@@ -18,10 +18,16 @@ namespace SliceEngine
 
 		inputs = std::make_unique<InputSystem>();
 		audio = std::make_unique<AudioManager>();
+		mResource = std::make_unique<ResourceManager>();
 
 		audio->Init();
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
 		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
+
+		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
+		mResource->LoadModel("Assets/Cube.txt");
+		mRender = std::make_unique<RenderManager>();
+
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
@@ -39,11 +45,12 @@ namespace SliceEngine
 
 		PhysicSystem physics;
 		physics.Bind(reg);
-
+		mRender->Init(reg);
 
 		entt::entity entity = reg.create();
-		reg.emplace<Transform>(entity, 0.5f);
+		reg.emplace<Transform>(entity, glm::vec3(1,5,0));
 		reg.emplace<RigidBody>(entity, false);
+		reg.emplace<Renderer>(entity);
 
 		physics(2.0f);
 
@@ -62,6 +69,7 @@ namespace SliceEngine
 #ifdef EDITOR
 			editor->Render(window);
 #endif
+			mRender->Render(window, mResource.get());
 
 			glfwSwapBuffers(window);
 			/*glfwPollEvents();*/
