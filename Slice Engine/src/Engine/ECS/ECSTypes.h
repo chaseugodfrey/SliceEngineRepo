@@ -5,6 +5,8 @@
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <xprop/xproperty.h>
+
 using Entity = entt::entity;
 using Registry = entt::registry;
 
@@ -15,7 +17,26 @@ namespace SliceEngine
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;
+
+		//XPROPERTY_DEF 
+		//(
+		//	"Transform", Transform, 
+		//	xproperty::obj_member<"position", &Transform::position>,
+		//	xproperty::obj_member<"rotation", &Transform::rotation>,
+		//	xproperty::obj_member <"scale", &Transform::scale>
+		//);
+
+	//public: static auto PropertiesDefinition()
+	//{
+	//	assert(false);
+
+	//	using namespace xproperty;
+	//	return xproperty::def
+	//}
 	};
+
+	//XPROPERTY_REG(Transform);
+
 	struct Renderer
 	{
 
