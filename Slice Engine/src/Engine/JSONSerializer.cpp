@@ -19,7 +19,7 @@ namespace SliceEngine
 
 		json RecursiveSerialize(GameObject const& node)
 		{
-			//json output;
+			json output;
 
 			//// Basic fields
 			//output["name"] = node.name;
@@ -45,7 +45,7 @@ namespace SliceEngine
 			//	}
 			//}
 
-			//return output;
+			return output;
 		}
 
 		//Loads JSON (the file) and returns it as a json (the data structure) that can be accessed and edited
@@ -85,7 +85,7 @@ namespace SliceEngine
 			//	}
 			//}
 
-			//return node;
+			return GameObject(Registry());
 		}
 		
 		static void TestSerialize()

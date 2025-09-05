@@ -6,7 +6,48 @@ namespace SliceEngine
 	{
         void Serialize(csv const& input, std::string const& path)
         {
+            std::ofstream ofs(path);
+            if (!ofs.is_open())
+            {
+                Logger::LogError("CSVSerializer", "Unable to write CSV to path: " + path);
+                return;
+            }
 
+            //Col Headers
+            for (size_t c = 0; c < input.col_keys.size(); ++c)
+            {
+                ofs << input.col_keys[c];
+                if (c + 1 < input.col_keys.size())
+                {
+                    ofs << ",";
+                }
+            }
+            ofs << "\n";
+
+            //Rows
+            for (size_t r = 0; r < input.row_keys.size(); ++r)
+            {
+                const std::string& row_key = input.row_keys[r];
+                ofs << row_key;
+
+                for (size_t c = 0; c < input.col_keys.size(); ++c)
+                {
+                    const std::string& col_key = input.col_keys[c];
+
+                    auto row_it = input.data.find(row_key);
+                    if (row_it != input.data.end())
+                    {
+                        auto col_it = row_it->second.find(col_key);
+                        if (col_it != row_it->second.end())
+                        {
+                            ofs << "," << col_it->second;
+                        }
+                    }
+                }
+                ofs << "\n";
+            }
+
+            ofs.close();
         }
 
 		csv Deserialize(std::string const& path)
@@ -24,7 +65,6 @@ namespace SliceEngine
 			Logger::LogValue("CSVSerializer", "CSV File in " + path + " opened and read successfully.");
 
             std::string cur_line;
-            std::vector<std::string> col_keys;
 
             //Column headers are the keys for the x axis
             if (std::getline(ifs, cur_line))
@@ -35,16 +75,10 @@ namespace SliceEngine
                 bool first = true;
                 while (std::getline(iss, word, ','))
                 {
-                    if (first)
-                    {
-                        //Skip top-left corner (empty cell)
-                        first = false;
-                        continue;
-                    }
-                    col_keys.push_back(word);
+                    result.col_keys.push_back(word);
                 }
 
-                result.num_cols = static_cast<int>(col_keys.size());
+                result.num_cols = static_cast<int>(result.col_keys.size());
             }
 
             //Remaining rows
@@ -58,6 +92,8 @@ namespace SliceEngine
                     continue;
 
                 std::string row_key = word;
+                result.row_keys.push_back(row_key);
+
                 int col_index = 0;
 
                 //Remaining words = values
@@ -65,7 +101,7 @@ namespace SliceEngine
                 {
                     if (col_index < result.num_cols)
                     {
-                        const std::string& col_key = col_keys[col_index];
+                        const std::string& col_key = result.col_keys[col_index];
                         result.data[row_key][col_key] = word;
                     }
                     col_index++;
@@ -108,7 +144,9 @@ namespace SliceEngine
 
 		void Test()
 		{			
-            Print(Deserialize("Assets/Test.csv"));
+            csv test = Deserialize("Assets/Test.csv");
+            Print(test);
+            Serialize(test, "Assets/TestSerialize.csv");
 		}
 	}
 }

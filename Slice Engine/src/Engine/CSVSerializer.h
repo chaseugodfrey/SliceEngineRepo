@@ -16,14 +16,13 @@ namespace SliceEngine
 			int num_rows{};
 			int num_cols{};
 
-			//preserving original order for serialization if/when serialization is needed
+			//for preserving original order for serialization after it was scrambled in the map for fast accessing speed
 			std::vector<std::string> row_keys;
 			std::vector<std::string> col_keys;
 
 			std::unordered_map<std::string, std::unordered_map<std::string, std::string>> data;
 		};
 
-		//NOT DOING IF NOT NEEDED: Alot of work so I'll ask designers if serialization is even needed or just need to load csv data and use it rather than edit and save it back into readable csv
 		void Serialize(csv const& input, std::string const& path);
 
 		csv Deserialize(std::string const& path);
