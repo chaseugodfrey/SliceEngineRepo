@@ -5,7 +5,7 @@
 \date       Mon day year
 \brief      Implementation of time-related functionality for the project.
 			This file contains the implementation of the GameTime class, which
-			handles delta time calculation, FPS tracking, and frame rate control.
+			handles delta time calculation.
 
 Copyright (C) 2024 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
