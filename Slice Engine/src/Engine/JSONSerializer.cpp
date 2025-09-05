@@ -17,6 +17,37 @@ namespace SliceEngine
 			ofs.close();
 		}
 
+		json RecursiveSerialize(GameObject const& node)
+		{
+			//json output;
+
+			//// Basic fields
+			//output["name"] = node.name;
+			//output["value"] = node.value;
+
+			//// If node has transform data for example
+			//if (node.hasTransform)
+			//{
+			//	output["transform"] = {
+			//		{"position", {node.transform.x, node.transform.y, node.transform.z}},
+			//		{"rotation", {node.transform.rx, node.transform.ry, node.transform.rz}},
+			//		{"scale",    {node.transform.sx, node.transform.sy, node.transform.sz}}
+			//	};
+			//}
+
+			//// Handle children recursively
+			//if (!node.children.empty())
+			//{
+			//	output["children"] = json::array();
+			//	for (auto const& child : node.children)
+			//	{
+			//		output["children"].push_back(RecursiveSerialize(child));
+			//	}
+			//}
+
+			//return output;
+		}
+
 		//Loads JSON (the file) and returns it as a json (the data structure) that can be accessed and edited
 		json Deserialize(std::string const& filePath)
 		{
@@ -34,7 +65,7 @@ namespace SliceEngine
 
 		GameObject RecursiveDeserialize(json const& input)
 		{
-			//GameObject go;
+			//GameObject node;
 
 			////Examples
 			//if (input.contains("transform"))
@@ -46,9 +77,9 @@ namespace SliceEngine
 			//node.name = input.at("name").get<std::string>();
 			//node.value = input.at("value").get<int>();
 
-			//if (j.contains("children"))
+			//if (input.contains("children"))
 			//{
-			//	for (const auto& child_json : j["children"])
+			//	for (const auto& child_json : input["children"])
 			//	{
 			//		node.children.push_back(DeserializeNode(child_json)); // recursion!
 			//	}
