@@ -17,7 +17,8 @@ namespace SliceEngine
 		Editor
 	};
 
-	struct SoundTrack
+	//Base SoundTrack struct for sound files
+	struct SoundTrackBase
 	{
 		FMOD::Sound* sound = nullptr;
 		FMOD::Channel* channel = nullptr;
@@ -27,8 +28,44 @@ namespace SliceEngine
 		bool isLooping = false;
 		bool isPaused = false;
 		bool muffle = false;
+		
+		virtual ~SoundTrackBase() = default;
+
+		virtual void ApplySettings()
+		{
+			if (channel)
+			{
+				channel->setVolume(currentSoundVolume);
+				channel->setMode(isLooping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
+			}
+		}
 	};
 
+	//struct for 2D sounds
+	struct SoundTrack2D : public SoundTrackBase
+	{
+		void ApplySettings() override
+		{
+			SoundTrackBase::ApplySettings();
+		}
+ 	};
+
+	//struct for 3D sounds
+	struct SoundTrack3D : public SoundTrackBase
+	{
+		FMOD_VECTOR position{ 0.0f,0.0f,0.0f };
+		FMOD_VECTOR velocity{ 0.0f,0.0f,0.0f };
+
+		void ApplySettings() override
+		{
+			SoundTrackBase::ApplySettings();
+			if (channel)
+			{
+				channel->set3DAttributes(&position, &velocity);
+				channel->set3DMinMaxDistance(1.0f, 100.0f);
+			}
+		}
+	};
 	class AudioManager
 	{
 		
@@ -39,7 +76,7 @@ namespace SliceEngine
 
 		FMOD::Sound* sound;
 		
-		std::unordered_map<std::string, std::unique_ptr<SoundTrack>> mLoadedSounds;
+		std::unordered_map<std::string, std::unique_ptr<SoundTrackBase>> mLoadedSounds;
 		std::unordered_map<SoundCategory, float> mCategoryVolumes;
 		const float defaultVolume = 1.0f;
 
@@ -71,7 +108,7 @@ namespace SliceEngine
 		void SwitchSound();
 		
 	private:
-		std::vector<std::unique_ptr<SoundTrack>> mSound[SOUND_MAX_SOUNDS];
+		std::vector<std::unique_ptr<SoundTrackBase>> mSound[SOUND_MAX_SOUNDS];
 	//	AudioManager() = default;
 	//	~AudioManager() = default;
 

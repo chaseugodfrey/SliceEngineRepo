@@ -20,7 +20,7 @@ namespace SliceEngine
 		}
 	}
 
-	void AudioManager::LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop)
+	void AudioManager::LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D)
 	{
 		FMOD_MODE eMode = FMOD_DEFAULT;
 
@@ -33,26 +33,41 @@ namespace SliceEngine
 			eMode |= FMOD_2D;
 		}
 
-		if (loop)
+		/*if (loop)
 		{
 			eMode |= FMOD_LOOP_NORMAL;
 		}
 		else
 		{
 			eMode |= FMOD_LOOP_OFF;
-		}
+		}*/
 
 		FMOD::Sound* sound{ nullptr };
 		mSoundSystem->createSound(soundFile.c_str(), eMode, nullptr, &sound);
 
+		std::unique_ptr<SoundTrackBase> track;
+
 		if (sound)
 		{
-			auto track = std::make_unique<SoundTrack>();
-			track->sound = sound;
-			track->isLooping = loop;
+
+			if (is3D)
+			{
+				auto t = std::make_unique<SoundTrack3D>();
+				t->sound = sound;
+				
+				track = std::move(t);
+
+			}
+			else
+			{
+				auto t = std::make_unique<SoundTrack2D>();
+				t->sound = sound;
+				
+				track = std::move(t);
+			}
 
 			mLoadedSounds.try_emplace(soundName, std::move(track));
-			SLICE_LOG("Sound Loaded");
+			SLICE_LOG("Sound Loaded" + soundName);
 			return;
 		}
 	}
@@ -71,7 +86,7 @@ namespace SliceEngine
 			return false;
 		}
 
-		SoundTrack* track = it->second.get();
+		auto track = it->second.get();
 		FMOD::Channel* channel = nullptr;
 
 		FMOD_RESULT result = mSoundSystem->playSound(track->sound, nullptr, false, &channel);
@@ -81,18 +96,14 @@ namespace SliceEngine
 			return false;
 		}
 
-		track->channel = channel;
-		track->category = category;
-		track->isLooping = isLoop;
-		track->currentSoundVolume = volume;
 
 		if (channel)
 		{
-			channel->setVolume(volume);
-			channel->setMode(isLoop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);
+			/*channel->setVolume(volume);
+			channel->setMode(isLoop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF);*/
 
 			// Only track the channel, not duplicate the sound
-			auto track = std::make_unique<SoundTrack>();
+			
 			track->channel = channel;
 			track->category = category;
 			track->isLooping = isLoop;
@@ -122,27 +133,13 @@ namespace SliceEngine
 
 	void AudioManager::Exit()
 	{
-		/*for (int i{}; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
+		for (int i{}; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
 		{
 
 			StopSound(static_cast<InternalSound>(i));
 
-		}*/
-
-		for (int i = 0; i < InternalSound::SOUND_MAX_SOUNDS; ++i)
-		{
-			for (auto& track : mSound[static_cast<InternalSound>(i)])
-			{
-				if (track->channel)
-				{
-					track->channel->stop();
-					track->channel = nullptr;
-				}
-			}
-			mSound[static_cast<InternalSound>(i)].clear();
 		}
 
-		// Now release sounds only once, from mLoadedSounds
 		for (auto& pair : mLoadedSounds)
 		{
 			if (pair.second->sound)
