@@ -70,10 +70,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/build/lib)  # For .li
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/build/bin)   # For .dll files (shared libraries)
 
 # Add the Core library
-add_library(Core STATIC 
-    src/DotNetApp/Application.cpp
-    src/DotNetApp/Application.h
-)
+#add_library(Core STATIC 
+#    src/DotNetApp/Application.cpp
+#    src/DotNetApp/Application.h
+#)
+
 # Define the source directory of the DLLs
 #set(DLL_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/dotnet/bin")
 
@@ -100,7 +101,7 @@ target_link_libraries(imgui INTERFACE glfw)
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
 file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
 file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
-file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/DotNetApp/*.cpp")
+#file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/DotNetApp/*.cpp")
 add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES})
 
 # Add DLL_API_EXPORT to the preprocessor definitions for the target
