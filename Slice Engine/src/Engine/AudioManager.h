@@ -101,7 +101,7 @@ namespace SliceEngine
 		void Update();
 		void Exit();
 
-		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop = true);
+		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D);
 		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
 		void StopSound(InternalSound SoundCategory);
 		void CleanUpStoppedSounds();
