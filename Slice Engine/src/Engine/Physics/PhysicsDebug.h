@@ -6,10 +6,13 @@
 #include <cstdarg>
 #include <cstring>
 
-// Map Jolt messages to our Logger levels
-static Logger::LogLevel MapJoltMessage(const char* msg);
+namespace SliceEngine
+{
+	// Map Jolt messages to our Logger levels
+	static Logger::LogLevel MapJoltMessage(const char* msg);
 
-// Trace implementation
-void JoltTraceImpl(const char* inFMT, ...);
+	// Trace implementation
+	void JoltTraceImpl(const char* inFMT, ...);
+}
 
 #endif //PHYSICSDEBUG_H

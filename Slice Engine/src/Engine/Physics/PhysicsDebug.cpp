@@ -1,26 +1,30 @@
 #include "PhysicsDebug.h"
 
-// Map Jolt messages to Logger levels
-static Logger::LogLevel MapJoltMessage(const char* msg)
+namespace SliceEngine
 {
-    if (strncmp(msg, "Error", 5) == 0)
-        return Logger::LogLevel::ERROR;
-    if (strncmp(msg, "Warning", 7) == 0)
-        return Logger::LogLevel::WARNING;
-    if (strncmp(msg, "Assert", 6) == 0)
-        return Logger::LogLevel::CRITICAL;
 
-    return Logger::LogLevel::DEBUG; // default
-}
+    // Map Jolt messages to Logger levels
+    static Logger::LogLevel MapJoltMessage(const char* msg)
+    {
+        if (strncmp(msg, "Error", 5) == 0)
+            return Logger::LogLevel::ERROR;
+        if (strncmp(msg, "Warning", 7) == 0)
+            return Logger::LogLevel::WARNING;
+        if (strncmp(msg, "Assert", 6) == 0)
+            return Logger::LogLevel::CRITICAL;
 
-void JoltTraceImpl(const char* inFMT, ...)
-{
-    va_list args;
-    va_start(args, inFMT);
+        return Logger::LogLevel::DEBUG; // default
+    }
 
-    Logger::LogLevel level = MapJoltMessage(inFMT);
+    void JoltTraceImpl(const char* inFMT, ...)
+    {
+        va_list args;
+        va_start(args, inFMT);
 
-    Logger::LogJolt("Jolt", inFMT, level, args);
+        Logger::LogLevel level = MapJoltMessage(inFMT);
 
-    va_end(args);
+        Logger::LogJolt("Jolt", inFMT, level, args);
+
+        va_end(args);
+    }
 }
