@@ -11,7 +11,7 @@ namespace SliceEngine
 	public:
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
 
-		DirectoryNode& selectedNode;
+		DirectoryNode* selectedNode = nullptr;
 		
 		void Init();
 

@@ -20,6 +20,8 @@ namespace SliceEngine
 		void Draw() override final;
 
 		void DisplayFolders(DirectoryNode& node);
+
+		void DisplayItems(DirectoryNode& node);
 	};
 }
 
