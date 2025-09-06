@@ -15,13 +15,16 @@ namespace SliceEngine
 	{
 		glClearColor(0.75294f, 1.f, 0.93333f, 1.f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
+
+		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
 
 		Model& cube = rcManager->GetModel();
 		glBindVertexArray(cube.vao);
 		
-		//operator()(1.f);
 		Update(1.0f);
 		glDrawArrays(cube.drawMode, 0, cube.drawCnt);
 	}
@@ -40,14 +43,16 @@ namespace SliceEngine
 	{
 		auto& transform = reg.get<Transform>(entity);
 
-
-		testParent = !testParent;
-
 		glm::mat4x4 M(1.f);
-		M = glm::scale(M, transform.scale);
-		glm::mat4x4 Rot = glm::eulerAngleXYZ(glm::radians(transform.rotation.x), glm::radians(transform.rotation.y), glm::radians(transform.rotation.z));
-		M *= Rot;
 		M = glm::translate(M, transform.position);
+		M *= glm::eulerAngleXYZ(glm::radians(transform.rotation.x), glm::radians(transform.rotation.y), glm::radians(transform.rotation.z));
+		M = glm::scale(M, transform.scale);
+
+		// Transformation code for child - continuing from parent
+		//M = glm::translate(M, glm::vec3(2.f, -2.f, 2.f));
+		//glm::mat4x4 M2 = glm::eulerAngleXYZ(glm::radians(45.f), glm::radians(0.f), glm::radians(0.f));
+		//M2 = glm::scale(M2, glm::vec3(0.5f, 0.5f, 0.5f));
+		//M = M2 * M;
 
 		GLint uniformLoc;
 		uniformLoc = glGetUniformLocation(mShader.s, "M");
