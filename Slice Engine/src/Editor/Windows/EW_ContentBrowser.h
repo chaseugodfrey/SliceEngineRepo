@@ -15,7 +15,7 @@ namespace SliceEngine
 	public:
 		ContentBrowser(EditorState& editorState);
 
-		void Init();
+		//void Init();
 
 		void Draw() override final;
 
@@ -24,6 +24,8 @@ namespace SliceEngine
 		void DisplayItems(DirectoryNode& node);
 
 		void SelectFile(DirectoryNode& node);
+
+		void RenameFilePopup(const std::filesystem::directory_entry& node);
 	};
 }
 

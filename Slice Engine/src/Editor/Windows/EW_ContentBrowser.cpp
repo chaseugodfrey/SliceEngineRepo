@@ -44,9 +44,9 @@ namespace SliceEngine
 		ImVec2 right_region = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
 		if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
 		{
-			if (editorState.selectedNode != nullptr)
+			if (editorState.selectedFolder != nullptr)
 			{
-				DisplayItems(*editorState.selectedNode);
+				DisplayItems(*editorState.selectedFolder);
 			}
 			else
 			{
@@ -58,10 +58,13 @@ namespace SliceEngine
 
 		style.ItemSpacing = ImVec2(8, 4);
 
-		if(editorState.selectedNode != nullptr)
+		if (ImGui::BeginPopup("##RenameFile"))
 		{
-			SLICE_LOG(editorState.selectedNode->path.string().c_str());
+			ImGui::Text("Testing");
+
+			ImGui::EndPopup();
 		}
+
 		ImGui::End();
 	}
 
@@ -102,6 +105,8 @@ namespace SliceEngine
 
 	void ContentBrowser::DisplayItems(DirectoryNode& node)
 	{
+		std::filesystem::directory_entry* selectedEntry;
+
 		if (ImGui::BeginTable("##FolderDirectory", 5))
 		{
 			for (auto& entry : std::filesystem::directory_iterator(node.path))
@@ -109,7 +114,11 @@ namespace SliceEngine
 				if (entry.is_directory())
 				{
 					ImGui::TableNextColumn();
-					ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
+					if (ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None))
+					{
+						//selectedEntry = &entry;
+						ImGui::OpenPopup("##RenameFile");
+					}
 				}
 			}
 
@@ -118,9 +127,18 @@ namespace SliceEngine
 				if (!entry.is_directory())
 				{
 					ImGui::TableNextColumn();
-					ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
+					if (ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None))
+					{
+						//selectedEntry = &entry;
+						ImGui::OpenPopup("##RenameFile");
+					}
 				}
 			}
+
+			/*if (selectedEntry != nullptr)
+			{
+				RenameFilePopup(*selectedEntry);
+			}*/
 
 			ImGui::EndTable();
 		}
@@ -128,7 +146,49 @@ namespace SliceEngine
 
 	void ContentBrowser::SelectFile(DirectoryNode& node)
 	{
-		editorState.selectedNode = &node;
+		editorState.selectedFolder = &node;
+	}
+
+	void ContentBrowser::RenameFilePopup(const std::filesystem::directory_entry& entry)
+	{
+		char newName[256] = "";
+		if (ImGui::BeginPopupModal("##RenameFile"))
+		{
+
+			ImGui::Text(entry.path().string().c_str());
+			ImGui::InputText("New Name:", newName, sizeof(newName));
+
+			if (ImGui::Button("Rename"))
+			{
+				if (newName[0] = '\0')
+				{
+					std::filesystem::path newPath = entry.path().parent_path() / newName;
+					try
+					{
+						std::filesystem::rename(entry.path(), newPath);
+						//entry = std::filesystem::directory_entry(newPath);
+						ImGui::CloseCurrentPopup();
+					}
+					catch (const std::exception& e)
+					{
+						ImGui::Text("Failed!", e.what());
+					}
+				}
+				else
+				{
+					ImGui::Text("Please provide a valid name.");
+				}
+			}
+
+			ImGui::SameLine();
+
+			if (ImGui::Button("Cancel"))
+			{
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndPopup();
+		}
 	}
 
 }

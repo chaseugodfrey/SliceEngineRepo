@@ -11,7 +11,7 @@ namespace SliceEngine
 	public:
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
 
-		DirectoryNode* selectedNode = nullptr;
+		DirectoryNode* selectedFolder = nullptr;
 		
 		void Init();
 
@@ -20,6 +20,9 @@ namespace SliceEngine
 		void CreateDirectory(DirectoryNode& node);
 
 		void RebuildDirectory(DirectoryNode& node);
+
+		void RenameFile(DirectoryNode& node);
+
 	};
 
 }

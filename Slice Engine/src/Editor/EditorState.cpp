@@ -2,6 +2,12 @@
 
 namespace SliceEngine
 {
+	void EditorState::Init()
+	{
+		contentBrowserState = std::make_unique<ContentBrowserState>();
+		
+	}
+
 	void EditorState::RebuildDirectory(DirectoryNode& node)
 	{
 		ResetRootDirectory(node);
@@ -27,10 +33,7 @@ namespace SliceEngine
 			child.parent = &node;
 			child.fileName = entry.path().filename().string();
 
-			if (entry.is_directory())
-			{
-				node.children.push_back(child);
-			}
+			node.children.push_back(child);
 
 			CreateDirectory(child);
 
@@ -38,9 +41,8 @@ namespace SliceEngine
 		return;
 	}
 
-	void EditorState::Init()
+	void EditorState::RenameFile(DirectoryNode& node)
 	{
-		contentBrowserState = std::make_unique<ContentBrowserState>();
-		
+		std::filesystem::path& fileName = node.path.filename();
 	}
 }
