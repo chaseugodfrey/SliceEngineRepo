@@ -102,16 +102,27 @@ namespace SliceEngine
 
 	void ContentBrowser::DisplayItems(DirectoryNode& node)
 	{
-		for (auto& entry : std::filesystem::directory_iterator(node.path))
+		if (ImGui::BeginTable("##FolderDirectory", 5))
 		{
-			bool isSelected = false;
-			if (entry.is_directory())
+			for (auto& entry : std::filesystem::directory_iterator(node.path))
 			{
-				ImGui::ButtonEx(entry.path().filename().string().c_str(),ImVec2(0,0), ImGuiButtonFlags_None);
-				continue;
+				if (!entry.is_directory())
+				{
+					continue;
+				}
+				ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
 			}
 
-			ImGui::Text(entry.path().filename().string().c_str());
+			for (auto& entry : std::filesystem::directory_iterator(node.path))
+			{
+				if (entry.is_directory())
+				{
+					continue;
+				}
+				ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
+			}
+
+			ImGui::EndTable();
 		}
 	}
 
