@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "InputSystem.h"
 #include "AudioManager.h"
+#include "Time.h"
 
 #ifdef EDITOR
 #include "../Editor/Editor.h"
@@ -15,6 +16,7 @@ namespace SliceEngine
 	{
 		GLFWwindow* window;
 		bool isRunning;
+		static GameTime& gameTime;
 		
 		std::unique_ptr<InputSystem> inputs;
 		std::unique_ptr<AudioManager> audio;

@@ -18,6 +18,9 @@ namespace SliceEngine
 
 		inputs = std::make_unique<InputSystem>();
 
+		//Time class for physics simulation or any other system that uses fixeddt
+		GameTime& gameTime = GameTime::getInstance();
+
 		SLICE_LOG("Register default allocator for Jolt Function Pointer");
 		//Jolt uses function pointers for memory allocation, sets up the function pointers Jolt uses internally.
 		JPH::RegisterDefaultAllocator(); 
