@@ -3,8 +3,10 @@
 
 struct GLFWwindow;
 
+#include "../Engine/ECS/ECSTypes.h"
 #include "WindowManager.h"
 #include "EditorState.h"
+
 
 namespace SliceEngine
 {
