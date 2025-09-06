@@ -115,4 +115,7 @@ add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
                 ${CMAKE_CURRENT_BINARY_DIR}/Assets
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll
+                $<TARGET_FILE_DIR:${PROJECT_NAME}>
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/lib/rttr_core_s_d.dll
                 $<TARGET_FILE_DIR:${PROJECT_NAME}>)
