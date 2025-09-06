@@ -39,7 +39,9 @@ namespace SliceEngine
 
 	struct Renderer
 	{
-
+		// May need to change if rendering pipeline is diff
+		std::string model;
+		std::string texture;
 	};
 	struct Camera
 	{

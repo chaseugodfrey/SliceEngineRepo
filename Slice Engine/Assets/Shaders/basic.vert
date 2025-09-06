@@ -10,6 +10,6 @@ uniform mat4 P; // Perspective transform matrix
 
 void main(void){
 
-	gl_Position	= M * P * V * vec4(aVertexPosition, 1.0);
+	gl_Position	=  P * V * M * vec4(aVertexPosition, 1.0);
 	vTexCoord	= aVertexPosition;
 }

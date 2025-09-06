@@ -10,16 +10,34 @@ namespace SliceEngine
 	class RenderManager
 	{
 	public:
+		struct FBODat
+		{
+			GLuint FBO;
+			GLuint textureID{}, depthTex{};
+		};
+		
 		RenderManager();
-		void Init(Registry& reg);
-		void Exit();
+		~RenderManager();
 
+		void InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, GLFWwindow* window);
 
 		void Render(GLFWwindow* window, ResourceManager* rcManager);
-		void UpdateCamera(Camera& camera, GLFWwindow* window, float xOffset, float yOffset);
-		void UpdateRenderCam(Camera& camera, ResourceManager* rcManager);
 
-		std::unique_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
+		void LoadCam();
+		void UpdateCamera(Camera& camera, GLFWwindow* window, float xOffset, float yOffset);
+		void UpdateCamGPU(Camera& camera, ResourceManager* rcManager);
+		
+		void CreateFramebuffer(int width, int height);
+		GLuint GetTexture();
+
+		void IDPick(const int& mouseX, const int& mouseY);
+
+		FBODat mScene;		// For drawing the scene onto a texture
+		//GLuint pboIds[2];	// For Object Picking
+		//GLuint pboIdx[2];
+		unsigned int mIDHovered;
+
+		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
 		Camera cam;
 	};
 }

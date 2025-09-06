@@ -32,8 +32,8 @@ namespace SliceEngine
 		Shader& GetShader();
 		Model& GetModel();
 	private:
-		Shader onlyShader;
-		Model onlyModel;
+		Shader mOnlyShader;
+		Model mOnlyModel;
 	};
 }
 
