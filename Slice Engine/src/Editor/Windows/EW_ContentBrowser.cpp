@@ -106,20 +106,20 @@ namespace SliceEngine
 		{
 			for (auto& entry : std::filesystem::directory_iterator(node.path))
 			{
-				if (!entry.is_directory())
+				if (entry.is_directory())
 				{
-					continue;
+					ImGui::TableNextColumn();
+					ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
 				}
-				ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
 			}
 
 			for (auto& entry : std::filesystem::directory_iterator(node.path))
 			{
-				if (entry.is_directory())
+				if (!entry.is_directory())
 				{
-					continue;
+					ImGui::TableNextColumn();
+					ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
 				}
-				ImGui::ButtonEx(entry.path().filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None);
 			}
 
 			ImGui::EndTable();
