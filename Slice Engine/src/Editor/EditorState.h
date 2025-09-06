@@ -2,14 +2,17 @@
 #define EDITOR_STATE_H
 
 #include "ContentBrowserState.h"
+#include "EditorConsole.h"
 
 namespace SliceEngine
 {
 	class EditorState
 	{
-
 	public:
+		GLuint sceneID;
+
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
+		std::unique_ptr<EditorConsole> console;
 		
 		void Init();
 

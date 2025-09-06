@@ -5,9 +5,12 @@
 
 namespace SliceEngine
 {
+	class EditorState;
+
 	class Inspector : public EditorWindow
 	{
 	public:
+		Inspector(EditorState& editorState);
 		void Draw() override final;
 	};
 }

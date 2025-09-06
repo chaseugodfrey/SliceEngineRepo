@@ -5,9 +5,12 @@
 
 namespace SliceEngine
 {
+	class EditorState;
+
 	class Hierarchy : public EditorWindow
 	{
 	public:
+		Hierarchy(EditorState& editorState);
 		void Draw() override final;
 	};
 }

@@ -1,10 +1,11 @@
 #include <pch.h>
 #include "EW_ContentBrowser.h"
+#include "../EditorState.h"
 
 namespace SliceEngine
 {
 
-	ContentBrowser::ContentBrowser(EditorState& editorState) : editorState(editorState)
+	ContentBrowser::ContentBrowser(EditorState& editorState) : contentBrowserState(*(editorState.contentBrowserState.get()))
 	{ }
 
 	void ContentBrowser::Draw()
@@ -13,38 +14,38 @@ namespace SliceEngine
 		//ImGuiID contentDock = ImGui::GetID("contentDock");
 		//ImGui::DockSpace(contentDock, ImVec2(0, 0), ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_PassthruCentralNode);
 
-		if (ImGui::Button("Reload"))
-		{
+		//if (ImGui::Button("Reload"))
+		//{
 
-		}
+		//}
 
-		/*Setting the ItemSpacing Style to 0, 0 for the 2 child windows*/
-		ImGuiStyle& style = ImGui::GetStyle();
-		//SLICE_LOG("Style Padding:" + std::to_string(style.ItemSpacing.x) + " " + std::to_string(style.ItemSpacing.y));
-		style.ItemSpacing = ImVec2(0, 0);
+		///*Setting the ItemSpacing Style to 0, 0 for the 2 child windows*/
+		//ImGuiStyle& style = ImGui::GetStyle();
+		////SLICE_LOG("Style Padding:" + std::to_string(style.ItemSpacing.x) + " " + std::to_string(style.ItemSpacing.y));
+		//style.ItemSpacing = ImVec2(0, 0);
 
-		/*Asset Directory*/
-		ImVec2 left_region = ImVec2(ImGui::GetContentRegionAvail().x * 0.25f, ImGui::GetContentRegionAvail().y);
+		///*Asset Directory*/
+		//ImVec2 left_region = ImVec2(ImGui::GetContentRegionAvail().x * 0.25f, ImGui::GetContentRegionAvail().y);
 
-		if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
-		{
+		//if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
+		//{
 
-			DisplayFolders(*editorState.contentBrowserState);
-			ImGui::Text("Directory Here!");
+		//	DisplayFolders(contentBrowserState);
+		//	ImGui::Text("Directory Here!");
 
-			ImGui::EndChild();
-		}
+		//	ImGui::EndChild();
+		//}
 
-		ImGui::SameLine();
+		//ImGui::SameLine();
 
-		/*Folder Directory*/
-		ImVec2 right_region = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
-		if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
-		{
-			ImGui::Text("Folder Stuff Here!");
+		///*Folder Directory*/
+		//ImVec2 right_region = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+		//if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
+		//{
+		//	ImGui::Text("Folder Stuff Here!");
 
-			ImGui::EndChild();
-		}
+		//	ImGui::EndChild();
+		//}
 
 		ImGui::End();
 	}
