@@ -27,10 +27,11 @@ namespace SliceEngine
 		mResource->LoadShader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
+		InitSystem(mWorldSpaceGraphics);
+		mRender->InitAndLink(mWorldSpaceGraphics, window);
 
 		InitSystem(mPhysicsTest);
 		InitSystem(mTransform);
-		mRender->Init(mRegistry);
 
 
 #ifdef EDITOR
@@ -78,7 +79,6 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
-		mRender->Exit();
 		for (auto& system : mSystems)
 		{
 			system->Unbind();

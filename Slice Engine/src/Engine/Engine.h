@@ -31,6 +31,7 @@ namespace SliceEngine
 		std::shared_ptr<TransformSystem> mTransform;
 		std::unique_ptr<ResourceManager> mResource;
 		std::unique_ptr<RenderManager> mRender;
+		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
 		std::shared_ptr<PhysicSystem> mPhysicsTest;
 		Registry mRegistry;
 
