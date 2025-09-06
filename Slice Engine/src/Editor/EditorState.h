@@ -15,9 +15,11 @@ namespace SliceEngine
 		
 		void Init();
 
-		void ResetRootDirectory();
+		void ResetRootDirectory(DirectoryNode& node);
 
 		void CreateDirectory(DirectoryNode& node);
+
+		void RebuildDirectory(DirectoryNode& node);
 	};
 
 }

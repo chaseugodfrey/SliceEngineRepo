@@ -17,8 +17,8 @@ namespace SliceEngine
 
 		if (ImGui::Button("Reload"))
 		{
-			editorState.ResetRootDirectory();
-			editorState.CreateDirectory(*editorState.contentBrowserState->root);
+			//editorState.ResetRootDirectory();
+			editorState.RebuildDirectory(*editorState.contentBrowserState->root);
 		}
 
 		/*Setting the ItemSpacing Style to 0, 0 for the 2 child windows*/
@@ -56,6 +56,7 @@ namespace SliceEngine
 			ImGui::EndChild();
 		}
 
+		style.ItemSpacing = ImVec2(8, 4);
 
 		if(editorState.selectedNode != nullptr)
 		{
@@ -74,7 +75,7 @@ namespace SliceEngine
 		}
 		else
 		{
-			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnDoubleClick;
+			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen;
 
 			if (node.children.empty())
 			{

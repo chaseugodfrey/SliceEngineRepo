@@ -2,11 +2,15 @@
 
 namespace SliceEngine
 {
-	void EditorState::ResetRootDirectory()
+	void EditorState::RebuildDirectory(DirectoryNode& node)
 	{
-		contentBrowserState->root = std::make_unique<DirectoryNode>();
-		contentBrowserState->root->path = ASSET_DIR;
-		contentBrowserState->root->fileName = "Assets";
+		ResetRootDirectory(node);
+		CreateDirectory(node);
+	}
+
+	void EditorState::ResetRootDirectory(DirectoryNode& node)
+	{
+		node.children.clear();
 	}
 
 	void EditorState::CreateDirectory(DirectoryNode& node)
