@@ -22,6 +22,8 @@ namespace SliceEngine
 		void DisplayFolders(DirectoryNode& node);
 
 		void DisplayItems(DirectoryNode& node);
+
+		void SelectFile(DirectoryNode& node);
 	};
 }
 

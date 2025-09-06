@@ -75,7 +75,7 @@ namespace SliceEngine
 		}
 		else
 		{
-			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen;
+			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
 
 			if (node.children.empty())
 			{
@@ -86,7 +86,7 @@ namespace SliceEngine
 			{
 				if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
 				{
-					editorState.selectedNode = &node;
+					SelectFile(node);
 				}
 
 				for (auto& entry : node.children)
@@ -104,13 +104,20 @@ namespace SliceEngine
 	{
 		for (auto& entry : std::filesystem::directory_iterator(node.path))
 		{
+			bool isSelected = false;
 			if (entry.is_directory())
 			{
+				ImGui::ButtonEx(entry.path().filename().string().c_str(),ImVec2(0,0), ImGuiButtonFlags_None);
 				continue;
 			}
 
 			ImGui::Text(entry.path().filename().string().c_str());
 		}
+	}
+
+	void ContentBrowser::SelectFile(DirectoryNode& node)
+	{
+		editorState.selectedNode = &node;
 	}
 
 }
