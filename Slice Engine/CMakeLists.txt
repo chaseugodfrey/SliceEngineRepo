@@ -6,7 +6,7 @@ cmake_minimum_required (VERSION 3.26)
 
 # Add source to this project's executable.
 project(SliceEngine)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # ---- COMPILE DEFINITIONS -----
 add_compile_definitions(LIB_DIR="${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/")
@@ -81,6 +81,8 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
+
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)

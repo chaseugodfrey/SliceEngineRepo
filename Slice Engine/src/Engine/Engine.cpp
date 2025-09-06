@@ -16,6 +16,7 @@ namespace SliceEngine
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+		inputs->Init(window);
 		audio = std::make_unique<AudioManager>();
 		mResource = std::make_unique<ResourceManager>();
 
@@ -30,6 +31,7 @@ namespace SliceEngine
 		InitSystem(mPhysicsTest);
 		InitSystem(mTransform);
 		mRender->Init(mRegistry);
+
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>();
