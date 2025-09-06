@@ -21,11 +21,16 @@ namespace SliceEngine
 		GLFWwindow* window;
 		bool isRunning;
 
+#ifdef EDITOR
+		std::unique_ptr<Editor> editor;
+#endif
+	public:
 		// I'm testing a way to store all the systems in an array
 		// to loop and unbind in exit
 		// if it doesnt work down the line then just manually unbind all the systems instead.
+
 		std::vector<std::shared_ptr<IBaseSystem>> mSystems;
-		
+
 		std::unique_ptr<InputSystem> inputs;
 		std::unique_ptr<AudioManager> audio;
 		std::shared_ptr<TransformSystem> mTransform;
@@ -35,10 +40,6 @@ namespace SliceEngine
 		std::shared_ptr<PhysicSystem> mPhysicsTest;
 		Registry mRegistry;
 
-#ifdef EDITOR
-		std::unique_ptr<Editor> editor;
-#endif
-	public:
 		void Init();
 
 	

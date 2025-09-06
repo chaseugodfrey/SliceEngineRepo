@@ -9,6 +9,8 @@ namespace SliceEngine
 	class EditorState
 	{
 	public:
+		GLuint sceneID;
+
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
 		std::unique_ptr<EditorConsole> console;
 		

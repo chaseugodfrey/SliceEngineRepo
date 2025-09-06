@@ -1,5 +1,6 @@
 #include <pch.h>
 #include "Editor.h"
+#include "../Engine/Engine.h"
 
 namespace SliceEngine
 {
@@ -17,7 +18,7 @@ namespace SliceEngine
 
 	void Editor::Update()
 	{
-
+		editorState->sceneID = engine->mRender->GetTexture();
 	}
 
 	void Editor::Render(GLFWwindow* window)
@@ -27,17 +28,6 @@ namespace SliceEngine
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
 
-#pragma region Test Dummy Windows
-		/*ImGui::Begin("A");
-		ImGui::Text("A");
-		ImGui::End();
-
-		ImGui::Begin("B");
-		ImGui::Text("B");
-		ImGui::End();*/
-#pragma endregion
-
-		//std::for_each(windowManager->list.begin(), windowManager->list.end(), [](auto& window) { window.draw(); });
 		windowManager->Render();
 		
 		ImGui::Render();

@@ -9,6 +9,8 @@ namespace SliceEngine
 
 	class SceneView : public EditorWindow
 	{
+
+		EditorState& editorState;
 	public:
 		SceneView(EditorState& editorState);
 		void Draw() override final;
