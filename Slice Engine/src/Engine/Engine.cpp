@@ -23,7 +23,7 @@ namespace SliceEngine
 
 		audio->Init();
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM/BGM_MainMenu_Mix1.wav", false);
-		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
+		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM,false, false, 0.5f);
 
 		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
 		mResource->LoadModel("Assets/Cube.txt");

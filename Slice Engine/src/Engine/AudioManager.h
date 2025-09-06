@@ -29,6 +29,7 @@ namespace SliceEngine
 		bool isPaused = false;
 		bool muffle = false;
 		
+
 		virtual ~SoundTrackBase() = default;
 
 		virtual void ApplySettings()
@@ -66,6 +67,7 @@ namespace SliceEngine
 			}
 		}
 	};
+	
 	class AudioManager
 	{
 		
@@ -76,7 +78,8 @@ namespace SliceEngine
 
 		FMOD::Sound* sound;
 		
-		std::unordered_map<std::string, std::unique_ptr<SoundTrackBase>> mLoadedSounds;
+		std::unordered_map<std::string, std::unique_ptr<SoundTrack2D>> mLoadedSounds2D;
+		std::unordered_map<std::string, std::unique_ptr<SoundTrack3D>> mLoadedSounds3D;
 		std::unordered_map<SoundCategory, float> mCategoryVolumes;
 		const float defaultVolume = 1.0f;
 
@@ -102,13 +105,14 @@ namespace SliceEngine
 		void Exit();
 
 		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D);
-		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
-		void StopSound(InternalSound SoundCategory);
+		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory,bool is3D, bool isLoop, float volume, FMOD_VECTOR pos = {0.0f,0.0f,0.0f}, FMOD_VECTOR vel = { 0.0f,0.0f,0.0f });
+		void StopAllSound(InternalSound SoundCategory);
 		void CleanUpStoppedSounds();
 		void SwitchSound();
 		
 	private:
-		std::vector<std::unique_ptr<SoundTrackBase>> mSound[SOUND_MAX_SOUNDS];
+		std::vector<std::unique_ptr<SoundTrack2D>> mSound2D[SOUND_MAX_SOUNDS];
+		std::vector<std::unique_ptr<SoundTrack3D>> mSound3D[SOUND_MAX_SOUNDS];
 	//	AudioManager() = default;
 	//	~AudioManager() = default;
 
