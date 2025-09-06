@@ -18,7 +18,7 @@ namespace SliceEngine
 
 	void Editor::Update()
 	{
-		editorState->sceneID = engine->mRender->GetTexture();
+		editorState->renderManager = engine->mRender.get();
 	}
 
 	void Editor::Render(GLFWwindow* window)

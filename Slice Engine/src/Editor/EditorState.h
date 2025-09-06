@@ -3,14 +3,17 @@
 
 #include "ContentBrowserState.h"
 #include "EditorConsole.h"
+#include "../Engine/ECS/ECSTypes.h"
 
 namespace SliceEngine
 {
+	class RenderManager;
+
 	class EditorState
 	{
 	public:
-		GLuint sceneID;
-
+		
+		RenderManager* renderManager;
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
 		std::unique_ptr<EditorConsole> console;
 		
