@@ -6,7 +6,7 @@ cmake_minimum_required (VERSION 3.26)
 
 # Add source to this project's executable.
 project(SliceEngine)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # ---- COMPILE DEFINITIONS -----
 add_compile_definitions(LIB_DIR="${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/")
@@ -68,6 +68,16 @@ target_include_directories(imgui
 )
 target_link_libraries(imgui INTERFACE glfw)
 
+
+# RTTR
+set(RTTR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr")
+
+# add RTTR include directory
+include_directories(${RTTR_DIR}/include)
+
+# add library directory
+link_directories(${RTTR_DIR}/lib)
+
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
 file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
@@ -78,13 +88,21 @@ add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES} )
 target_precompile_headers(SliceEngine PUBLIC pch.h)
 set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 
+
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
+
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)
 target_link_libraries(SliceEngine PRIVATE Jolt)
+
+# This is probably not fully complete
+# suppose to have 1 for release 1 for debug
+# this is debug if im not wrong cause _d
+target_link_libraries(SliceEngine PRIVATE ${RTTR_DIR}/lib/rttr_core_s_d.lib)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder

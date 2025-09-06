@@ -3,15 +3,16 @@
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
 #include "Window.h"
+#include <rttr/registration.h>
 
 namespace SliceEngine
 {
+
 	void Engine::Init()
 	{
 		SLICE_LOG("Initializing Slice Engine.");
 		glfwInit();
 		window = Window::CreateWindow();
-
 
 		// Set up Engine Systems
 		isRunning = true;
@@ -25,29 +26,29 @@ namespace SliceEngine
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM/BGM_MainMenu_Mix1.wav", false);
 		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM,false, false, 0.5f);
 
-		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
-		mResource->LoadModel("Assets/Cube.txt");
+		mResource->LoadShader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
+		InitSystem(mWorldSpaceGraphics);
+		mRender->InitAndLink(mWorldSpaceGraphics, window);
 
 		InitSystem(mPhysicsTest);
+		InitSystem(mTransform);
 
 
 #ifdef EDITOR
-		editor = std::make_unique<Editor>();
+		editor = std::make_unique<Editor>(this);
 		editor->Init(window);
 #endif
-
-
 	}
 
 	void Engine::Update()
 	{
 	
 		//physics.Bind(mRegistry);
-		mRender->Init(mRegistry);
 
 		entt::entity entity = mRegistry.create();
-		mRegistry.emplace<Transform>(entity, glm::vec3(1,5,0));
+		mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
 		mRegistry.emplace<RigidBody>(entity, false);
 		mRegistry.emplace<Renderer>(entity);
 
@@ -66,10 +67,11 @@ namespace SliceEngine
 			inputs->Update();
 			//
 
+			mRender->Render(window, mResource.get());
 #ifdef EDITOR
+			editor->Update();
 			editor->Render(window);
 #endif
-			mRender->Render(window, mResource.get());
 
 			glfwSwapBuffers(window);
 			/*glfwPollEvents();*/
@@ -80,7 +82,6 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
-		mRender->Exit();
 		for (auto& system : mSystems)
 		{
 			system->Unbind();

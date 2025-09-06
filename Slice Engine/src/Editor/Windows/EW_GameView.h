@@ -5,9 +5,13 @@
 
 namespace SliceEngine
 {
+	class EditorState;
+
 	class GameView : public EditorWindow
 	{
+		EditorState& editorState;
 	public:
+		GameView(EditorState& editorState);
 		void Draw() override final;
 	};
 }
