@@ -3,6 +3,9 @@
 
 namespace SliceEngine
 {
+	Inspector::Inspector(EditorState& editorState)
+	{
+	}
 
 	void Inspector::Draw()
 	{

@@ -23,7 +23,7 @@ namespace SliceEngine
 
 		audio->Init();
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
-		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
+		//audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
 
 		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
 		mResource->LoadModel("Assets/Cube.txt");
@@ -33,7 +33,7 @@ namespace SliceEngine
 
 
 #ifdef EDITOR
-		editor = std::make_unique<Editor>();
+		editor = std::make_unique<Editor>(this);
 		editor->Init(window);
 #endif
 
@@ -66,10 +66,10 @@ namespace SliceEngine
 			inputs->Update();
 			//
 
+			mRender->Render(window, mResource.get());
 #ifdef EDITOR
 			editor->Render(window);
 #endif
-			mRender->Render(window, mResource.get());
 
 			glfwSwapBuffers(window);
 			/*glfwPollEvents();*/

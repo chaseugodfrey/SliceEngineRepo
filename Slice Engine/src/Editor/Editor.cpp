@@ -3,6 +3,10 @@
 
 namespace SliceEngine
 {
+	Editor::Editor(Engine* r_engine) : engine(r_engine)
+	{
+	}
+
 	void Editor::Init(GLFWwindow* window)
 	{
 		SLICE_LOG("Initializing Editor.");

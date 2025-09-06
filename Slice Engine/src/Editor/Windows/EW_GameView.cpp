@@ -3,6 +3,9 @@
 
 namespace SliceEngine
 {
+	GameView::GameView(EditorState& editorState)
+	{
+	}
 	void GameView::Draw()
 	{
 		ImGui::Begin("Game");
