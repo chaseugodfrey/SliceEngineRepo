@@ -32,8 +32,10 @@ namespace SliceEngine
 			child.path = entry.path();
 			child.parent = &node;
 			child.fileName = entry.path().filename().string();
+			child.isDirectory = entry.is_directory();
 
 			node.children.push_back(child);
+
 
 			CreateDirectory(child);
 

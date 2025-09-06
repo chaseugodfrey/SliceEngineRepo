@@ -7,6 +7,7 @@ namespace SliceEngine
 {
 	struct DirectoryNode
 	{
+		bool isDirectory;
 		std::filesystem::path path;
 		DirectoryNode* parent = nullptr;
 		std::vector<DirectoryNode> children;
@@ -23,6 +24,7 @@ namespace SliceEngine
 
 			root->path = std::filesystem::path(ASSET_DIR);
 			root->fileName = "Assets";
+			root->isDirectory = true;
 		}
 	};
 }

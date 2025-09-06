@@ -25,7 +25,7 @@ namespace SliceEngine
 
 		void SelectFile(DirectoryNode& node);
 
-		void RenameFilePopup(const std::filesystem::directory_entry& node);
+		void RenameFilePopup(DirectoryNode& node);
 	};
 }
 
