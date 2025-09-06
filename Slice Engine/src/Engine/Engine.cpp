@@ -67,6 +67,7 @@ namespace SliceEngine
 
 			mRender->Render(window, mResource.get());
 #ifdef EDITOR
+			editor->Update();
 			editor->Render(window);
 #endif
 

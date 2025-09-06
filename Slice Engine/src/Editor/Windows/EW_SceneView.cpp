@@ -13,10 +13,12 @@ namespace SliceEngine
 		ImGui::Begin("Scene");
 
 		auto size = ImGui::GetContentRegionAvail();
+		ImVec2 pos = ImGui::GetCursorScreenPos();
+
 		ImGui::GetWindowDrawList()->AddImage(
 			(void*)editorState.sceneID, // Placeholder texture ID
-			ImVec2{ ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y },
-			ImVec2{ ImGui::GetCursorScreenPos().x + size.x, ImGui::GetCursorScreenPos().y + size.y },
+			ImVec2(pos.x, pos.y),
+			ImVec2(pos.x + ImGui::GetContentRegionAvail().x, pos.y + ImGui::GetContentRegionAvail().y),
 			ImVec2(0, 1),
 			ImVec2(1, 0)
 		);
