@@ -3,16 +3,18 @@
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
 #include "Window.h"
+#include <rttr/registration.h>
 
 namespace SliceEngine
 {
+
 	void Engine::Init()
 	{
 		SLICE_LOG("Initializing Slice Engine.");
 		glfwInit();
 		window = Window::CreateWindow();
 
-
+		
 		// Set up Engine Systems
 		isRunning = true;
 

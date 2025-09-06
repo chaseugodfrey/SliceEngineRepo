@@ -12,6 +12,11 @@ using Registry = entt::registry;
 
 namespace SliceEngine
 {
+	struct testStruct
+	{
+		int val;
+	};
+
 	struct Transform
 	{
 		glm::vec3 position;

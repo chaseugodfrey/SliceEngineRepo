@@ -59,24 +59,6 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 add_executable(JoltTest src/test.cpp)
 target_link_libraries(JoltTest PRIVATE Jolt)
 
-# RTTR
-#Base directory for RTTR
-set(RTTR_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr)
-
-# Create an imported target for release library
-add_library(rttr_release STATIC IMPORTED)
-set_target_properties(rttr_release PROPERTIES IMPORTED_LOCATION "${RTTR_DIR}/lib/rttr_core_lib_s_d.lib")
-
-# Create a single interface target to represent RTTR
-add_library(rttr INTERFACE)
-target_include_directories(rttr INTERFACE "${RTTR_DIR}/include")
-
-# Link the interface target
-target_link_libraries(rttr INTERFACE 
-                                    $<$<CONFIG:Debug>:rttr_debug>
-                                    $<$<CONFIG:Release>:rttr_release>
-                                    )
-
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES} )
@@ -85,6 +67,16 @@ target_include_directories(imgui
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include
 )
 target_link_libraries(imgui INTERFACE glfw)
+
+
+# RTTR
+set(RTTR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr")
+
+# add RTTR include directory
+include_directories(${RTTR_DIR}/include)
+
+# add library directory
+link_directories(${RTTR_DIR}/lib)
 
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
@@ -96,6 +88,7 @@ add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES} )
 target_precompile_headers(SliceEngine PUBLIC pch.h)
 set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 
+
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
@@ -105,7 +98,11 @@ target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)
 target_link_libraries(SliceEngine PRIVATE Jolt)
-target_link_libraries(SliceEngine PRIVATE rttr)
+
+# This is probably not fully complete
+# suppose to have 1 for release 1 for debug
+# this is debug if im not wrong cause _d
+target_link_libraries(SliceEngine PRIVATE ${RTTR_DIR}/lib/rttr_core_s_d.lib)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder
