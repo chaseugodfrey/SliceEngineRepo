@@ -30,6 +30,7 @@ namespace SliceEngine
 		//GameObject in place of scenegraph node as placeholder
 		GameObject RecursiveDeserialize(json const& input);
 
+		//Creates a file called TestSerialize.scene to test serialization and deserialization with end result being in Testing/Temporary/TestSerialize.scene
 		void Test();
 	}	
 }

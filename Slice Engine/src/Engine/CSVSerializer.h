@@ -32,7 +32,7 @@ namespace SliceEngine
 		//Debug
 		void Print(csv const& input);
 
-		//Uses Testing/Units.csv in deserializing it and 
+		//Uses Assets/Test.csv in deserializing it and 
 		void Test();
 	}
 }

@@ -136,7 +136,6 @@ namespace SliceEngine
 			}
 		}
 
-		//Creates a file called TestSerialize.scene to test serialization and deserialization with end result being in Assets/Temporary/TestSerialize.scene
 		void Test()
 		{
 			JSONSerializer::TestSerialize();
