@@ -78,10 +78,10 @@ namespace SliceEngine
 		SLICE_LOG("Left Region Coordinates: " + std::to_string(left_region.x) + " , " + std::to_string(left_region.y));
 		SLICE_LOG("Right Region Coordinates: " + std::to_string(right_region.x) + " , " + std::to_string(right_region.y));
 
-		if(editorState.selectedFolder != nullptr)
+		/*if(editorState.selectedFolder != nullptr)
 		{
 			SLICE_LOG(editorState.selectedFolder->path.string());
-		}
+		}*/
 
 		ImGui::End();
 	}
@@ -104,7 +104,8 @@ namespace SliceEngine
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
 
-			if (node.children.empty())
+			if (std::none_of(node.children.begin(), node.children.end(), [](const DirectoryNode& child) 
+				{return child.isDirectory; }))
 			{
 				flags |= ImGuiTreeNodeFlags_Leaf;
 			}
