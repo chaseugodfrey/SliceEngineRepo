@@ -1,14 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
+		<!-- Match this with your ScriptAPI C++/CLI target framework -->
+		<TargetFramework>net472</TargetFramework>
 		<OutputType>Library</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
-		<!-- or .NET version you want to target -->
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutputPath>$(SolutionDir).bin\$(Configuration)-$(Platform)\</OutputPath>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutputPath>$(SolutionDir).bin\$(Configuration)-$(Platform)\</OutputPath>
+		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<!-- Reference the C++/CLI ScriptAPI DLL -->
-		<Reference Include="..\SliceScriptAPI\bin\Debug\ScriptAPI.dll" />
-	</ItemGroup>
-
 </Project>
+
+
+
+<!--
+<PropertyGroup>
+	<OutputType>Library</OutputType>
+	<TargetFramework>net6.0</TargetFramework>
+	 or .NET version you want to target 
+</PropertyGroup>
+
+<ItemGroup>
+	 Reference the C++/CLI ScriptAPI DLL 
+	<Reference Include="..\SliceScriptAPI\bin\Debug\ScriptAPI.dll" />
+</ItemGroup>
+
+-->

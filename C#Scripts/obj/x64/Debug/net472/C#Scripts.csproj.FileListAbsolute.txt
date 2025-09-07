@@ -1,0 +1,6 @@
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.csproj.AssemblyReference.cache
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.AssemblyInfoInputs.cache
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.AssemblyInfo.cs
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.csproj.CoreCompileInputs.cache
+C:\Users\muhdr\Documents\Y3T1\Gam\SliceEngineRepo\C#Scripts\obj\x64\Debug\net472\C#Scripts.sourcelink.json

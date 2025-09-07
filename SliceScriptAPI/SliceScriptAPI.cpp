@@ -1,12 +1,5 @@
-﻿// SliceScriptAPI.cpp : Defines the entry point for the application.
-//
-
-#include "SliceScriptAPI.h"
-
-using namespace std;
-
-int main()
-{
-	cout << "Hello CMake." << endl;
-	return 0;
-}
+﻿#ifdef SLICESCRIPTAPI_EXPORTS
+#define SLICESCRIPTAPI_API __declspec(dllexport)
+#else
+#define SLICESCRIPTAPI_API __declspec(dllimport)
+#endif

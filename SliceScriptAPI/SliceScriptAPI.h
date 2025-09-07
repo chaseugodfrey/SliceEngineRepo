@@ -1,8 +1,18 @@
-﻿// SliceScriptAPI.h : Include file for standard system include files,
-// or project specific include files.
+﻿#pragma once
 
-#pragma once
+#ifdef SLICESCRIPTAPI_EXPORTS
+#define SLICESCRIPTAPI_API __declspec(dllexport)
+#else
+#define SLICESCRIPTAPI_API __declspec(dllimport)
+#endif
 
-#include <iostream>
+using namespace System;
 
-// TODO: Reference additional headers your program requires here.
+namespace ScriptAPI {
+    public ref class Bridge {
+    public:
+        static void Hello() {
+            Console::WriteLine("Hello from C++/CLI!");
+        }
+    };
+}
