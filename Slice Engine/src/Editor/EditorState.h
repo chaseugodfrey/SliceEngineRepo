@@ -23,6 +23,8 @@ namespace SliceEngine
 
 		void RenameFile(DirectoryNode& entry, char* newName);
 
+		void OpenFile();
+
 	};
 
 }

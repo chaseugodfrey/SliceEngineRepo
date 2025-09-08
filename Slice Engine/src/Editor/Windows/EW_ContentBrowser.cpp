@@ -116,9 +116,7 @@ namespace SliceEngine
 
 				for (auto& entry : node.children)
 				{
-					//ImGui::Indent();
 					DisplayFolders(entry);
-					//ImGui::Unindent();
 				}
 				ImGui::TreePop();
 			}	
@@ -136,10 +134,20 @@ namespace SliceEngine
 				if (entry.isDirectory)
 				{
 					ImGui::TableNextColumn();
-					if (ImGui::ButtonEx(entry.path.filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None))
+
+					if (ImGui::ButtonEx(entry.path.filename().string().c_str(), ImVec2(0,0), ImGuiButtonFlags_None))
 					{
 						selectedEntry = &entry;
-						ImGui::OpenPopup("##RenameFile");
+					}
+					if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+					{
+						selectedEntry = &entry;
+						ImGui::OpenPopup("##RenameFile"); //It should open 
+					}
+
+					if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left, 2))
+					{
+						editorState.OpenFile();
 					}
 				}
 			}
@@ -149,18 +157,51 @@ namespace SliceEngine
 				if (!entry.isDirectory)
 				{
 					ImGui::TableNextColumn();
-					if (ImGui::ButtonEx(entry.path.filename().string().c_str(), ImVec2(0, 0), ImGuiButtonFlags_None))
+
+					ImGui::PushID(entry.path.string().c_str());
+
+					if (ImGui::ButtonEx(entry.path.filename().string().c_str(),ImVec2(0,0), ImGuiButtonFlags_None))
 					{
 						selectedEntry = &entry;
-						ImGui::OpenPopup("##RenameFile");
 					}
+
+					if (ImGui::BeginPopupContextItem("##ItemEditPopup"))
+					{
+						selectedEntry = &entry;
+
+						if (ImGui::MenuItem("Rename File"))
+						{
+							ImGui::CloseCurrentPopup();
+							ImGui::OpenPopup("##RenameFile");
+						}
+						ImGui::EndPopup();
+					}
+
+					//if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+					//{
+					//	selectedEntry = &entry;
+					//	ImGui::OpenPopup("##RenameFile"); //It should open 
+					//}
+
+					if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+					{
+						editorState.OpenFile();
+					}
+					ImGui::PopID();
 				}
+
+
+				if (selectedEntry == &entry)
+				{
+					RenameFilePopup(*selectedEntry);
+				}
+
 			}
 
-			if (selectedEntry != nullptr)
+			/*if (selectedEntry != nullptr)
 			{
 				RenameFilePopup(*selectedEntry);
-			}
+			}*/
 
 			ImGui::EndTable();
 		}
@@ -178,45 +219,26 @@ namespace SliceEngine
 		
 		if (ImGui::BeginPopupModal("##RenameFile"))
 		{
-			if (ImGui::IsWindowAppearing())
+			if (ImGui::IsWindowAppearing()) //First-time copying the name of the file for ImGui to register it
 			{
 				std::memset(newName, 0, sizeof(newName));
 				std::strncpy(newName, entry.fileName.c_str(), sizeof(newName) - 1);
 				newName[sizeof(newName) - 1] = '\0';
 			}
-			//ImGui::Text(entry.path.string().c_str());
-			ImGui::InputText("New Name:", newName, sizeof(newName));
+			ImGui::Text("New Filename : ");
+			ImGui::SameLine();
+			ImGui::InputText("##New Filename:", newName, sizeof(newName));
 
 			if (ImGui::Button("Rename"))
 			{
 				if (newName[0] != '\0')
 				{
 					editorState.RenameFile(entry, newName);
-					/*std::filesystem::path extension;
-					std::filesystem::path newPath = entry.path.parent_path() / newName;
-					if (entry.path.has_extension())
-					{
-						extension = entry.path.extension();
-					}
-					newPath += extension;
-					std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
-					try
-					{
-						
-						std::filesystem::rename(entry.path, newPath);
-						actualEntry = std::filesystem::directory_entry(newPath);
-						entry.fileName = newName;
-						entry.path = newPath;
-					}
-					catch (const std::exception& e)
-					{
-						ImGui::Text("Failed!", e.what());
-					}*/
 					ImGui::CloseCurrentPopup();
 				}
 				else
 				{
-					ImGui::Text("Please provide a valid name.");
+					SLICE_LOG_ERROR("Trying to rename into an empty filename!");
 				}
 			}
 

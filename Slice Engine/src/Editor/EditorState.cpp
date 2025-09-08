@@ -67,4 +67,9 @@ namespace SliceEngine
 			ImGui::Text("Failed!", e.what());
 		}
 	}
+
+	void EditorState::OpenFile()
+	{
+		SLICE_LOG("Open this file WIP!");
+	}
 }

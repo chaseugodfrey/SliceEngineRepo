@@ -26,6 +26,8 @@ namespace SliceEngine
 		void SelectFile(DirectoryNode& node);
 
 		void RenameFilePopup(DirectoryNode& node);
+		
+		
 	};
 }
 
