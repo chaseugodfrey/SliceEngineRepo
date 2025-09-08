@@ -191,12 +191,13 @@ namespace SliceEngine
 			{
 				if (newName[0] != '\0')
 				{
-					std::filesystem::path extension;
+					editorState.RenameFile(entry, newName);
+					/*std::filesystem::path extension;
+					std::filesystem::path newPath = entry.path.parent_path() / newName;
 					if (entry.path.has_extension())
 					{
 						extension = entry.path.extension();
 					}
-					std::filesystem::path newPath = entry.path.parent_path() / newName;
 					newPath += extension;
 					std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
 					try
@@ -210,7 +211,7 @@ namespace SliceEngine
 					catch (const std::exception& e)
 					{
 						ImGui::Text("Failed!", e.what());
-					}
+					}*/
 					ImGui::CloseCurrentPopup();
 				}
 				else

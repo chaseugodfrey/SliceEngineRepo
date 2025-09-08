@@ -44,8 +44,27 @@ namespace SliceEngine
 		return;
 	}
 
-	void EditorState::RenameFile(DirectoryNode& node)
+	void EditorState::RenameFile(DirectoryNode& entry, char* newName)
 	{
-		std::filesystem::path& fileName = node.path.filename();
+		std::filesystem::path extension;
+		std::filesystem::path newPath = entry.path.parent_path() / newName;
+		if (entry.path.has_extension())
+		{
+			extension = entry.path.extension();
+		}
+		newPath += extension;
+		std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
+		try
+		{
+
+			std::filesystem::rename(entry.path, newPath);
+			actualEntry = std::filesystem::directory_entry(newPath);
+			entry.fileName = newName;
+			entry.path = newPath;
+		}
+		catch (const std::exception& e)
+		{
+			ImGui::Text("Failed!", e.what());
+		}
 	}
 }

@@ -21,7 +21,7 @@ namespace SliceEngine
 
 		void RebuildDirectory(DirectoryNode& node);
 
-		void RenameFile(DirectoryNode& node);
+		void RenameFile(DirectoryNode& entry, char* newName);
 
 	};
 
