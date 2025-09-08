@@ -63,7 +63,7 @@ target_link_libraries(JoltTest PRIVATE Jolt)
 file(GLOB_RECURSE RTTR_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/include/*.h")
 add_library(RTTR STATIC IMPORTED)
 #set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_vc.lib)
-set_target_properties(RTTR PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/lib/rttr_core_s_d.lib)
+set_target_properties(RTTR PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/lib/rttr_core_d.lib)
 target_include_directories(RTTR INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/include)
 #set(RTTR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr")
 
@@ -78,7 +78,7 @@ target_include_directories(RTTR INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES} )
 target_include_directories(imgui
-    PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include
+    PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include 
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include
 )
 target_link_libraries(imgui INTERFACE glfw)
@@ -87,8 +87,9 @@ target_link_libraries(imgui INTERFACE glfw)
 
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
-file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
-file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
+file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp"  "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.h")
+
+file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.h")
 add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES} )
 
 # ----- PCH -----
@@ -123,8 +124,5 @@ add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
                 ${CMAKE_CURRENT_BINARY_DIR}/Assets
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll
-                $<TARGET_FILE_DIR:${PROJECT_NAME}>
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/lib/rttr_core_s_d.dll
                 $<TARGET_FILE_DIR:${PROJECT_NAME}>
         )
