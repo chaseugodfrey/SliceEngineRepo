@@ -1,6 +1,7 @@
 #ifndef AUDIO_MANAGER_H
 #define AUDIO_MANAGER_H
-#include "../ThirdParty/fmod/include/fmod.hpp"
+//#include "../ThirdParty/fmod/include/fmod.hpp"
+#include <fmod/include/fmod.hpp>
 #include "../SoundSystem.h"
 #include <vector>
 #include <unordered_map>
@@ -30,6 +31,26 @@ namespace SliceEngine
 
 	class AudioManager
 	{
+		
+
+		//FMOD::Studio::System* system;
+		FMOD::System* mSoundSystem;
+		const int MAX_CHANNELS = 256;
+
+		FMOD::Sound* sound;
+		
+		std::unordered_map<std::string, std::unique_ptr<SoundTrack>> mLoadedSounds;
+		std::unordered_map<SoundCategory, float> mCategoryVolumes;
+		const float defaultVolume = 1.0f;
+
+		
+
+	public:
+		/*static AudioManager& Get()
+		{
+			static AudioManager instance;
+			return instance;
+		}*/
 		enum InternalSound
 		{
 			SOUND_INGAME,
@@ -39,24 +60,23 @@ namespace SliceEngine
 			SOUND_MAX_SOUNDS
 		};
 
-		//FMOD::Studio::System* system;
-		FMOD::System* mSoundSystem;
-		FMOD::Sound* sound;
-		//std::vector<std::unique_ptr<SoundTrack>> mSound[SOUND_MAX_SOUNDS];
-		std::unordered_map<SoundCategory, float> mCategoryVolumes;
-		const float defaultVolume = 1.0f;
-		
-
-	public:
-
 		void Init();
 		void Update();
 		void Exit();
 
-		void PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
-		void StopSound();
+		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D, bool loop = true);
+		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory, bool isLoop, float volume);
+		void StopSound(InternalSound SoundCategory);
+		void CleanUpStoppedSounds();
 		void SwitchSound();
 		
+	private:
+		std::vector<std::unique_ptr<SoundTrack>> mSound[SOUND_MAX_SOUNDS];
+	//	AudioManager() = default;
+	//	~AudioManager() = default;
+
+	//	AudioManager(const AudioManager&) = delete;
+	//	AudioManager& operator=(const AudioManager&) = delete;
 		
 	};
 }

@@ -1,5 +1,6 @@
 #include <pch.h>
 #include "Window.h"
+#include "AudioManager.h"
 
 namespace SliceEngine
 {
@@ -19,7 +20,7 @@ namespace SliceEngine
 		glfwWindowHint(GLFW_BLUE_BITS, 8);
 		glfwWindowHint(GLFW_ALPHA_BITS, 8);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
@@ -47,6 +48,7 @@ namespace SliceEngine
 
 	void Window::CloseWindow(GLFWwindow* window)
 	{
+	
 		glfwDestroyWindow(window);
 		SLICE_LOG("Main Window Destroyed.");
 	}

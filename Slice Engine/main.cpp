@@ -3,8 +3,15 @@
 int main()
 {
 	SliceEngine::Engine engine{};
+	
+
 	engine.Init();
+	
 	engine.Update();
-	engine.Exit();	
+
+	engine.Exit();
+
+
+
 	return 0;
 }
