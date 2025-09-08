@@ -158,7 +158,6 @@ namespace SliceEngine
 				{
 					ImGui::TableNextColumn();
 
-					ImGui::PushID(entry.path.string().c_str());
 
 					if (ImGui::ButtonEx(entry.path.filename().string().c_str(),ImVec2(0,0), ImGuiButtonFlags_None))
 					{
