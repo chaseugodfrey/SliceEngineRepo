@@ -4,12 +4,12 @@ namespace SliceEngine
 {
 	namespace CSVSerializer
 	{
-        void Serialize(csv const& input, std::string const& path)
+        void Serialize(csv const& input, std::filesystem::path const& filePath)
         {
-            std::ofstream ofs(path);
+            std::ofstream ofs(filePath);
             if (!ofs.is_open())
             {
-                Logger::LogError("CSVSerializer", "Unable to write CSV to path: " + path);
+                Logger::LogError("CSVSerializer", "Unable to write CSV to path: " + filePath.string());
                 return;
             }
 
@@ -50,19 +50,17 @@ namespace SliceEngine
             ofs.close();
         }
 
-		csv Deserialize(std::string const& path)
+		csv Deserialize(std::filesystem::path const& filePath)
 		{
-			std::ifstream ifs(path);
+			std::ifstream ifs(filePath);
 
 			csv result;
 
 			if (!ifs.is_open())
 			{
-				Logger::LogError("CSVSerializer", "CSV File in " + path + " cannot be opened/found.");
+				Logger::LogError("CSVSerializer", "CSV File in " + filePath.string() + " cannot be opened/found.");
 				return result;
 			}
-
-			Logger::LogValue("CSVSerializer", "CSV File in " + path + " opened and read successfully.");
 
             std::string cur_line;
 
@@ -114,9 +112,9 @@ namespace SliceEngine
             return result;
 		}
 
-		void Append(std::string const& path, std::string const& string_to_append)
+		void Append(std::filesystem::path const& filePath, std::string const& string_to_append)
 		{
-			std::ofstream file(path, std::ios::app);
+			std::ofstream file(filePath, std::ios::app);
 
 			if (file.is_open())
 			{
@@ -125,7 +123,7 @@ namespace SliceEngine
 			}
 			else
 			{
-				Logger::LogError("CSVSerializer", "CSV File in " + path + " cannot be opened/found.");
+				Logger::LogError("CSVSerializer", "CSV File in " + filePath.string() + " cannot be opened/found.");
 			}
 		}
 

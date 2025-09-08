@@ -23,10 +23,10 @@ namespace SliceEngine
 
 	namespace JSONSerializer
 	{
-		void Serialize(json const& input, std::string const& filePath);
+		void Serialize(json const& input, std::filesystem::path const& filePath);
 		//GameObject in place of scenegraph node as placeholder
 		json RecursiveSerialize(GameObject const& node);
-		json Deserialize(std::string const& filePath);
+		json Deserialize(std::filesystem::path const& filePath);
 		//GameObject in place of scenegraph node as placeholder
 		GameObject RecursiveDeserialize(json const& input);
 

@@ -23,11 +23,11 @@ namespace SliceEngine
 			std::unordered_map<std::string, std::unordered_map<std::string, std::string>> data;
 		};
 
-		void Serialize(csv const& input, std::string const& path);
+		void Serialize(csv const& input, std::filesystem::path const& filePath);
 
-		csv Deserialize(std::string const& path);
+		csv Deserialize(std::filesystem::path const& filePath);
 
-		void Append(std::string const& path, std::string const& string_to_append);
+		void Append(std::filesystem::path const& filePath, std::string const& string_to_append);
 
 		//Debug
 		void Print(csv const& input);

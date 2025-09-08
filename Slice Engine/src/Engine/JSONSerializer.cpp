@@ -5,12 +5,12 @@ namespace SliceEngine
 	namespace JSONSerializer
 	{
 		//Save json (the data structure) to JSON (the file) Note: This replaces the file in the filepath with data in the given json
-		void Serialize(json const& input, std::string const& filePath)
+		void Serialize(json const& input, std::filesystem::path const& filePath)
 		{
 			std::ofstream ofs(filePath);
 			if (!ofs.is_open())
 			{
-				Logger::LogError("JSONSerializer::Serialize", "Unable to write JSON to path: " + filePath);
+				Logger::LogError("JSONSerializer::Serialize", "Unable to write JSON to path: " + filePath.string());
 				return;
 			}
 			ofs << input;
@@ -49,12 +49,12 @@ namespace SliceEngine
 		}
 
 		//Loads JSON (the file) and returns it as a json (the data structure) that can be accessed and edited
-		json Deserialize(std::string const& filePath)
+		json Deserialize(std::filesystem::path const& filePath)
 		{
 			std::ifstream ifs(filePath);
 			if (!ifs.is_open())
 			{
-				Logger::LogError("JSONSerializer::Deserialize", "Unable to find/load JSON in path: " + filePath);
+				Logger::LogError("JSONSerializer::Deserialize", "Unable to find/load JSON in path: " + filePath.string());
 				return json{};
 			}
 
