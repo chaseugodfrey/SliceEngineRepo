@@ -75,9 +75,6 @@ namespace SliceEngine
 
 		//style.ItemSpacing = ImVec2(8, 4);
 
-		SLICE_LOG("Left Region Coordinates: " + std::to_string(left_region.x) + " , " + std::to_string(left_region.y));
-		SLICE_LOG("Right Region Coordinates: " + std::to_string(right_region.x) + " , " + std::to_string(right_region.y));
-
 		/*if(editorState.selectedFolder != nullptr)
 		{
 			SLICE_LOG(editorState.selectedFolder->path.string());
@@ -176,29 +173,45 @@ namespace SliceEngine
 
 	void ContentBrowser::RenameFilePopup(DirectoryNode& entry)
 	{
-		char newName[256] = "\0";
+		static char newName[256] = {};
+		
+		
 		if (ImGui::BeginPopupModal("##RenameFile"))
 		{
-
-			ImGui::Text(entry.path.string().c_str());
+			if (ImGui::IsWindowAppearing())
+			{
+				std::memset(newName, 0, sizeof(newName));
+				std::strncpy(newName, entry.fileName.c_str(), sizeof(newName) - 1);
+				newName[sizeof(newName) - 1] = '\0';
+			}
+			//ImGui::Text(entry.path.string().c_str());
 			ImGui::InputText("New Name:", newName, sizeof(newName));
 
 			if (ImGui::Button("Rename"))
 			{
-				if (newName[0] = '\0')
+				if (newName[0] != '\0')
 				{
+					std::filesystem::path extension;
+					if (entry.path.has_extension())
+					{
+						extension = entry.path.extension();
+					}
 					std::filesystem::path newPath = entry.path.parent_path() / newName;
+					newPath += extension;
 					std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
 					try
 					{
+						
 						std::filesystem::rename(entry.path, newPath);
 						actualEntry = std::filesystem::directory_entry(newPath);
-						ImGui::CloseCurrentPopup();
+						entry.fileName = newName;
+						entry.path = newPath;
 					}
 					catch (const std::exception& e)
 					{
 						ImGui::Text("Failed!", e.what());
 					}
+					ImGui::CloseCurrentPopup();
 				}
 				else
 				{

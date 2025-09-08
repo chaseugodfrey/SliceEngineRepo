@@ -32,7 +32,7 @@ namespace SliceEngine
 			DirectoryNode& child = node.children.back();
 			child.path = entry.path();
 			child.parent = &node;
-			child.fileName = entry.path().filename().string();
+			child.fileName = entry.path().stem().string();
 			child.isDirectory = entry.is_directory();
 
 			//node.children.push_back(child);
