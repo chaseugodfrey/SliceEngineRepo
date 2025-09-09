@@ -5,6 +5,7 @@
 #include "TransformSystem.h"
 #include "Graphics/ResourceManager.h"
 #include "Graphics/RenderManager.h"
+#include "Graphics/CameraSystem.h"
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
 #include "Singleton.h"
@@ -20,28 +21,33 @@ namespace SliceEngine
 		template<typename T>
 		void InitSystem()
 		{
-			std::shared_ptr<T> system = std::make_shared<T>();
+			std::unique_ptr<T> system = std::make_unique<T>();
 			system->Bind(mRegistry);
 
 			//std::string systemName = rttr::type::get<T>().get_name().to_string();
 			std::string systemName = typeid(T).name();
 
-			mSystems[systemName] = system;
+			mSystems[systemName] = std::move(system);
 			//mSystems.push_back(system);
 		}
 
 		template <typename T>
-		std::unique_ptr<T> GetSystem()
+		T& GetSystem()
 		{
 			//std::string systemName = rttr::type::get<T>().get_name().to_string();
 			std::string systemName = typeid(T).name();
 			auto it = mSystems.find(systemName);
 			if (it != mSystems.end())
 			{
-				return std::dynamic_pointer_cast<T>(it->second);
+				if (auto* system = dynamic_cast<T*>(it->second.get()))
+				{
+					return *system;
+				}
+				//return std::dynamic_pointer_cast<T>(it->second);
 			}
 
-			return nullptr;
+			// should never reach here
+			assert("System does not exist!");
 		}
 	
 		void UnbindSystems();

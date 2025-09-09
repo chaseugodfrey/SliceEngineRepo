@@ -14,7 +14,7 @@ namespace SliceEngine
 		RenderManager();
 		~RenderManager();
 
-		void InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, std::shared_ptr<CameraSystem> cs, GLFWwindow* window, Registry& registry);
+		void InitAndLink(GLFWwindow* window);
 
 		void UpdateCamGPU(GLFWwindow* window, ResourceManager* rcManager);
 		void Render(GLFWwindow* window, ResourceManager* rcManager);
@@ -35,8 +35,8 @@ namespace SliceEngine
 
 		entt::entity mainCam;
 
-		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
-		std::shared_ptr<CameraSystem> mCameraSys;
+		//std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
+		//std::shared_ptr<CameraSystem> mCameraSys;
 	};
 }
 

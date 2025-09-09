@@ -37,7 +37,8 @@ namespace SliceEngine
 		//InitSystem<WorldSpaceGraphicsSystem>();
 		//mRender->InitAndLink(Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>(), window);
 		Core::GetInstance()->InitSystem<CameraSystem>();
-		//mRender->InitAndLink(GetSystem<WorldSpaceGraphicsSystem>(), GetSystem<CameraSystem>(), window, mRegistry);
+
+		mRender->InitAndLink(window);
 
 		//InitSystem(mPhysicsTest);
 		//InitSystem<TransformSystem>();

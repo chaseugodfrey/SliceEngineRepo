@@ -5,7 +5,7 @@
 #define PI05F 1.57079632679f
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/euler_angles.hpp"
-
+#include "../Core.h"
 
 namespace SliceEngine
 {
@@ -15,18 +15,16 @@ namespace SliceEngine
 		glDeleteFramebuffers(1, &mFBO);
 		//glDeleteBuffers(2, pboIds);
 	}
-	void RenderManager::InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, std::shared_ptr<CameraSystem> cs, GLFWwindow* window, Registry& registry)
+	void RenderManager::InitAndLink(GLFWwindow* window)
 	{
-		mWorldSpaceGraphics = wsgs;
-		mCameraSys = cs;
 
 		int width, height;
 		glfwGetWindowSize(window, &width, &height);
 		CreateFramebuffer(width, height);
 
-		mainCam = registry.create();
-		registry.emplace<Transform>(mainCam, glm::vec3(-2.f,0.f,0.f), glm::vec3(0.f, 0.f, 0.f));
-		registry.emplace<Camera>(mainCam);
+		mainCam = Core::GetInstance()->mRegistry.create();
+		Core::GetInstance()->mRegistry.emplace<Transform>(mainCam, glm::vec3(-2.f,0.f,0.f), glm::vec3(0.f, 0.f, 0.f));
+		Core::GetInstance()->mRegistry.emplace<Camera>(mainCam);
 	}
 
 	void RenderManager::Render(GLFWwindow* window, ResourceManager* rcManager)
@@ -34,10 +32,10 @@ namespace SliceEngine
 		glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
 		//IDPick(mousePosX, mousePosY);
 
-		mWorldSpaceGraphics->UseShader(rcManager);
+		Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>().UseShader(rcManager);
 		UpdateCamGPU(window, rcManager);
 		
-		mWorldSpaceGraphics->Render(window, rcManager);
+		Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>().Render(window, rcManager);
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//std::swap(pboIdx[0], pboIdx[1]);
@@ -45,8 +43,8 @@ namespace SliceEngine
 
 	void RenderManager::UpdateCamGPU(GLFWwindow* window, ResourceManager* rcManager)
 	{
-		auto& camera = mCameraSys->mRegistry->get<Camera>(mainCam);
-		auto& camTrans = mCameraSys->mRegistry->get<Transform>(mainCam);
+		auto& camera = Core::GetInstance()->mRegistry.get<Camera>(mainCam);
+		auto& camTrans = Core::GetInstance()->mRegistry.get<Transform>(mainCam);
 
 		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, camera.textureID, 0); // GL_COLOR_ATTACHMENT0 - First Out
 		glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, camera.depthTex, 0);
@@ -106,11 +104,11 @@ namespace SliceEngine
 	}
 	GLuint RenderManager::GetTexture()
 	{
-		return mCameraSys->mRegistry->get<Camera>(mainCam).textureID;
+		return Core::GetInstance()->mRegistry.get<Camera>(mainCam).textureID;
 	}
 	Transform& RenderManager::GetMainCameraTransform()
 	{
-		return mCameraSys->mRegistry->get<Transform>(mainCam);
+		return Core::GetInstance()->mRegistry.get<Transform>(mainCam);
 	}
 	void RenderManager::IDPick(const int& mouseX, const int& mouseY)
 	{
