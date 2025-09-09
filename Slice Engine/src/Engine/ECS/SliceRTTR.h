@@ -25,7 +25,7 @@ namespace SliceEngine
 			.constructor<>()
 			.method("EntityOnEnter", &SoundSystem::EntityOnEnter)
 			.method("EntityOnExit", &SoundSystem::EntityOnExit)
-			.method("EntityOnUpdate", &SoundSystem::EntityOnUpdate);
+			.method("EntityOnUpdate", &SoundSystem::EntityOnUpdate);			
 	}
 
 }
