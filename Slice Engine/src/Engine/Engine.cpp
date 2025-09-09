@@ -21,7 +21,7 @@ namespace SliceEngine
 		inputs->Init(window);
 		audio = std::make_unique<AudioManager>();
 		mResource = std::make_unique<ResourceManager>();
-
+		InitSystem<SoundSystem>();
 		audio->Init();
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
 		//audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
@@ -29,11 +29,11 @@ namespace SliceEngine
 		mResource->LoadShader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
-		InitSystem(mWorldSpaceGraphics);
-		mRender->InitAndLink(mWorldSpaceGraphics, window);
+		InitSystem<WorldSpaceGraphicsSystem>();
+		mRender->InitAndLink(GetSystem<WorldSpaceGraphicsSystem>(), window);
 
-		InitSystem(mPhysicsTest);
-		InitSystem(mTransform);
+		//InitSystem(mPhysicsTest);
+		InitSystem<TransformSystem>();
 
 
 #ifdef EDITOR
@@ -52,7 +52,7 @@ namespace SliceEngine
 		mRegistry.emplace<RigidBody>(entity, false);
 		mRegistry.emplace<Renderer>(entity);
 
-		mPhysicsTest->Update(2.0f);
+		//mPhysicsTest->Update(2.0f);
 		//physics(2.0f);
 
 		mRegistry.remove<RigidBody>(entity);
@@ -84,7 +84,8 @@ namespace SliceEngine
 	{
 		for (auto& system : mSystems)
 		{
-			system->Unbind();
+			system.second->Unbind();
+			//system->Unbind();
 		}
 
 		audio->Exit();
