@@ -4,6 +4,7 @@
 #include "../ThirdParty/nlohmann/include/json.hpp"
 #include "Logger.h"
 #include "ECS/GameObject.h"
+#include "ECS//SliceRTTR.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,7 +26,7 @@ namespace SliceEngine
 	{
 		void Serialize(json const& input, std::filesystem::path const& filePath);
 		//GameObject in place of scenegraph node as placeholder
-		json RecursiveSerialize(GameObject const& node);
+		json RecursiveSerialize(GameObject& node);
 		json Deserialize(std::filesystem::path const& filePath);
 		//GameObject in place of scenegraph node as placeholder
 		GameObject RecursiveDeserialize(json const& input);

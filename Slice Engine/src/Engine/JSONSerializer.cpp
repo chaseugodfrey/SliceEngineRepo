@@ -17,25 +17,26 @@ namespace SliceEngine
 			ofs.close();
 		}
 
-		json RecursiveSerialize(GameObject const& node)
+		json RecursiveSerialize(GameObject& node)
 		{
-			json output;
+			json output;				
 
-			//// Basic fields
-			//output["name"] = node.name;
-			//output["value"] = node.value;
+			//rttr::instance = 
+			//rttr::type t = component.get_type();
+			//output["type"] = t.get_name().to_string();
 
-			//// If node has transform data for example
-			//if (node.hasTransform)
+			//for (auto& prop : t.get_properties())
 			//{
-			//	output["transform"] = {
-			//		{"position", {node.transform.x, node.transform.y, node.transform.z}},
-			//		{"rotation", {node.transform.rx, node.transform.ry, node.transform.rz}},
-			//		{"scale",    {node.transform.sx, node.transform.sy, node.transform.sz}}
-			//	};
+			//	rttr::variant value = prop.get_value(component);
+			//	output[][prop.get_name().to_string()]
 			//}
 
-			//// Handle children recursively
+			//for (auto& meth : t.get_methods())
+			//{
+			//	output[meth.get_name().to_string()] =
+			//}
+
+			// Handle children recursively
 			//if (!node.children.empty())
 			//{
 			//	output["children"] = json::array();
@@ -87,7 +88,7 @@ namespace SliceEngine
 
 			return GameObject(Registry());
 		}
-		
+
 		static void TestSerialize()
 		{
 			json test;
@@ -121,7 +122,7 @@ namespace SliceEngine
 				test[root][i]["Sorting_Order"] = i;
 				test[root][i]["Transform"]["Position"] = { 1.0f, 2.0f, 3.0f };
 				test[root][i]["Transform"]["Rotation"] = { 1.0f, 2.0f, 3.0f };
-				test[root][i]["Transform"]["Scale"] = { 1.0f, 2.0f, 3.0f };				
+				test[root][i]["Transform"]["Scale"] = { 1.0f, 2.0f, 3.0f };
 			}
 
 			Serialize(test, "Testing/Temporary/TestSerialize.scene");
@@ -129,7 +130,7 @@ namespace SliceEngine
 
 		static void TestDeserialize()
 		{
-			json test = Deserialize("Testing/Temporary/TestSerialize.scene");			
+			json test = Deserialize("Testing/Temporary/TestSerialize.scene");
 			if (test != json{})
 			{
 				Logger::LogValue("JSONSerializer::Test", "JSON Serialization and Deserialization succeeded with no errors and result is in Testing/Temporary/TestSerialize.scene.");
@@ -140,6 +141,19 @@ namespace SliceEngine
 		{
 			JSONSerializer::TestSerialize();
 			JSONSerializer::TestDeserialize();
-		}	
+		}
+
+		std::vector<rttr::instance> make_instances_from_entity(entt::registry& registry, entt::entity entity)
+		{
+			std::vector<rttr::instance> result;
+
+			//if (registry.all_of<Transform>(entity))
+			//{
+			//	result.emplace_back(registry.get<Transform>(entity));
+			//}
+			//if (registry.all_of<)
+
+			return result;
+		}
 	}
 }
