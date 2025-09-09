@@ -1,8 +1,13 @@
 #include <pch.h>
 #include "Editor.h"
+#include "../Engine/Engine.h"
 
 namespace SliceEngine
 {
+	Editor::Editor(Engine* r_engine) : engine(r_engine)
+	{
+	}
+
 	void Editor::Init(GLFWwindow* window)
 	{
 		SLICE_LOG("Initializing Editor.");
@@ -13,7 +18,7 @@ namespace SliceEngine
 
 	void Editor::Update()
 	{
-
+		editorState->renderManager = engine->mRender.get();
 	}
 
 	void Editor::Render(GLFWwindow* window)
@@ -23,17 +28,6 @@ namespace SliceEngine
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
 
-#pragma region Test Dummy Windows
-		/*ImGui::Begin("A");
-		ImGui::Text("A");
-		ImGui::End();
-
-		ImGui::Begin("B");
-		ImGui::Text("B");
-		ImGui::End();*/
-#pragma endregion
-
-		//std::for_each(windowManager->list.begin(), windowManager->list.end(), [](auto& window) { window.draw(); });
 		windowManager->Render();
 		
 		ImGui::Render();

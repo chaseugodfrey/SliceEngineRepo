@@ -3,6 +3,9 @@
 
 namespace SliceEngine
 {
+	Hierarchy::Hierarchy(EditorState& editorState)
+	{
+	}
 
 	void Hierarchy::Draw()
 	{

@@ -1,5 +1,6 @@
 #include <pch.h>
 #include "EW_ContentBrowser.h"
+#include "../EditorState.h"
 
 namespace SliceEngine
 {
@@ -46,7 +47,7 @@ namespace SliceEngine
 			}
 		}
 
-		ImGui::SameLine();
+		//ImGui::SameLine();
 
 		/*Folder Directory*/
 		ImVec2 right_region = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
