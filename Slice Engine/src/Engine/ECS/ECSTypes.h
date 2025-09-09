@@ -48,13 +48,11 @@ namespace SliceEngine
 		std::string model;
 		std::string texture;
 	};
+
 	struct Camera
 	{
-		glm::vec3 position;
-		glm::vec3 target;
-		glm::mat4 V;
-		glm::mat4 P;
 		float pov, near, far;
+		GLuint textureID{}, depthTex{};
 	};
 }
 

@@ -3,42 +3,40 @@
 
 #include <memory>
 #include "WorldSpaceGraphicsSystem.h"
+#include "CameraSystem.h"
 #include "../ECS/ECSTypes.h"
 
 namespace SliceEngine
 {
 	class RenderManager
 	{
-	public:
-		struct FBODat
-		{
-			GLuint FBO;
-			GLuint textureID{}, depthTex{};
-		};
-		
+	public:		
 		RenderManager();
 		~RenderManager();
 
-		void InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, GLFWwindow* window);
+		void InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, std::shared_ptr<CameraSystem> cs, GLFWwindow* window, Registry& registry);
 
+		void UpdateCamGPU(GLFWwindow* window, ResourceManager* rcManager);
 		void Render(GLFWwindow* window, ResourceManager* rcManager);
-
-		void LoadCam();
-		void UpdateCamera(Camera& camera, GLFWwindow* window, float xOffset, float yOffset);
-		void UpdateCamGPU(Camera& camera, ResourceManager* rcManager);
 		
 		void CreateFramebuffer(int width, int height);
 		GLuint GetTexture();
 
+		Transform& GetMainCameraTransform();
+
 		void IDPick(const int& mouseX, const int& mouseY);
 
-		FBODat mScene;		// For drawing the scene onto a texture
+		GLuint mFBO;	// For drawing the scene onto a texture
 		//GLuint pboIds[2];	// For Object Picking
 		//GLuint pboIdx[2];
 		unsigned int mIDHovered;
 
+	private:
+
+		entt::entity mainCam;
+
 		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
-		Camera cam;
+		std::shared_ptr<CameraSystem> mCameraSys;
 	};
 }
 

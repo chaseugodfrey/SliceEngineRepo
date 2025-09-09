@@ -40,8 +40,7 @@ namespace SliceEngine
 			
 		}
 
-		editorState.renderManager->cam.position += move;
-		editorState.renderManager->cam.target += move;
+		editorState.renderManager->GetMainCameraTransform().position += move;
 
 		ImGui::GetWindowDrawList()->AddImage(
 			(void*)editorState.renderManager->GetTexture(), // Placeholder texture ID
