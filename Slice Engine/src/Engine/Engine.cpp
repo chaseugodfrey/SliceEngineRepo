@@ -30,7 +30,8 @@ namespace SliceEngine
 		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
 		InitSystem<WorldSpaceGraphicsSystem>();
-		mRender->InitAndLink(GetSystem<WorldSpaceGraphicsSystem>(), window);
+		InitSystem<CameraSystem>();
+		mRender->InitAndLink(GetSystem<WorldSpaceGraphicsSystem>(), GetSystem<CameraSystem>(), window, mRegistry);
 
 		//InitSystem(mPhysicsTest);
 		InitSystem<TransformSystem>();

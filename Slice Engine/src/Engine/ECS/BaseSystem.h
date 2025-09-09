@@ -70,6 +70,7 @@ namespace SliceEngine
 
 		virtual void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt) {}
 
+		entt::registry* mRegistry{};
 	private:
 		void SystemOnEnter(entt::registry& reg, entt::entity entity)
 		{
@@ -89,7 +90,6 @@ namespace SliceEngine
 			}
 		}
 
-		entt::registry* mRegistry{};
 	};
 }
 
