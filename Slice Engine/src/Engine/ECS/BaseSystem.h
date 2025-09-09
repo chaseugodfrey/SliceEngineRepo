@@ -2,6 +2,16 @@
 #define BASE_SYSTEM_H
 
 #include "entt/entt.hpp"
+#include "ECSTypes.h"
+
+class IBaseSystem
+{
+public:
+	virtual ~IBaseSystem() = default;
+	virtual void Bind(Registry& reg) = 0;
+	virtual void Unbind() = 0;
+	virtual void Update(float dt) = 0;
+};
 
 /// <summary>
 /// System Tag - Used to keep track of entities within the system
@@ -18,17 +28,17 @@
 /// 
 /// </summary>
 template<class SystemTag, class... Required>
-class BaseSystem {
+class BaseSystem : public IBaseSystem {
 
 public:
-	void Bind(entt::registry& reg)
+	void Bind(entt::registry& reg) override
 	{
 		mRegistry = &reg;
 		(reg.on_construct<Required>().connect<&BaseSystem::SystemOnEnter>(*this), ...);
 		(reg.on_destroy<Required>().connect<&BaseSystem::SystemOnExit>(*this), ...);
 	}
 
-	void Unbind()
+	void Unbind() override
 	{
 		if (!mRegistry)
 			return;
@@ -38,11 +48,10 @@ public:
 		mRegistry = nullptr;
 	}
 
-	template<class... Excluded>
-	void operator()(float dt)
+	void Update(float dt) override
 	{
 		auto& reg = *mRegistry;
-		auto view = reg.view<SystemTag, Required...>(entt::exclude<Excluded...>);
+		auto view = reg.view<SystemTag, Required...>();
 		for (auto entity : view)
 		{
 			EntityOnUpdate(reg, entity, dt);
@@ -54,7 +63,7 @@ public:
 		Unbind();
 	}
 
-	virtual void EntityOnEnter(entt::registry& reg, entt::entity entity) {}
+	virtual void EntityOnEnter(entt::registry& reg, entt::entity entity)  {}
 
 	virtual void EntityOnExit(entt::registry& reg, entt::entity entity) {}
 

@@ -3,6 +3,7 @@
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
 #include "Physics/PhysicsDebug.h"
+#include "Window.h"
 
 namespace SliceEngine
 {
@@ -17,6 +18,20 @@ namespace SliceEngine
 		isRunning = true;
 
 		inputs = std::make_unique<InputSystem>();
+		inputs->Init(window);
+		audio = std::make_unique<AudioManager>();
+		mResource = std::make_unique<ResourceManager>();
+
+		audio->Init();
+		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
+		audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
+
+		mResource->LoadShader("Assets/basic.vert", "Assets/basic.frag");
+		mResource->LoadModel("Assets/Cube.txt");
+		mRender = std::make_unique<RenderManager>();
+
+		InitSystem(mPhysicsTest);
+
 
 		//Time class for physics simulation or any other system that uses fixeddt
 		GameTime& gameTime = GameTime::getInstance();
@@ -27,7 +42,7 @@ namespace SliceEngine
 
 		SLICE_LOG("Hook Jolt Tracer to SliceEngine Logger");
 		//Jolt has a global function pointer "Trace" for debugging and logging messages
-		//Hook Jolt Trace to SliceEngine’s logger.
+		//Hook Jolt Trace to SliceEngineï¿½s logger.
 		JPH::Trace = JoltTraceImpl;
 
 #ifdef EDITOR
@@ -40,33 +55,34 @@ namespace SliceEngine
 
 	void Engine::Update()
 	{
-		Registry reg;
+	
+		//physics.Bind(mRegistry);
+		mRender->Init(mRegistry);
 
-		PhysicSystem physics;
-		physics.Bind(reg);
+		entt::entity entity = mRegistry.create();
+		mRegistry.emplace<Transform>(entity, glm::vec3(1,5,0));
+		mRegistry.emplace<RigidBody>(entity, false);
+		mRegistry.emplace<Renderer>(entity);
 
+		mPhysicsTest->Update(2.0f);
+		//physics(2.0f);
 
-		entt::entity entity = reg.create();
-		reg.emplace<Transform>(entity, 0.5f);
-		reg.emplace<RigidBody>(entity, false);
+		mRegistry.remove<RigidBody>(entity);
 
-		physics(2.0f);
-
-		reg.remove<RigidBody>(entity);
-
-		while (1)
+		while (isRunning)
 		{
 			glfwMakeContextCurrent(window);
 			glfwPollEvents();
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// Main Body
-			inputs->Update(window);
+			inputs->Update();
 			//
 
 #ifdef EDITOR
 			editor->Render(window);
 #endif
+			mRender->Render(window, mResource.get());
 
 			glfwSwapBuffers(window);
 			/*glfwPollEvents();*/
@@ -77,6 +93,13 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
+		mRender->Exit();
+		for (auto& system : mSystems)
+		{
+			system->Unbind();
+		}
+
+		audio->Exit();
 #ifdef EDITOR
 		editor->Exit();
 #endif
