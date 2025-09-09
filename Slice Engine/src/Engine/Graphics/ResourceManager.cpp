@@ -5,16 +5,14 @@
 namespace SliceEngine
 {
 	//SLICE_LOG("Creating Main Window.");
-	ResourceManager::ResourceManager()
-	{
-	}
+	ResourceManager::ResourceManager() : mOnlyShader(), mOnlyModel(){}
 
 	ResourceManager::~ResourceManager()
 	{
-		glDeleteProgram(onlyShader.s);
+		glDeleteProgram(mOnlyShader.s);
 
-		glDeleteVertexArrays(1, &onlyModel.vao);
-		glDeleteBuffers(1, &onlyModel.vbo);
+		glDeleteVertexArrays(1, &mOnlyModel.vao);
+		glDeleteBuffers(1, &mOnlyModel.vbo);
 	}
 
 	void ResourceManager::LoadShader(const std::string& vertFile, const std::string& fragFile)
@@ -95,7 +93,7 @@ namespace SliceEngine
 		}
 		glDeleteShader(vertShader);
 		glDeleteShader(fragShader);
-		onlyShader.s = shader;
+		mOnlyShader.s = shader;
 	}
 
 	void ResourceManager::LoadModel(const std::string& file)
@@ -135,17 +133,17 @@ namespace SliceEngine
 		glVertexArrayAttribFormat(m.vao, 0, 3, GL_FLOAT, GL_FALSE, 0);
 		glVertexArrayAttribBinding(m.vao, 0, 0);
 
-		onlyModel = m;
+		mOnlyModel = m;
 	}
 
 	Shader& ResourceManager::GetShader()
 	{
-		return onlyShader;
+		return mOnlyShader;
 	}
 
 	Model& ResourceManager::GetModel()
 	{
-		return onlyModel;
+		return mOnlyModel;
 	}
 
 }

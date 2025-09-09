@@ -2,15 +2,16 @@
 #define CONTENT_BROWSER_H
 
 #include "../EditorWindow.h"
-#include "../EditorState.h"
-#include "../ContentBrowserState.h"
 
 namespace SliceEngine
 {
+	// forward declarations
+	class EditorState;
+	class ContentBrowserState;
+
 	class ContentBrowser : public EditorWindow
 	{
-		EditorState& editorState;
-
+		ContentBrowserState& contentBrowserState;
 
 	public:
 		ContentBrowser(EditorState& editorState);
