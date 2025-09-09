@@ -7,12 +7,15 @@ namespace SliceEngine
 {
 	class EditorState
 	{
+	
 
 	public:
 		std::unique_ptr<ContentBrowserState> contentBrowserState;
 
-		DirectoryNode* selectedFolder = nullptr;
+		DirectoryNode* selectedFolder;
 		
+		EditorState();
+
 		void Init();
 
 		void ResetRootDirectory(DirectoryNode& node);

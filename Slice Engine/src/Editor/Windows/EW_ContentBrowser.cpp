@@ -60,26 +60,11 @@ namespace SliceEngine
 		{
 			if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
 			{
-				if (editorState.selectedFolder != nullptr)
-				{
-					DisplayItems(*editorState.selectedFolder);
-				}
-				else
-				{
-					ImGui::Text("No selected Folder!");
-				}
-
+				
+				DisplayItems(*editorState.selectedFolder);
 				ImGui::EndChild();
 			}
 		}
-
-		//style.ItemSpacing = ImVec2(8, 4);
-
-		/*if(editorState.selectedFolder != nullptr)
-		{
-			SLICE_LOG(editorState.selectedFolder->path.string());
-		}*/
-
 		ImGui::End();
 	}
 
@@ -109,7 +94,7 @@ namespace SliceEngine
 
 			if (ImGui::TreeNodeEx(node.fileName.c_str(),flags))
 			{
-				if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+				if (ImGui::IsItemHovered() && ImGui::IsItemClicked(ImGuiMouseButton_Left))
 				{
 					SelectFile(node);
 				}
@@ -145,9 +130,10 @@ namespace SliceEngine
 						ImGui::OpenPopup("##RenameFile"); //It should open 
 					}
 
-					if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left, 2))
+					if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 					{
-						editorState.OpenFile();
+						SelectFile(entry);
+						return;
 					}
 				}
 			}
@@ -170,37 +156,28 @@ namespace SliceEngine
 
 						if (ImGui::MenuItem("Rename File"))
 						{
-							ImGui::CloseCurrentPopup();
-							ImGui::OpenPopup("##RenameFile");
+							editorState.contentBrowserState->openRenameFile = true;
 						}
 						ImGui::EndPopup();
 					}
 
-					//if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-					//{
-					//	selectedEntry = &entry;
-					//	ImGui::OpenPopup("##RenameFile"); //It should open 
-					//}
+					if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+					{
+						selectedEntry = &entry;
+						ImGui::OpenPopup("##RenameFile"); //It should open 
+					}
 
-					if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+					if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 					{
 						editorState.OpenFile();
 					}
-					ImGui::PopID();
 				}
-
-
-				if (selectedEntry == &entry)
-				{
-					RenameFilePopup(*selectedEntry);
-				}
-
 			}
 
-			/*if (selectedEntry != nullptr)
+			if (selectedEntry != nullptr)
 			{
 				RenameFilePopup(*selectedEntry);
-			}*/
+			}
 
 			ImGui::EndTable();
 		}

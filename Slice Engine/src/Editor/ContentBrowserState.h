@@ -17,8 +17,9 @@ namespace SliceEngine
 	struct ContentBrowserState
 	{
 		std::unique_ptr<DirectoryNode> root;
+		bool openRenameFile;
 
-		ContentBrowserState()
+		ContentBrowserState() : openRenameFile(false)
 		{
 			root = std::make_unique<DirectoryNode>();
 

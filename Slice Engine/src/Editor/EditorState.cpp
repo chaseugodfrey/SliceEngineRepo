@@ -2,9 +2,12 @@
 
 namespace SliceEngine
 {
+
+	EditorState::EditorState() : contentBrowserState(std::make_unique<ContentBrowserState>()), selectedFolder(contentBrowserState->root.get())
+	{}
 	void EditorState::Init()
 	{
-		contentBrowserState = std::make_unique<ContentBrowserState>();
+		
 		
 	}
 
@@ -32,8 +35,8 @@ namespace SliceEngine
 			DirectoryNode& child = node.children.back();
 			child.path = entry.path();
 			child.parent = &node;
-			child.fileName = entry.path().stem().string();
 			child.isDirectory = entry.is_directory();
+			child.fileName = child.isDirectory ? entry.path().filename().string() : entry.path().stem().string();
 
 			//node.children.push_back(child);
 
