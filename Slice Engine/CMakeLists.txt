@@ -100,6 +100,7 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/entt/src)
 #target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
 
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
@@ -107,6 +108,7 @@ target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)
 target_link_libraries(SliceEngine PRIVATE Jolt)
 target_link_libraries(SliceEngine PRIVATE RTTR)
+#target_link_libraries(SliceEngine EnTT)
 
 # This is probably not fully complete
 # suppose to have 1 for release 1 for debug
