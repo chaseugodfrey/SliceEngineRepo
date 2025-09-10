@@ -4,7 +4,6 @@
 #include "../ThirdParty/nlohmann/include/json.hpp"
 #include "Logger.h"
 #include "ECS/GameObject.h"
-#include "ECS//SliceRTTR.h"
 #include <iostream>
 #include <fstream>
 #include <string>

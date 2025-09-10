@@ -143,17 +143,17 @@ namespace SliceEngine
 			JSONSerializer::TestDeserialize();
 		}
 
-		std::vector<rttr::instance> make_instances_from_entity(entt::registry& registry, entt::entity entity)
-		{
-			std::vector<rttr::instance> result;
+		//std::vector<SliceEngine:> make_instances_from_entity(entt::registry& registry, entt::entity entity)
+		//{
+		//	std::vector<rttr::instance> result;
 
-			//if (registry.all_of<Transform>(entity))
-			//{
-			//	result.emplace_back(registry.get<Transform>(entity));
-			//}
-			//if (registry.all_of<)
+		//	if (registry.all_of<Transform>(entity))
+		//	{
+		//		result.emplace_back(registry.get<Transform>(entity));
+		//	}
+		//	if (registry.all_of<)
 
-			return result;
-		}
+		//	return result;
+		//}
 	}
 }
