@@ -8,13 +8,14 @@
 namespace SliceEngine
 {
 	using ComponentCloner = std::function<void(Registry& reg, Entity eToClone, Entity eToCreate)>;
+	using EnttIdToRttrType = std::function<rttr::type(entt::id_type type)>;
 
 	struct SliceEntity {};
 
 	class GOFactory
 	{
 	public:
-		GOFactory(Registry& reg) : mRegistry(reg) 
+		GOFactory(Registry& reg) : mRegistry(reg)
 		{
 			// idk maybe can create all the component cloners here?
 			//CreateComponentCloner<Transform>();
@@ -47,8 +48,19 @@ namespace SliceEngine
 				});
 		};
 
+		template<class T>
+		void MapEnttToRTTR()
+		{
+			mEnttTypeIdToRttrType[entt::type_id<T>().hash()] = rttr::type::get<T>();
+			EnttIdToRttrType = [&mEnttTypeIdToRttrType](entt::id_type type_id) -> rttr::type
+				{
+					auto it = mEnttTypeIdToRttrType.find(type_id);
+					return (it != mEnttTypeIdToRttrType.end()) ? it->second : rttr::type(); // invalid if not found + need write error/log if fail
+				};
+		}
+
 		GameObject CreateGO(std::string name = "GameObject");
-		GameObject CloneGO(GameObject & go);
+		GameObject CloneGO(GameObject& go);
 		void Destroy(Entity const& entity);
 		void Destroy(GameObject& go);
 		void TestLoop();
@@ -59,6 +71,7 @@ namespace SliceEngine
 		std::unordered_map<std::string, Entity> mNameToEntity;
 		std::unordered_map<Entity, GameObject> mEntityToGO;
 		std::unordered_map<entt::id_type, ComponentCloner> mComponentCloners;
+		std::unordered_map<entt::id_type, rttr::type> mEnttTypeIdToRttrType;
 
 		std::set<Entity> mDeleteList;
 		Registry& mRegistry;

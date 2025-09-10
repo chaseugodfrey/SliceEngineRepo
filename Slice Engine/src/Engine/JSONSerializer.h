@@ -3,7 +3,7 @@
 
 #include "../ThirdParty/nlohmann/include/json.hpp"
 #include "Logger.h"
-#include "ECS/GameObject.h"
+#include "Core.h"
 #include <iostream>
 #include <fstream>
 #include <string>

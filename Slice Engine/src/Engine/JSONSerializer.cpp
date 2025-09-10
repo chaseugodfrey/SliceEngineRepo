@@ -19,31 +19,34 @@ namespace SliceEngine
 
 		json RecursiveSerialize(GameObject& node)
 		{
-			json output;				
+			json output;
 
-			//rttr::instance = 
-			//rttr::type t = component.get_type();
-			//output["type"] = t.get_name().to_string();
+			auto& registry = Core::GetInstance()->mRegistry;
+			entt::entity entity = node.GetEntity();
 
-			//for (auto& prop : t.get_properties())
-			//{
-			//	rttr::variant value = prop.get_value(component);
-			//	output[][prop.get_name().to_string()]
-			//}
+			// Go through every registered storage
+			for (auto&& [type_id, storage] : registry.storage())
+			{
+				if (!storage.contains(entity))
+				{
+					continue; // entity does not have this component
+				}
 
-			//for (auto& meth : t.get_methods())
-			//{
-			//	output[meth.get_name().to_string()] =
-			//}
+				// Each component for this GameObject is here
+				std::cout << storage.type().name() << std::endl;
 
-			// Handle children recursively
-			//if (!node.children.empty())
-			//{
-			//	output["children"] = json::array();
-			//	for (auto const& child : node.children)
-			//	{
-			//		output["children"].push_back(RecursiveSerialize(child));
-			//	}
+				//auto it = IdToRTTRType(type_id)
+				//if (it == idToRTTRType.end())
+				//	continue; // not registered with RTTR
+
+				//rttr::type rtype = it->second;
+
+
+			}
+
+			// If you have children, recurse:
+			//for (auto& child : ) {
+			//	output["children"].push_back(RecursiveSerialize(child));
 			//}
 
 			return output;
@@ -66,25 +69,6 @@ namespace SliceEngine
 
 		GameObject RecursiveDeserialize(json const& input)
 		{
-			//GameObject node;
-
-			////Examples
-			//if (input.contains("transform"))
-			//{
-			//	//Assign transforms
-			//}
-
-
-			//node.name = input.at("name").get<std::string>();
-			//node.value = input.at("value").get<int>();
-
-			//if (input.contains("children"))
-			//{
-			//	for (const auto& child_json : input["children"])
-			//	{
-			//		node.children.push_back(DeserializeNode(child_json)); // recursion!
-			//	}
-			//}
 
 			return GameObject(Registry());
 		}
@@ -142,18 +126,5 @@ namespace SliceEngine
 			JSONSerializer::TestSerialize();
 			JSONSerializer::TestDeserialize();
 		}
-
-		//std::vector<SliceEngine:> make_instances_from_entity(entt::registry& registry, entt::entity entity)
-		//{
-		//	std::vector<rttr::instance> result;
-
-		//	if (registry.all_of<Transform>(entity))
-		//	{
-		//		result.emplace_back(registry.get<Transform>(entity));
-		//	}
-		//	if (registry.all_of<)
-
-		//	return result;
-		//}
 	}
 }

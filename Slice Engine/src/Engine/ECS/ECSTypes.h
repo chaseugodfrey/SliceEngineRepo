@@ -34,6 +34,17 @@ namespace SliceEngine
 		std::string texture;
 	};
 
+	struct SceneGraph
+	{
+		//PLACEHOLDER to change to GUID or any unique identifier for gameobjects
+		std::string parentID;
+		std::vector<std::string> childrenID;
+
+		//maybe no need
+		//std::string leftID;
+		//std::string rightID;
+	};
+
 	struct Camera
 	{
 		float pov, near, far;
@@ -49,6 +60,9 @@ namespace SliceEngine
 	rttr::registration::class_<Renderer>("Renderer")
 		.property("model", &Renderer::model)
 		.property("texture", &Renderer::texture);
+	rttr::registration::class_<SceneGraph>("SceneGraph")
+		.property("parentID", &SceneGraph::parentID)
+		.property("childID", &SceneGraph::childrenID);
 	}
 }
 

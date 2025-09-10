@@ -1,3 +1,6 @@
+#ifndef SLICE_RTTR_H
+#define SLICE_RTTR_H
+
 #include "../Graphics/WorldSpaceGraphicsSystem.h"
 #include "../TransformSystem.h"
 #include "../SoundSystem.h"
@@ -28,3 +31,5 @@ namespace SliceEngine
 			.method("EntityOnUpdate", &SoundSystem::EntityOnUpdate);
 	}
 }
+
+#endif
