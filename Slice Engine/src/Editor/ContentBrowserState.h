@@ -2,16 +2,17 @@
 #define EDITOR_CONTENT_BROWSER_STATE_H
 
 #include <filesystem>
+#include <map>
 
 namespace SliceEngine
 {
 	struct DirectoryNode
 	{
-		bool isDirectory;
+		std::string fileName;
+		bool isDirectory = false;
 		std::filesystem::path path;
 		DirectoryNode* parent = nullptr;
-		std::vector<DirectoryNode> children;
-		std::string fileName;
+		std::map<std::string, DirectoryNode> children;
 	};
 
 	struct ContentBrowserState

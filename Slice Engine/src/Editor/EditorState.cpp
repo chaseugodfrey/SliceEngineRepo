@@ -32,17 +32,16 @@ namespace SliceEngine
 
 		for (const auto& entry : std::filesystem::directory_iterator(node.path))
 		{
-			node.children.emplace_back();
-			DirectoryNode& child = node.children.back();
+			DirectoryNode child;
 			child.path = entry.path();
 			child.parent = &node;
 			child.isDirectory = entry.is_directory();
 			child.fileName = child.isDirectory ? entry.path().filename().string() : entry.path().stem().string();
 
-			//node.children.push_back(child);
-
 
 			CreateDirectory(child);
+
+			node.children.emplace(child.fileName, std::move(child));
 
 		}
 		return;

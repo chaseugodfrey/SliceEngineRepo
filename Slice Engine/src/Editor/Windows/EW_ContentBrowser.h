@@ -2,6 +2,7 @@
 #define EDITOR_CONTENT_BROWSER_H
 
 #include "../EditorWindow.h"
+#include "../ContentBrowserState.h"
 
 namespace SliceEngine
 {
@@ -11,7 +12,7 @@ namespace SliceEngine
 
 	class ContentBrowser : public EditorWindow
 	{
-		ContentBrowserState& contentBrowserState;
+		EditorState& editorState;
 
 	public:
 		ContentBrowser(EditorState& editorState);

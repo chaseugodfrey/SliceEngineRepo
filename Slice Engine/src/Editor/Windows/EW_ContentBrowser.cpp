@@ -30,41 +30,24 @@ namespace SliceEngine
 		/*Asset Directory*/
 		ImVec2 left_region = ImVec2(ImGui::GetContentRegionAvail().x * 0.2f, ImGui::GetContentRegionAvail().y);
 
-		if (left_region.x < 0 || left_region.y < 0)
+		if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
 		{
-			left_region = ImVec2(0, 0);
+
+			DisplayFolders(*editorState.contentBrowserState->root);
+			//ImGui::Text("Directory Here!");
+
+			ImGui::EndChild();
 		}
 
-		if(left_region.x > 0 && left_region.y > 0)
-		{
-			if (ImGui::BeginChild("##dir", left_region, ImGuiChildFlags_Border | ImGuiChildFlags_ResizeX))
-			{
-
-				DisplayFolders(*editorState.contentBrowserState->root);
-				//ImGui::Text("Directory Here!");
-
-				ImGui::EndChild();
-			}
-		}
-
-		//ImGui::SameLine();
-
+		ImGui::SameLine();
 		/*Folder Directory*/
 		ImVec2 right_region = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
 
-		if (right_region.x < 0 || right_region.y < 0)
+		if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
 		{
-			right_region = ImVec2(0, 0);
-		}
-
-		if(right_region.x > 0 && right_region.y > 0)
-		{
-			if (ImGui::BeginChild("##folder", right_region, ImGuiChildFlags_Border))
-			{
 				
-				DisplayItems(*editorState.selectedFolder);
-				ImGui::EndChild();
-			}
+			DisplayItems(*editorState.selectedFolder);
+			ImGui::EndChild();
 		}
 		ImGui::End();
 	}
@@ -87,8 +70,8 @@ namespace SliceEngine
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
 
-			if (std::none_of(node.children.begin(), node.children.end(), [](const DirectoryNode& child) 
-				{return child.isDirectory; }))
+			if (std::none_of(node.children.begin(), node.children.end(), [](const auto& child) 
+				{return child.second.isDirectory; }))
 			{
 				flags |= ImGuiTreeNodeFlags_Leaf;
 			}
@@ -102,7 +85,7 @@ namespace SliceEngine
 
 				for (auto& entry : node.children)
 				{
-					DisplayFolders(entry);
+					DisplayFolders(entry.second);
 				}
 				ImGui::TreePop();
 			}	
@@ -115,7 +98,7 @@ namespace SliceEngine
 
 		if (ImGui::BeginTable("##FolderDirectory", 5))
 		{
-			for (auto& entry : node.children)
+			for (auto&[name, entry] : node.children)
 			{
 				if (entry.isDirectory)
 				{
@@ -134,12 +117,14 @@ namespace SliceEngine
 					if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 					{
 						SelectFile(entry);
+						selectedEntry = nullptr;
+						ImGui::EndTable(); //Setting the Pre-mature Table End
 						return;
 					}
 				}
 			}
 
-			for (auto& entry : node.children)
+			for (auto& [name, entry] : node.children)
 			{
 				if (!entry.isDirectory)
 				{
@@ -151,16 +136,16 @@ namespace SliceEngine
 						selectedEntry = &entry;
 					}
 
-					if (ImGui::BeginPopupContextItem("##ItemEditPopup"))
-					{
-						selectedEntry = &entry;
+					//if (ImGui::BeginPopupContextItem("##ItemEditPopup"))
+					//{
+					//	//selectedEntry = &entry;
 
-						if (ImGui::MenuItem("Rename File"))
-						{
-							editorState.contentBrowserState->openRenameFile = true;
-						}
-						ImGui::EndPopup();
-					}
+					//	if (ImGui::MenuItem("Rename File"))
+					//	{
+					//		editorState.contentBrowserState->openRenameFile = true;
+					//	}
+					//	ImGui::EndPopup();
+					//}
 
 					if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 					{
