@@ -1,5 +1,6 @@
 #include "GOFactory.h"
 
+
 namespace SliceEngine
 {
 	GOFactory::~GOFactory()
@@ -13,6 +14,9 @@ namespace SliceEngine
 		go.SetName(CreateName(name));
 		mNameToEntity.insert(std::make_pair(go.GetName(), go.GetEntity()));
 		mEntityToGO.insert(std::make_pair(go.GetEntity(), go));
+
+		// Every entity created will keep this flag for easy pulling
+		go.AddComponent<SliceEntity>();
 
 		return go;
 	}
@@ -43,6 +47,15 @@ namespace SliceEngine
 	void GOFactory::Destroy(GameObject& go)
 	{
 		mDeleteList.insert(go.GetEntity());
+	}
+
+	void GOFactory::TestLoop()
+	{
+		auto entityView = mRegistry.view<SliceEntity>();
+		for (auto entity : entityView)
+		{
+			std::cout << mEntityToGO[entity].GetName() << std::endl;
+		}
 	}
 
 	/// <summary>
