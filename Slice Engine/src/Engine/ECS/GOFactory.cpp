@@ -55,6 +55,7 @@ namespace SliceEngine
 		for (auto entity : entityView)
 		{
 			std::cout << mEntityToGO[entity].GetName() << std::endl;
+			
 
 			for (auto&& [type_id, storage] : mRegistry.storage())
 			{
