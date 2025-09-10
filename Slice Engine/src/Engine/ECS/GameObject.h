@@ -27,15 +27,32 @@ namespace SliceEngine
 		};
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&&... args)
+		void AddComponent(Args&&... args)
 		{
-			return mRegistry.emplace<T>(mEntity, std::forward<Args>(args)...);
+			rttr::type tType = rttr::type::get<T>();
+			rttr::type transformType = rttr::type::get<Transform>();
+			// Get UI transform here once we have it
+			// then check if it already has transform dont add uitransform and vice versa
+			
+			mRegistry->emplace<T>(mEntity, std::forward<Args>(args)...);
+
+			// idk why EnTT can't return a get<T>
+			//return mRegistry->get<T>(mEntity);
 		}
 
 		template<typename T>
 		void RemoveComponent()
 		{
-			mRegistry.remove<T>(mEntity);
+			rttr::type tType = rttr::type::get<T>();
+
+			if (tType == rttr::type::get<Transform>())
+			{
+				// TODO_Gideon: log an error saying can't remove transform or smth
+
+				return;
+			}
+
+			mRegistry->remove<T>(mEntity);
 		}
 
 		template<typename T>
@@ -43,6 +60,8 @@ namespace SliceEngine
 		{
 			mRegistry.all_of<T>(mEntity);
 		}
+
+
 
 		template<typename T>
 		T& GetComponent()

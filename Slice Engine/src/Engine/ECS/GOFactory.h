@@ -9,7 +9,7 @@ namespace SliceEngine
 {
 	using ComponentCloner = std::function<void(Registry& reg, Entity eToClone, Entity eToCreate)>;
 
-	
+	struct SliceEntity {};
 
 	class GOFactory
 	{
@@ -51,6 +51,7 @@ namespace SliceEngine
 		GameObject CloneGO(GameObject & go);
 		void Destroy(Entity const& entity);
 		void Destroy(GameObject& go);
+		void TestLoop();
 		void UpdateDestroyed();
 		std::string CreateName(std::string name);
 

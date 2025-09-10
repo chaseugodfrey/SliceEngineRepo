@@ -55,15 +55,23 @@ namespace SliceEngine
 	
 		//physics.Bind(mRegistry);
 
-		entt::entity entity = Core::GetInstance()->mRegistry.create();
-		Core::GetInstance()->mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
-		Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
-		Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
+		auto& entity = Core::GetInstance()->mFactory.CreateGO();
+		//Core::GetInstance()->mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
+		//Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
+		//Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
 
+		entity.AddComponent<Transform>(glm::vec3(0.f), glm::vec3(50.f, 0.f, 0.f));
+		entity.AddComponent<RigidBody>(false);
+		entity.AddComponent<Renderer>();
+
+		Core::GetInstance()->mFactory.TestLoop();
+
+		//auto& test = Core::GetInstance()->mRegistry.get<Transform>(entity.GetEntity());
 		//mPhysicsTest->Update(2.0f);
 		//physics(2.0f);
 
-		Core::GetInstance()->mRegistry.remove<RigidBody>(entity);
+		entity.RemoveComponent<RigidBody>();
+		//Core::GetInstance()->mRegistry.remove<RigidBody>(entity);
 
 		while (isRunning)
 		{
