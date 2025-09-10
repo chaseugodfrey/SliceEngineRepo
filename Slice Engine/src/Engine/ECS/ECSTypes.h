@@ -25,6 +25,11 @@ namespace SliceEngine
 		glm::vec3 scale;
 	};
 
+	struct UITransform
+	{
+		// blank for now because I just need to use this for factory stuff
+	};
+
 	//XPROPERTY_REG(Transform);
 
 	struct Renderer

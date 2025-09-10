@@ -60,8 +60,11 @@ namespace SliceEngine
 		//Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
 		//Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
 
-		entity.AddComponent<Transform>(glm::vec3(0.f), glm::vec3(50.f, 0.f, 0.f));
+		//entity.AddComponent<Transform>(glm::vec3(0.f), glm::vec3(50.f, 0.f, 0.f));
 		entity.AddComponent<RigidBody>(false);
+		entity.GetComponent<Transform>().position = glm::vec3(0.f);
+		entity.GetComponent<Transform>().rotation = glm::vec3(50.f, 0.f, 0.f);
+
 		entity.AddComponent<Renderer>();
 
 		Core::GetInstance()->mFactory.TestLoop();

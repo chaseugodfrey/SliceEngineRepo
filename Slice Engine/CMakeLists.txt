@@ -100,7 +100,7 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
-#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/entt/src)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/entt)
 #target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
 
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})

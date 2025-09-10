@@ -1,5 +1,5 @@
 #include "GOFactory.h"
-
+#include "ECSTypes.h"
 
 namespace SliceEngine
 {
@@ -15,10 +15,29 @@ namespace SliceEngine
 		mNameToEntity.insert(std::make_pair(go.GetName(), go.GetEntity()));
 		mEntityToGO.insert(std::make_pair(go.GetEntity(), go));
 
+		// Can add default components here like transform
+		go.AddComponent<Transform>();
+
 		// Every entity created will keep this flag for easy pulling
 		go.AddComponent<SliceEntity>();
 
 		return go;
+	}
+
+	GameObject GOFactory::CreateUIGO(std::string name)
+	{
+		GameObject go(mRegistry);
+		go.SetName(CreateName(name));
+		mNameToEntity.insert(std::make_pair(go.GetName(), go.GetEntity()));
+		mEntityToGO.insert(std::make_pair(go.GetEntity(), go));
+
+		// Can add default components here like UITransform
+
+		// Every entity created will keep this flag for easy pulling
+		go.AddComponent<SliceEntity>();
+
+		return go;
+
 	}
 
 	GameObject GOFactory::CloneGO(GameObject& go)
@@ -56,7 +75,7 @@ namespace SliceEngine
 		{
 			std::cout << mEntityToGO[entity].GetName() << std::endl;
 			
-
+			
 			for (auto&& [type_id, storage] : mRegistry.storage())
 			{
 				if (storage.contains(entity))

@@ -48,6 +48,7 @@ namespace SliceEngine
 		};
 
 		GameObject CreateGO(std::string name = "GameObject");
+		GameObject CreateUIGO(std::string name = "UI_GameObject");
 		GameObject CloneGO(GameObject & go);
 		void Destroy(Entity const& entity);
 		void Destroy(GameObject& go);

@@ -31,6 +31,25 @@ namespace SliceEngine
 		{
 			rttr::type tType = rttr::type::get<T>();
 			rttr::type transformType = rttr::type::get<Transform>();
+			rttr::type uiTransformType = rttr::type::get<UITransform>();
+
+			// If adding transform or UI Transform
+			// check to make sure it doesn't already have one
+			// if it does then dont let it add
+			// changing between UI and Transform should be done in another function
+			if (tType == transformType || tType == uiTransformType)
+			{
+				if (mRegistry->any_of<Transform, UITransform>(mEntity))
+				{
+					if (tType == uiTransformType)
+					{
+						// log an error saying cant add UI transform to transform
+
+						return;
+					}
+				}
+			}
+
 			// Get UI transform here once we have it
 			// then check if it already has transform dont add uitransform and vice versa
 			
@@ -38,6 +57,33 @@ namespace SliceEngine
 
 			// idk why EnTT can't return a get<T>
 			//return mRegistry->get<T>(mEntity);
+		}
+
+		template<typename T>
+		void ChangeTransform()
+		{
+			rttr::type tType = rttr::type::get<T>();
+			rttr::type transformType = rttr::type::get<Transform>();
+			rttr::type uiTransformType = rttr::type::get<UITransform>();
+
+			if (tType == transformType)
+			{
+				// if it has a UI transform changing to transform
+				if (mRegistry->any_of<UITransform>(mEntity))
+				{
+					// idk what to do yet when we wanna do this
+					// maybe clear all non compatible components?
+				}
+			}
+			else if (tType == uiTransformType)
+			{
+				// if it has transform changing to UI transform
+				if (mRegistry->any_of<Transform>(mEntity))
+				{
+					// idk what to do yet when we wanna do this
+					// maybe clear all non compatible components?
+				}
+			}
 		}
 
 		template<typename T>
@@ -66,11 +112,11 @@ namespace SliceEngine
 		template<typename T>
 		T& GetComponent()
 		{
-			T* component = mRegistry.try_get<T>(mEntity);
+			T* component = mRegistry->try_get<T>(mEntity);
 
 			if (component)
 			{
-				return &component;
+				return *component;
 
 			}
 
