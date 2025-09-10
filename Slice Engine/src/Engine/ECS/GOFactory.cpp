@@ -55,6 +55,16 @@ namespace SliceEngine
 		for (auto entity : entityView)
 		{
 			std::cout << mEntityToGO[entity].GetName() << std::endl;
+
+			for (auto&& [type_id, storage] : mRegistry.storage())
+			{
+				if (storage.contains(entity))
+				{
+					// each component will be here
+					std::cout << storage.type().name() << std::endl;
+				}
+			}
+			//auto type = Registry::visi
 		}
 	}
 
