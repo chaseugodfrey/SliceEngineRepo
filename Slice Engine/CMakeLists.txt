@@ -56,12 +56,12 @@ set(PROFILER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE)       # -> JPH_PROFILE
 include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 
 # Link both your test and engine against the freshly built Jolt(will delete for testing purpose)
-add_executable(JoltTest src/test.cpp)
+add_executable(JoltTest src/test.cpp "src/Engine/FrameManager/FrameManager.h")
 target_link_libraries(JoltTest PRIVATE Jolt)
 
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
-add_library(imgui STATIC ${IMGUI_SOURCES} )
+add_library(imgui STATIC ${IMGUI_SOURCES}  "src/Engine/FrameManager/FrameManager.h")
 target_include_directories(imgui
     PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include
@@ -82,7 +82,7 @@ link_directories(${RTTR_DIR}/lib)
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
 file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
 file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
-add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES} )
+add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES}  "src/Engine/FrameManager/FrameManager.h")
 
 # ----- PCH -----
 target_precompile_headers(SliceEngine PUBLIC pch.h)
