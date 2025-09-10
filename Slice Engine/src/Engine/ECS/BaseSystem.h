@@ -70,6 +70,7 @@ namespace SliceEngine
 
 		virtual void EntityOnUpdate(entt::registry& reg, entt::entity entity, float dt) {}
 
+		entt::registry* mRegistry{};
 	private:
 		void SystemOnEnter(entt::registry& reg, entt::entity entity)
 		{
@@ -89,6 +90,31 @@ namespace SliceEngine
 			}
 		}
 
+	};
+
+	/// <summary>
+	/// Used for systems that don't require components or entities
+	/// i.e ResourceManager? RenderManager?
+	/// TODO: Check w chase on this
+	/// </summary>
+	class BaseEngineSystem : public IBaseSystem
+	{
+	public:
+		void Bind(Registry& reg) override
+		{
+			mRegistry = &reg;
+		}
+
+		void Unbind() override
+		{
+
+		}
+
+		void Update(float dt) override
+		{
+
+		}
+	private:
 		entt::registry* mRegistry{};
 	};
 }
