@@ -35,6 +35,9 @@ namespace SliceEngine
 		InitSystem(mPhysicsTest);
 		InitSystem(mTransform);
 
+		framerateManager = std::make_unique<FramerateManager>();
+		framerateManager->Init();
+
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>(this);
@@ -64,7 +67,13 @@ namespace SliceEngine
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			// Main Body
+			framerateManager->StartFrame();
+
+			framerateManager->StartSystem("Input");
 			inputs->Update();
+			framerateManager->EndSystem("Input");
+
+			framerateManager->EndFrame();
 			//
 
 			mRender->Render(window, mResource.get());

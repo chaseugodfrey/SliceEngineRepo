@@ -9,6 +9,7 @@
 #include "Graphics/RenderManager.h"
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
+#include "FrameManager/FramerateManager.h"
 
 #ifdef EDITOR
 #include "../Editor/Editor.h"
@@ -38,6 +39,7 @@ namespace SliceEngine
 		std::unique_ptr<RenderManager> mRender;
 		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
 		std::shared_ptr<PhysicSystem> mPhysicsTest;
+		std::unique_ptr<FramerateManager> framerateManager;
 		Registry mRegistry;
 
 		void Init();
