@@ -24,7 +24,7 @@ namespace SliceEngine
 			auto& registry = Core::GetInstance()->mRegistry;
 			entt::entity entity = node.GetEntity();
 
-			// Go through every registered storage
+			// Go through every registered component
 			for (auto&& [type_id, storage] : registry.storage())
 			{
 				if (!storage.contains(entity))
@@ -35,13 +35,13 @@ namespace SliceEngine
 				// Each component for this GameObject is here
 				std::cout << storage.type().name() << std::endl;
 
-				//auto it = IdToRTTRType(type_id)
-				//if (it == idToRTTRType.end())
-				//	continue; // not registered with RTTR
+				rttr::type rtype = EnttIdToRttrTypeFunc(type_id);
+				rttr::instance& inst(registry.try_get<SliceEntity>(entity));
 
-				//rttr::type rtype = it->second;
-
-
+				//for (auto& prop : rtype.get_properties())
+				//{
+				//	rttr::variant data = prop.get_value()
+				//}
 			}
 
 			// If you have children, recurse:

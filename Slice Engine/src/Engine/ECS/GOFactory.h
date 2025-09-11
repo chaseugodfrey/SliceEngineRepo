@@ -10,6 +10,8 @@ namespace SliceEngine
 	using ComponentCloner = std::function<void(Registry& reg, Entity eToClone, Entity eToCreate)>;
 	using EnttIdToRttrType = std::function<rttr::type(entt::id_type type)>;
 
+	EnttIdToRttrType EnttIdToRttrTypeFunc;
+
 	struct SliceEntity {};
 
 	class GOFactory
@@ -52,7 +54,7 @@ namespace SliceEngine
 		void MapEnttToRTTR()
 		{
 			mEnttTypeIdToRttrType[entt::type_id<T>().hash()] = rttr::type::get<T>();
-			EnttIdToRttrType = [&mEnttTypeIdToRttrType](entt::id_type type_id) -> rttr::type
+			EnttIdToRttrTypeFunc = [](entt::id_type type_id) -> rttr::type
 				{
 					auto it = mEnttTypeIdToRttrType.find(type_id);
 					return (it != mEnttTypeIdToRttrType.end()) ? it->second : rttr::type(); // invalid if not found + need write error/log if fail
