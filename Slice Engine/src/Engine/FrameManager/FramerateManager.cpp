@@ -31,15 +31,15 @@ namespace SliceEngine
 
 	void FramerateManager::StartSystem(const std::string &name)
 	{
-		systemStartTimes[name].first = Clock::now();
+		systemStartEndTimes[name].first = Clock::now();
 	}
 
 	void FramerateManager::EndSystem(const std::string &name)
 	{
 		auto endTime = Clock::now();
-		systemStartTimes[name].second = endTime;
+		systemStartEndTimes[name].second = endTime;
 
-		float duration = std::chrono::duration<float, std::milli>(endTime - systemStartTimes[name].first).count();
+		float duration = std::chrono::duration<float, std::milli>(endTime - systemStartEndTimes[name].first).count();
 		systemDurations[name] = duration;
 	}
 }

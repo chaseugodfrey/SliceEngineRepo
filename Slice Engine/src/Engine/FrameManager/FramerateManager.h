@@ -23,7 +23,7 @@ namespace SliceEngine
 		TimePoint frameEndTime;
 		bool firstFrameDone = false;
 
-		std::unordered_map<std::string, std::pair<TimePoint,TimePoint>> systemStartTimes;
+		std::unordered_map<std::string, std::pair<TimePoint,TimePoint>> systemStartEndTimes;
 		std::unordered_map<std::string, float> systemDurations;
 	};
 }
