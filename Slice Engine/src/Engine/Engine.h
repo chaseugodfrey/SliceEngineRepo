@@ -9,6 +9,7 @@
 #include "Graphics/RenderManager.h"
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
+#include "FrameManager/FramerateManager.h"
 
 
 #ifdef EDITOR
