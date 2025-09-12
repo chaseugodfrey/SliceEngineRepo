@@ -1,5 +1,5 @@
-#ifndef WORLD_SPACE_GRAPHICS_MANAGER_H
-#define WORLD_SPACE_GRAPHICS_MANAGER_H
+#ifndef WORLD_SPACE_GRAPHICS_SYSTEM_H
+#define WORLD_SPACE_GRAPHICS_SYSTEM_H
 
 #include "glfw3.h"
 #include "ResourceManager.h"
@@ -22,6 +22,5 @@ namespace SliceEngine
 		Shader mShader;
 	};
 }
-
 
 #endif

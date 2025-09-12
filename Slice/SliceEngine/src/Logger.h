@@ -1,5 +1,6 @@
 #ifndef LOGGER_H
 #define LOGGER_H
+#include <string>
 
 // Prints out a message to terminal
 #define SLICE_LOG(msg)				Logger::Log(__FUNCTION__, msg)

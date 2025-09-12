@@ -26,11 +26,11 @@
 #include <math.h>
 
 // Logger
-#include "Logger.h"
+#include "../Logger.h"
 
 // Common Types
-#include "Vectors/Vector2.h"
-#include "Vectors/Vector3.h"
+#include "../Vectors/Vector2.h"
+#include "../Vectors/Vector3.h"
 
 // external libs
 
@@ -52,16 +52,16 @@
 //#include <ImGuizmo.h>
 
 // jolt
-#include <Jolt.h>
-#include <RegisterTypes.h>
-#include <Core/Factory.h>
-#include <Core/TempAllocator.h>
-#include <Core/JobSystemThreadPool.h>
-#include <Physics/PhysicsSettings.h>
-#include <Physics/PhysicsSystem.h>
-#include <Physics/Collision/Shape/BoxShape.h>
-#include <Physics/Collision/Shape/SphereShape.h>
-#include <Physics/Body/BodyCreationSettings.h>
-#include <Physics/Body/BodyActivationListener.h>
+#include <Jolt/Jolt.h>
+#include <Jolt/RegisterTypes.h>
+#include <Jolt/Core/Factory.h>
+#include <Jolt/Core/TempAllocator.h>
+#include <Jolt/Core/JobSystemThreadPool.h>
+#include <Jolt/Physics/PhysicsSettings.h>
+#include <Jolt/Physics/PhysicsSystem.h>
+#include <Jolt/Physics/Collision/Shape/BoxShape.h>
+#include <Jolt/Physics/Collision/Shape/SphereShape.h>
+#include <Jolt/Physics/Body/BodyCreationSettings.h>
+#include <Jolt/Physics/Body/BodyActivationListener.h>
 
 #endif 

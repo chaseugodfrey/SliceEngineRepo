@@ -15,7 +15,7 @@ Reproduction or disclosure of this file or its contents without the prior writte
 DigiPen Institute of Technology is prohibited.
 --------------------------------------------------------------------------------------------------*/
 
-#include "pch.h"
+#include <pch.h>
 #include "InputSystem.h"
 #include <iostream>
 

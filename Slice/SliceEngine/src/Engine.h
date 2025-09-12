@@ -9,6 +9,12 @@
 #include "Graphics/RenderManager.h"
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
+#include "FrameManager/FramerateManager.h"
+
+
+#ifdef EDITOR
+#include "../Editor/Editor.h"
+#endif
 
 namespace SliceEngine
 {
@@ -17,32 +23,33 @@ namespace SliceEngine
 		GLFWwindow* window;
 		bool isRunning;
 
+#ifdef EDITOR
+		std::unique_ptr<Editor> editor;
+#endif
 	public:
 		// I'm testing a way to store all the systems in an array
 		// to loop and unbind in exit
 		// if it doesnt work down the line then just manually unbind all the systems instead.
+		
+		//std::unordered_map<std::string, std::shared_ptr<IBaseSystem>> mSystems;
 
-		std::vector<std::shared_ptr<IBaseSystem>> mSystems;
+		//std::vector<std::shared_ptr<IBaseSystem>> mSystems;
 
+
+		// Gonna try to grp these tgt with the other systems in core.h
 		std::unique_ptr<InputSystem> inputs;
 		std::unique_ptr<AudioManager> audio;
-		std::shared_ptr<TransformSystem> mTransform;
 		std::unique_ptr<ResourceManager> mResource;
 		std::unique_ptr<RenderManager> mRender;
-		std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
-		std::shared_ptr<PhysicSystem> mPhysicsTest;
-		Registry mRegistry;
+		std::unique_ptr< FramerateManager> framerateManager;
+
+
+		//std::shared_ptr<TransformSystem> mTransform;
+		//std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
+		//std::shared_ptr<PhysicSystem> mPhysicsTest;
+		//Registry mRegistry;
 
 		void Init();
-
-	
-		template<typename T>
-		void InitSystem(std::shared_ptr<T>& system)
-		{
-			system = std::make_shared<T>();
-			system->Bind(mRegistry);
-			mSystems.push_back(system);
-		}
 
 		void Update();
 		void Exit();

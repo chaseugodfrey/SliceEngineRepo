@@ -1,4 +1,6 @@
+#include <pch.h>
 #include "GOFactory.h"
+#include "ECSTypes.h"
 
 namespace SliceEngine
 {
@@ -7,14 +9,36 @@ namespace SliceEngine
 
 	}
 
-	GameObject GOFactory::CreateGO(std::string name)
+	GameObject& GOFactory::CreateGO(std::string name)
 	{
 		GameObject go(mRegistry);
 		go.SetName(CreateName(name));
 		mNameToEntity.insert(std::make_pair(go.GetName(), go.GetEntity()));
 		mEntityToGO.insert(std::make_pair(go.GetEntity(), go));
 
+		// Can add default components here like transform
+		go.AddComponent<Transform>();
+
+		// Every entity created will keep this flag for easy pulling
+		go.AddComponent<SliceEntity>();
+
 		return go;
+	}
+
+	GameObject& GOFactory::CreateUIGO(std::string name)
+	{
+		GameObject go(mRegistry);
+		go.SetName(CreateName(name));
+		mNameToEntity.insert(std::make_pair(go.GetName(), go.GetEntity()));
+		mEntityToGO.insert(std::make_pair(go.GetEntity(), go));
+
+		// Can add default components here like UITransform
+
+		// Every entity created will keep this flag for easy pulling
+		go.AddComponent<SliceEntity>();
+
+		return go;
+
 	}
 
 	GameObject GOFactory::CloneGO(GameObject& go)
@@ -43,6 +67,26 @@ namespace SliceEngine
 	void GOFactory::Destroy(GameObject& go)
 	{
 		mDeleteList.insert(go.GetEntity());
+	}
+
+	void GOFactory::TestLoop()
+	{
+		auto entityView = mRegistry.view<SliceEntity>();
+		for (auto entity : entityView)
+		{
+			std::cout << mEntityToGO[entity].GetName() << std::endl;
+			
+			
+			for (auto&& [type_id, storage] : mRegistry.storage())
+			{
+				if (storage.contains(entity))
+				{
+					// each component will be here
+					std::cout << storage.type().name() << std::endl;
+				}
+			}
+			//auto type = Registry::visi
+		}
 	}
 
 	/// <summary>

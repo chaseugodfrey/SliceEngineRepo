@@ -1,3 +1,4 @@
+#include <pch.h>
 #include "TransformSystem.h"
 
 namespace SliceEngine

@@ -4,6 +4,9 @@
     <Filter Include="ECS">
       <UniqueIdentifier>{60E1870B-CCEA-877C-5566-9E7CC16E937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameManager">
+      <UniqueIdentifier>{8B42F386-77A5-822B-202B-BBE10C6D4EAE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{1653CE33-0220-293F-2B39-17E717655ECD}</UniqueIdentifier>
     </Filter>
@@ -20,6 +23,7 @@
   <ItemGroup>
     <ClInclude Include="src\AudioManager.h" />
     <ClInclude Include="src\Config.h" />
+    <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\ECS\BaseSystem.h">
       <Filter>ECS</Filter>
     </ClInclude>
@@ -35,7 +39,16 @@
     <ClInclude Include="src\ECS\PhysicSystem.h">
       <Filter>ECS</Filter>
     </ClInclude>
+    <ClInclude Include="src\ECS\SliceRTTR.h">
+      <Filter>ECS</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine.h" />
+    <ClInclude Include="src\FrameManager\FramerateManager.h">
+      <Filter>FrameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\CameraSystem.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="src\Graphics\RenderManager.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -52,6 +65,8 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\Singleton.h" />
+    <ClInclude Include="src\SoundSystem.h" />
     <ClInclude Include="src\TestClass.h" />
     <ClInclude Include="src\TransformSystem.h" />
     <ClInclude Include="src\Vectors\Vector2.h">
@@ -67,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
+    <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\ECS\GOFactory.cpp">
       <Filter>ECS</Filter>
     </ClCompile>
@@ -74,6 +90,12 @@
       <Filter>ECS</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\FrameManager\FramerateManager.cpp">
+      <Filter>FrameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\CameraSystem.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="src\Graphics\RenderManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>

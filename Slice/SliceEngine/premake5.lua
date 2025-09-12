@@ -13,25 +13,25 @@ project "SliceEngine"
         "thirdparty/glew/GL",
         "thirdparty/glfw/include",
         "thirdparty/glm",
-        "thirdparty/rttr/include/rttr",
+        --"thirdparty/rttr/include",
         "thirdparty/xprop",
         "thirdparty/entt",
         "thirdparty/Jolt",
-        "thirdparty/fmod/include",
+        "thirdparty/fmod/include", 
         "src/pch"
     }
 
     libdirs {
-        "thirdparty/glew/lib",
+        "thirdparty/glew" ,
         "thirdparty/glfw/lib-vc2022",
-        "thirdparty/rttr/lib"
+      --  "thirdparty/rttr/lib"
     }
 
     links {
         "glew32",
         "opengl32",
         "glfw3",
-        "rttr_core_s_d"
+       -- "rttr_core_d" --Change to filter 
     }
 
     filter "configurations:EditorDebug" 

@@ -20,7 +20,7 @@ DigiPen Institute of Technology is prohibited.
 // note for micah: dont include windows.h
 // it fks up glfw window 
 
-#include <glfw/include/glfw3.h>
+#include <glfw3.h>
 
 namespace SliceEngine
 {

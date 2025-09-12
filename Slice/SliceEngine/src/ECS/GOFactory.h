@@ -3,13 +3,13 @@
 
 #include "ECSTypes.h"
 #include "GameObject.h"
-#include <entt/entt.hpp>
+#include <entt.hpp>
 
 namespace SliceEngine
 {
 	using ComponentCloner = std::function<void(Registry& reg, Entity eToClone, Entity eToCreate)>;
 
-	
+	struct SliceEntity {};
 
 	class GOFactory
 	{
@@ -30,7 +30,7 @@ namespace SliceEngine
 		template<class T>
 		void CreateComponentCloner()
 		{
-			const entt::id_type id = entt::type_id<T>().hash();
+			/*const entt::id_type id = entt::type_id<T>().hash();
 			mComponentCloners.emplace(id, [](Registry& reg, Entity toClone, Entity toCreate)
 				{
 					if (auto* component = reg.try_get<T>(toClone))
@@ -44,13 +44,15 @@ namespace SliceEngine
 							reg.emplace_or_replace<T>(d, *c);
 						}
 					}
-				});
+				});*/
 		};
 
-		GameObject CreateGO(std::string name = "GameObject");
+		GameObject& CreateGO(std::string name = "GameObject");
+		GameObject& CreateUIGO(std::string name = "UI_GameObject");
 		GameObject CloneGO(GameObject & go);
 		void Destroy(Entity const& entity);
 		void Destroy(GameObject& go);
+		void TestLoop();
 		void UpdateDestroyed();
 		std::string CreateName(std::string name);
 

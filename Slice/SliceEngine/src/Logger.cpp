@@ -11,8 +11,8 @@ namespace Logger
 	#define BLUE    "\033[34m"      /* Blue */
 
 	// early declaration
-	static char* LogLevelToString(LogLevel level);
-	static char* LogLevelToColor(LogLevel level);
+	static const char* LogLevelToString(LogLevel level);
+	static const char* LogLevelToColor(LogLevel level);
 
 	void Log(const char* function_name, const std::string& message, LogLevel level)
 	{
@@ -43,7 +43,7 @@ namespace Logger
 		Log(function_name, message, LogLevel::CRITICAL);
 	}
 
-	static char* LogLevelToString(LogLevel level)
+	static const char* LogLevelToString(LogLevel level)
 	{
 		switch (level)
 		{
@@ -62,7 +62,7 @@ namespace Logger
 		}
 	}
 
-	static char* LogLevelToColor(LogLevel level)
+	static const char* LogLevelToColor(LogLevel level)
 	{
 		switch (level)
 		{

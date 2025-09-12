@@ -1,120 +1,76 @@
+#include <pch.h>
 #include "RenderManager.h"
 #include <glm/glm.hpp>
 #include <glm/common.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #define PI05F 1.57079632679f
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/euler_angles.hpp"
+#include "../Core.h"
 
 namespace SliceEngine
 {
 	RenderManager::RenderManager(){	}
 	RenderManager::~RenderManager()
 	{
-		glDeleteTextures(1, &mScene.textureID);
-		//glDeleteTextures(1, &mScene.picker_id);
-		glDeleteTextures(1, &mScene.depthTex);
-		glDeleteFramebuffers(1, &mScene.FBO);
+		glDeleteFramebuffers(1, &mFBO);
 		//glDeleteBuffers(2, pboIds);
 	}
-	void RenderManager::InitAndLink(std::shared_ptr<WorldSpaceGraphicsSystem> wsgs, GLFWwindow* window)
+	void RenderManager::InitAndLink(GLFWwindow* window)
 	{
-		mWorldSpaceGraphics = wsgs;
-
-		LoadCam();
 
 		int width, height;
 		glfwGetWindowSize(window, &width, &height);
 		CreateFramebuffer(width, height);
+
+		mainCam = Core::GetInstance()->mRegistry.create();
+		Core::GetInstance()->mRegistry.emplace<Transform>(mainCam, glm::vec3(-2.f,0.f,0.f), glm::vec3(0.f, 0.f, 0.f));
+		Core::GetInstance()->mRegistry.emplace<Camera>(mainCam);
 	}
 
 	void RenderManager::Render(GLFWwindow* window, ResourceManager* rcManager)
 	{
-		glBindFramebuffer(GL_FRAMEBUFFER, 1);
+		glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
 		//IDPick(mousePosX, mousePosY);
 
-		UpdateCamera(cam, window, 0.f, 0.f);
-		cam.position.x -= 0.001f;
-		cam.position.z += 0.002f;
+		Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>().UseShader(rcManager);
+		UpdateCamGPU(window, rcManager);
 		
-		mWorldSpaceGraphics->UseShader(rcManager);
-		UpdateCamGPU(cam, rcManager);
-		
-		mWorldSpaceGraphics->Render(window, rcManager);
+		Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>().Render(window, rcManager);
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//std::swap(pboIdx[0], pboIdx[1]);
 	}
 
-	void RenderManager::LoadCam()
+	void RenderManager::UpdateCamGPU(GLFWwindow* window, ResourceManager* rcManager)
 	{
-		cam.position = glm::vec3(2.f, 0.f, 0.f);
-		cam.target = glm::vec3(1.f, 0.f, 0.f);
-		cam.near = 0.5f;
-		cam.far = 200.f;
-		cam.pov = 60.f;
-	}
-	void RenderManager::UpdateCamera(Camera& camera, GLFWwindow* window, float xOffset, float yOffset)
-	{
-		const float r = glm::sqrt(
-			(camera.target.x - camera.position.x) * (camera.target.x - camera.position.x) +
-			(camera.target.y - camera.position.y) * (camera.target.y - camera.position.y) +
-			(camera.target.z - camera.position.z) * (camera.target.z - camera.position.z));
-		float alpha = glm::asin((camera.target.y - camera.position.y) / r);
-		float betta = std::atan2f((camera.target.x - camera.position.x), (camera.target.z - camera.position.z));
+		auto& camera = Core::GetInstance()->mRegistry.get<Camera>(mainCam);
+		auto& camTrans = Core::GetInstance()->mRegistry.get<Transform>(mainCam);
 
-		// Adjust angles based on cursor offset
-		if (yOffset < 0.0)
-			alpha += -0.02f;
-		else if (yOffset > 0.0)
-			alpha += 0.02f;
+		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, camera.textureID, 0); // GL_COLOR_ATTACHMENT0 - First Out
+		glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, camera.depthTex, 0);
 
-		if (xOffset < 0.0)
-			betta += -0.05f;
-		else if (xOffset > 0.0)
-			betta += 0.05f;
+		glm::vec3 target{ 1.f, 0.f, 0.f }, up{ 0.f, 1.f, 0.f };
+		glm::mat3 rot = glm::eulerAngleXYZ(glm::radians(camTrans.rotation.x), glm::radians(camTrans.rotation.y), glm::radians(camTrans.rotation.z));
 
-		// Clamp vertical angle
-		alpha = glm::clamp(alpha, -PI05F + 0.01f, PI05F - 0.01f);
-
-		// Update target based on spherical coordinates
-		camera.target.x = camera.position.x + r * glm::cos(alpha) * glm::sin(betta);
-		camera.target.y = camera.position.y + r * glm::sin(alpha);
-		camera.target.z = camera.position.z + r * glm::cos(alpha) * glm::cos(betta);
-
-		camera.V = glm::lookAt(camera.position, camera.target, glm::vec3{ 0.f,1.f,0.f });
+		glm::mat4 V = glm::lookAt(camTrans.position, camTrans.position + rot * target, rot * up);
 
 		int width, height;
 		glfwGetWindowSize(window, &width, &height);
-		camera.P = glm::perspective(glm::radians(camera.pov), static_cast<float>(width) / static_cast<float>(height), camera.near, camera.far);
-	}
-	void RenderManager::UpdateCamGPU(Camera& camera, ResourceManager* rcManager)
-	{
+		glm::mat4 P = glm::perspective(glm::radians(camera.pov), static_cast<float>(width) / static_cast<float>(height), camera.near, camera.far);
+
+
 		GLint uniformLoc;
 		uniformLoc = glGetUniformLocation(rcManager->GetShader().s, "V");
-		glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, &camera.V[0][0]);
+		glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, &V[0][0]);
 		uniformLoc = glGetUniformLocation(rcManager->GetShader().s, "P");
-		glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, &camera.P[0][0]);
+		glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, &P[0][0]);
 	}
 
 	void RenderManager::CreateFramebuffer(int width, int height)
 	{
-		glGenFramebuffers(1, &mScene.FBO);
-		glBindFramebuffer(GL_FRAMEBUFFER, mScene.FBO);
-
-		glCreateTextures(GL_TEXTURE_2D, 1, &mScene.textureID);
-		glTextureStorage2D(mScene.textureID, 1, GL_RGBA16F, width, height);
-		glTextureParameterf(mScene.textureID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTextureParameterf(mScene.textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, mScene.textureID, 0); // GL_COLOR_ATTACHMENT0 - First Out
-
-		//glCreateTextures(GL_TEXTURE_2D, 1, &mScene.picker_id);
-		//glTextureStorage2D(mScene.picker_id, 1, GL_R32UI, width, height);
-		//glTextureParameterf(mScene.picker_id, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		//glTextureParameterf(mScene.picker_id, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		//glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, mScene.picker_id, 0);
-
-		glCreateTextures(GL_TEXTURE_2D, 1, &mScene.depthTex);
-		glTextureStorage2D(mScene.depthTex, 1, GL_DEPTH_COMPONENT32F, width, height);
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, mScene.depthTex, 0);
+		glGenFramebuffers(1, &mFBO);
+		glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
 
 		//glGenRenderbuffers(1, &mScenes[i].RBO);
 		//glBindRenderbuffer(GL_RENDERBUFFER, mScenes[i].RBO);
@@ -125,7 +81,7 @@ namespace SliceEngine
 			GL_COLOR_ATTACHMENT0
 			//,GL_COLOR_ATTACHMENT1
 		};
-		glDrawBuffers(sizeof(drawBuffers) / sizeof(unsigned int), drawBuffers);
+		glDrawBuffers(sizeof(drawBuffers) / sizeof(unsigned int), drawBuffers); // TODO: Check if this part links the frame buffer or texture
 
 
 		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -149,9 +105,12 @@ namespace SliceEngine
 	}
 	GLuint RenderManager::GetTexture()
 	{
-		return mScene.textureID;
+		return Core::GetInstance()->mRegistry.get<Camera>(mainCam).textureID;
 	}
-
+	Transform& RenderManager::GetMainCameraTransform()
+	{
+		return Core::GetInstance()->mRegistry.get<Transform>(mainCam);
+	}
 	void RenderManager::IDPick(const int& mouseX, const int& mouseY)
 	{
 		//// if out of bounds

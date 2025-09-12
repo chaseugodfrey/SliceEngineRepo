@@ -1,7 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-struct GLFWwindow;
+#include "glfw3.h"
 
 namespace SliceEngine
 {

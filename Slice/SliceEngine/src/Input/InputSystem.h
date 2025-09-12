@@ -18,7 +18,7 @@ DigiPen Institute of Technology is prohibited.
 #ifndef INPUT_SYSTEM_H
 #define INPUT_SYSTEM_H
 #include "../ECS/BaseSystem.h"
-#include <glfw/include/glfw3.h>
+#include <glfw3.h>
 #include "InputTypes.h"
 #include <array>
 #include <queue>
