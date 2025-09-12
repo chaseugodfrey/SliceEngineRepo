@@ -111,7 +111,6 @@ namespace SliceEngine
 					if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 					{
 						selectedEntry = &entry;
-						ImGui::OpenPopup("##RenameFile"); //It should open 
 					}
 
 					if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
@@ -121,8 +120,21 @@ namespace SliceEngine
 						ImGui::EndTable(); //Setting the Pre-mature Table End
 						return;
 					}
+					if (selectedEntry == &entry && ImGui::BeginPopupContextItem("##ItemEditPopup"))
+					{
+						//selectedEntry = &entry;
+
+						if (ImGui::MenuItem("Rename File"))
+						{
+							editorState.contentBrowserState->openRenameFile = true;
+						}
+						ImGui::EndPopup();
+					}
+
 				}
 			}
+
+			
 
 			for (auto& [name, entry] : node.children)
 			{
@@ -136,28 +148,35 @@ namespace SliceEngine
 						selectedEntry = &entry;
 					}
 
-					//if (ImGui::BeginPopupContextItem("##ItemEditPopup"))
-					//{
-					//	//selectedEntry = &entry;
-
-					//	if (ImGui::MenuItem("Rename File"))
-					//	{
-					//		editorState.contentBrowserState->openRenameFile = true;
-					//	}
-					//	ImGui::EndPopup();
-					//}
-
 					if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 					{
 						selectedEntry = &entry;
-						ImGui::OpenPopup("##RenameFile"); //It should open 
 					}
 
 					if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 					{
 						editorState.OpenFile();
 					}
+
+					if (selectedEntry == &entry && ImGui::BeginPopupContextItem("##ItemEditPopup"))
+					{
+						//selectedEntry = &entry;
+
+						if (ImGui::MenuItem("Rename File"))
+						{
+							editorState.contentBrowserState->openRenameFile = true;
+						}
+						ImGui::EndPopup();
+					}
+
+
 				}
+			}
+
+			if (editorState.contentBrowserState->openRenameFile)
+			{
+				editorState.contentBrowserState->openRenameFile = !editorState.contentBrowserState->openRenameFile;
+				ImGui::OpenPopup("##RenameFile");
 			}
 
 			if (selectedEntry != nullptr)
