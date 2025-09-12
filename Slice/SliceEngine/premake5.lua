@@ -24,6 +24,7 @@ project "SliceEngine"
     libdirs {
         "thirdparty/glew" ,
         "thirdparty/glfw/lib-vc2022",
+        "thirdparty/fmod/lib"
       --  "thirdparty/rttr/lib"
     }
 
