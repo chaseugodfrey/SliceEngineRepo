@@ -56,32 +56,40 @@ set(PROFILER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE)       # -> JPH_PROFILE
 include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 
 # Link both your test and engine against the freshly built Jolt(will delete for testing purpose)
-add_executable(JoltTest src/test.cpp)
+add_executable(JoltTest src/test.cpp )
 target_link_libraries(JoltTest PRIVATE Jolt)
+
+# RTTR
+file(GLOB_RECURSE RTTR_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/include/*.h")
+add_library(RTTR STATIC IMPORTED)
+#set_target_properties(fmod PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod_vc.lib)
+set_target_properties(RTTR PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/lib/rttr_core_d.lib)
+target_include_directories(RTTR INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/include)
+#set(RTTR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr")
+
+# add RTTR include directory
+#include_directories(${RTTR_DIR}/include)
+
+# add library directory
+#link_directories(${RTTR_DIR}/lib)
+
 
 # IMGUI
 file(GLOB_RECURSE IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include/imgui*.cpp")
 add_library(imgui STATIC ${IMGUI_SOURCES} )
 target_include_directories(imgui
-    PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include
+    PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/imgui/include 
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/glfw/include
 )
 target_link_libraries(imgui INTERFACE glfw)
 
 
-# RTTR
-set(RTTR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr")
-
-# add RTTR include directory
-include_directories(${RTTR_DIR}/include)
-
-# add library directory
-link_directories(${RTTR_DIR}/lib)
 
 # ---- COMPILATION -----
 # Retrieves all filenames with .cpp and adds it to variable SOURCE_FILES
-file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp")
-file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp")
+file (GLOB_RECURSE ENGINE_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.cpp"  "${CMAKE_CURRENT_SOURCE_DIR}/src/Engine/*.h")
+
+file (GLOB_RECURSE EDITOR_FILES CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/Editor/*.h")
 add_executable (SliceEngine "main.cpp" ${ENGINE_FILES} ${EDITOR_FILES} )
 
 # ----- PCH -----
@@ -92,17 +100,20 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/entt)
 #target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
 
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
 target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)
 target_link_libraries(SliceEngine PRIVATE Jolt)
+target_link_libraries(SliceEngine PRIVATE RTTR)
+#target_link_libraries(SliceEngine EnTT)
 
 # This is probably not fully complete
 # suppose to have 1 for release 1 for debug
 # this is debug if im not wrong cause _d
-target_link_libraries(SliceEngine PRIVATE ${RTTR_DIR}/lib/rttr_core_s_d.lib)
+#target_link_libraries(SliceEngine PRIVATE ${RTTR_DIR}/lib/rttr_core_s_d.lib)
 
 # ----- POST BUILD -----
 # Copies all content from source assets folder into bin assets folder
@@ -115,4 +126,8 @@ add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
                 ${CMAKE_CURRENT_BINARY_DIR}/Assets
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/fmod/lib/fmod.dll
-                $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+                $<TARGET_FILE_DIR:${PROJECT_NAME}>
+		COMMAND ${CMAKE_COMMAND} -E copy
+				${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/rttr/bin/rttr_core_d.dll
+				$<TARGET_FILE_DIR:${PROJECT_NAME}>
+        )
