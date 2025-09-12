@@ -55,7 +55,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalIncludeDirectories>thirdparty\glew\GL;thirdparty\glfw\include;thirdparty\glm;thirdparty\rttr\include\rttr;thirdparty\entt;thirdparty\Jolt;thirdparty\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>thirdparty\glew\GL;thirdparty\glfw\include;thirdparty\glm;thirdparty\rttr\include\rttr;thirdparty\xprop;thirdparty\entt;thirdparty\Jolt;thirdparty\fmod\include;src\pch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -75,7 +75,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalIncludeDirectories>thirdparty\glew\GL;thirdparty\glfw\include;thirdparty\glm;thirdparty\rttr\include\rttr;thirdparty\entt;thirdparty\Jolt;thirdparty\fmod\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>thirdparty\glew\GL;thirdparty\glfw\include;thirdparty\glm;thirdparty\rttr\include\rttr;thirdparty\xprop;thirdparty\entt;thirdparty\Jolt;thirdparty\fmod\include;src\pch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -110,6 +110,7 @@
     <ClInclude Include="src\Vectors\Vector2.h" />
     <ClInclude Include="src\Vectors\Vector3.h" />
     <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\pch\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\TransformSystem.cpp" />
     <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\pch\pch.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,11 +26,11 @@
 #include <math.h>
 
 // Logger
-#include "src/Logger.h"
+#include "Logger.h"
 
 // Common Types
-#include "src/Vectors/Vector2.h"
-#include "src/Vectors/Vector3.h"
+#include "Vectors/Vector2.h"
+#include "Vectors/Vector3.h"
 
 // external libs
 

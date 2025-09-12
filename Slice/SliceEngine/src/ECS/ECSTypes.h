@@ -1,10 +1,10 @@
 #ifndef ECS_TYPES
 #define ECS_TYPES
 
-#include <entt/entt.hpp>
-#include <glm/vec3.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/gtc/quaternion.hpp>
+#include <entt.hpp>
+#include <vec3.hpp>
+#include <mat4x4.hpp>
+#include <gtc/quaternion.hpp>
 #include <xprop/xproperty.h>
 
 using Entity = entt::entity;

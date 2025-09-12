@@ -1,7 +1,7 @@
 #ifndef BASE_SYSTEM_H
 #define BASE_SYSTEM_H
 
-#include "entt/entt.hpp"
+#include "entt.hpp"
 #include "ECSTypes.h"
 
 class IBaseSystem

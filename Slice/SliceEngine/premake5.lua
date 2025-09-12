@@ -14,9 +14,11 @@ project "SliceEngine"
         "thirdparty/glfw/include",
         "thirdparty/glm",
         "thirdparty/rttr/include/rttr",
+        "thirdparty/xprop",
         "thirdparty/entt",
         "thirdparty/Jolt",
-        "thirdparty/fmod/include"
+        "thirdparty/fmod/include",
+        "src/pch"
     }
 
     libdirs {
@@ -42,10 +44,8 @@ project "SliceEngine"
             "fmod_vc"
         }
 
-
-
     pchheader "pch.h"
-    pchsource "pch.h"
+    pchsource "pch.cpp"
     
     -- filter "configurations:Release"
     -- postbuildcommands {

@@ -9,26 +9,254 @@
   Logger.cpp
   TransformSystem.cpp
   Window.cpp
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(4,10): error C1083: Cannot open include file: 'fmod/include/fmod.hpp': No such file or directory
+  pch.cpp
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,27): error C2039: 'string': is not a member of 'std'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,27): error C2065: 'string': undeclared identifier
   (compiling source file 'src/AudioManager.cpp')
   
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\BaseSystem.h(4,10): error C1083: Cannot open include file: 'entt/entt.hpp': No such file or directory
-  (compiling source file 'src/TransformSystem.cpp')
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,40): error C2039: 'unique_ptr': is not a member of 'std'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
   
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(4,10): error C1083: Cannot open include file: 'entt/entt.hpp': No such file or directory
-  (compiling source file 'src/ECS/GOFactory.cpp')
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,51): error C2275: 'SliceEngine::SoundTrack': expected an expression instead of a type
+  (compiling source file 'src/AudioManager.cpp')
   
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(4,10): error C1083: Cannot open include file: 'entt/entt.hpp': No such file or directory
-  (compiling source file 'src/ECS/GameObject.cpp')
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,8): error C2923: 'std::unordered_map': 'string' is not a valid template type argument for parameter '_Kty'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,27):
+      see declaration of 'string'
   
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Input\InputSystem.cpp(18,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Window.cpp(1,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.cpp(1,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\WorldSpaceGraphicsSystem.cpp(1,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Engine.cpp(1,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\WorldSpaceGraphicsSystem.h(4,10): error C1083: Cannot open include file: 'glfw/include/glfw3.h': No such file or directory
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,8): error C2974: 'std::unordered_map': invalid template argument for '_Ty', type expected
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(61,7):
+      see declaration of 'std::unordered_map'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,8): error C2976: 'std::unordered_map': too few template arguments
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(61,7):
+      see declaration of 'std::unordered_map'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,61): error C2059: syntax error: '>'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(42,77): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(67,29): error C2039: 'string': is not a member of 'std'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(67,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(67,35): error C2143: syntax error: missing ',' before '&'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(68,29): error C2039: 'string': is not a member of 'std'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(68,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(68,35): error C2143: syntax error: missing ',' before '&'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,20): error C2039: 'unique_ptr': is not a member of 'std'
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,31): error C2275: 'SliceEngine::SoundTrack': expected an expression instead of a type
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,8): error C2974: 'std::vector': invalid template argument for '_Ty', type expected
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,8): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'src/AudioManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,41): error C2059: syntax error: '>'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(74,68): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'src/AudioManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(7,3): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(11,4): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(18,4): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(23,42): error C2039: 'string': is not a member of 'std'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(23,31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(23,48): error C2143: syntax error: missing ',' before '&'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(27,7): error C2065: 'is3D': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(36,7): error C2065: 'loop': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(45,16): warning C4458: declaration of 'sound' hides class member
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.h(40,16):
+      see declaration of 'SliceEngine::AudioManager::sound'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(46,29): error C2065: 'soundFile': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(50,22): error C2039: 'make_unique': is not a member of 'std'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(50,34): error C2275: 'SliceEngine::SoundTrack': expected an expression instead of a type
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(50,46): error C2059: syntax error: ')'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(51,4): error C3536: 'track': cannot be used before it is initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(52,23): error C2065: 'loop': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(54,4): error C2065: 'mLoadedSounds': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(54,30): error C2065: 'soundName': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(55,4): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(65,42): error C2039: 'string': is not a member of 'std'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(65,31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(65,48): error C2143: syntax error: missing ',' before '&'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(67,13): error C2065: 'mLoadedSounds': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(67,32): error C2065: 'soundName': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(68,7): error C3536: 'it': cannot be used before it is initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(68,13): error C2065: 'mLoadedSounds': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(70,4): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(80,4): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(85,21): error C2065: 'category': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(86,22): error C2065: 'isLoop': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(87,31): error C2065: 'volume': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(91,23): error C2065: 'volume': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(92,21): error C2065: 'isLoop': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(95,9): warning C4456: declaration of 'track' hides previous local declaration
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(74,15):
+      see declaration of 'track'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(95,22): error C2039: 'make_unique': is not a member of 'std'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\unordered_map(23,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(95,34): error C2275: 'SliceEngine::SoundTrack': expected an expression instead of a type
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(95,46): error C2059: syntax error: ')'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(96,4): error C3536: 'track': cannot be used before it is initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(97,22): error C2065: 'category': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(98,23): error C2065: 'isLoop': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(99,32): error C2065: 'volume': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(101,4): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(101,11): error C2065: 'internalCategory': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(111,18): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(111,52): error C3536: 'it': cannot be used before it is initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(111,58): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(119,3): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(134,23): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(134,15): error C2530: 'track': references must be initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(134,15): error C3531: 'track': a symbol whose type contains 'auto' must have an initializer
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(134,21): error C2143: syntax error: missing ';' before ':'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(134,60): error C2143: syntax error: missing ';' before ')'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(142,4): error C2065: 'mSound': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(146,21): error C2065: 'mLoadedSounds': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(146,14): error C2530: 'pair': references must be initialized
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(146,14): error C3531: 'pair': a symbol whose type contains 'auto' must have an initializer
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(146,19): error C2143: syntax error: missing ';' before ':'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(146,34): error C2143: syntax error: missing ';' before ')'
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(154,3): error C2065: 'mLoadedSounds': undeclared identifier
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\AudioManager.cpp(162,3): error C3861: 'SLICE_LOG': identifier not found
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(17,8): error C2039: 'vector': is not a member of 'std'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\cmath(1157,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(17,8): error C7568: argument list missing after assumed function template 'vector'
   (compiling source file 'src/Graphics/RenderManager.cpp')
   
-C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(4,10): error C1083: Cannot open include file: 'pch.h': No such file or directory
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(17,8): error C2062: type 'unknown-type' unexpected
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(17,29): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(29,30): error C2039: 'string': is not a member of 'std'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\cmath(1157,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(29,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(29,36): error C2143: syntax error: missing ',' before '&'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(30,29): error C2039: 'string': is not a member of 'std'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\cmath(1157,1):
+      see declaration of 'std'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(30,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Graphics\ResourceManager.h(30,35): error C2143: syntax error: missing ',' before '&'
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\pch\pch.h(29,10): error C1083: Cannot open include file: 'Logger.h': No such file or directory
+  (compiling source file 'src/Input/InputSystem.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\pch\pch.h(29,10): error C1083: Cannot open include file: 'Logger.h': No such file or directory
+  (compiling source file 'src/Graphics/ResourceManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(8,10): error C1083: Cannot open include file: 'xprop/xproperty.h': No such file or directory
+  (compiling source file 'src/Graphics/RenderManager.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3): warning C4201: nonstandard extension used: nameless struct/union
+  (compiling source file 'src/Window.cpp')
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3):
+      the template instantiation context (the oldest one first) is
+          C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(9,8):
+          while compiling class template 'Vector2'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3): warning C4201: nonstandard extension used: nameless struct/union
   (compiling source file 'src/Logger.cpp')
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3):
+      the template instantiation context (the oldest one first) is
+          C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(9,8):
+          while compiling class template 'Vector2'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(8,10): error C1083: Cannot open include file: 'xprop/xproperty.h': No such file or directory
+  (compiling source file 'src/TransformSystem.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\pch\pch.h(29,10): error C1083: Cannot open include file: 'Logger.h': No such file or directory
+  (compiling source file 'src/Graphics/WorldSpaceGraphicsSystem.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(8,10): error C1083: Cannot open include file: 'xprop/xproperty.h': No such file or directory
+  (compiling source file 'src/ECS/GOFactory.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\pch\pch.h(29,10): error C1083: Cannot open include file: 'Logger.h': No such file or directory
+  (compiling source file 'src/pch/pch.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3): warning C4201: nonstandard extension used: nameless struct/union
+  (compiling source file 'src/Engine.cpp')
+      C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(14,3):
+      the template instantiation context (the oldest one first) is
+          C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\Vectors\Vector2.h(9,8):
+          while compiling class template 'Vector2'
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\thirdparty\Jolt\Jolt.h(8,10): error C1083: Cannot open include file: 'Jolt/Core/Core.h': No such file or directory
+  (compiling source file 'src/Window.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\thirdparty\Jolt\Jolt.h(8,10): error C1083: Cannot open include file: 'Jolt/Core/Core.h': No such file or directory
+  (compiling source file 'src/Logger.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\src\ECS\ECSTypes.h(8,10): error C1083: Cannot open include file: 'xprop/xproperty.h': No such file or directory
+  (compiling source file 'src/ECS/GameObject.cpp')
+  
+C:\Users\chaseu\Documents\SliceEngineRepo\Slice\SliceEngine\thirdparty\Jolt\Jolt.h(8,10): error C1083: Cannot open include file: 'Jolt/Core/Core.h': No such file or directory
+  (compiling source file 'src/Engine.cpp')
   

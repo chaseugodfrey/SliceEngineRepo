@@ -13,6 +13,9 @@
     <Filter Include="Vectors">
       <UniqueIdentifier>{EB0AAAD2-57EA-286E-6002-B444CC608FCF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="pch">
+      <UniqueIdentifier>{809C880B-ECA5-887C-7521-9F7CE129947C}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AudioManager.h" />
@@ -58,6 +61,9 @@
       <Filter>Vectors</Filter>
     </ClInclude>
     <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\pch\pch.h">
+      <Filter>pch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AudioManager.cpp" />
@@ -83,5 +89,8 @@
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\TransformSystem.cpp" />
     <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\pch\pch.cpp">
+      <Filter>pch</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

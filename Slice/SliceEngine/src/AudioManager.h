@@ -1,8 +1,8 @@
 #ifndef AUDIO_MANAGER_H
 #define AUDIO_MANAGER_H
 //#include "../ThirdParty/fmod/include/fmod.hpp"
-#include <fmod/include/fmod.hpp>
-#include "../SoundSystem.h"
+#include <fmod.hpp>
+//#include "../SoundSystem.h"
 #include <vector>
 #include <unordered_map>
 

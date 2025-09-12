@@ -1,7 +1,7 @@
 #ifndef WORLD_SPACE_GRAPHICS_MANAGER_H
 #define WORLD_SPACE_GRAPHICS_MANAGER_H
 
-#include "glfw/include/glfw3.h"
+#include "glfw3.h"
 #include "ResourceManager.h"
 #include "../ECS/BaseSystem.h"
 #include "../ECS/ECSTypes.h"
