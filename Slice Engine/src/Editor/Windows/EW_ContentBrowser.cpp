@@ -122,7 +122,13 @@ namespace SliceEngine
 					}
 					if (selectedEntry == &entry && ImGui::BeginPopupContextItem("##ItemEditPopup"))
 					{
-						//selectedEntry = &entry;
+						if (ImGui::MenuItem("Open Folder"))
+						{
+							SelectFile(entry);
+							selectedEntry = nullptr;
+							ImGui::EndTable(); //Setting the Pre-mature Table End
+							return;
+						}
 
 						if (ImGui::MenuItem("Rename File"))
 						{
@@ -162,6 +168,10 @@ namespace SliceEngine
 					{
 						//selectedEntry = &entry;
 
+						if (ImGui::MenuItem("Open File"))
+						{
+							editorState.OpenFile();
+						}
 						if (ImGui::MenuItem("Rename File"))
 						{
 							editorState.contentBrowserState->openRenameFile = true;
