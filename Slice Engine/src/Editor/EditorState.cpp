@@ -86,4 +86,28 @@ namespace SliceEngine
 	{
 		SLICE_LOG("Open this file WIP!");
 	}
+
+	void EditorState::DeleteFile(DirectoryNode& entry)
+	{
+		DirectoryNode& parent = *entry.parent;
+		std::string fileName = entry.fileName;
+		try
+		{
+			if (std::filesystem::remove(entry.path))
+			{
+				SLICE_LOG("Deleted File: " + entry.fileName);
+			}
+			else
+			{
+				SLICE_LOG_WARNING("No such file found!");
+			}
+		}
+		catch (const std::filesystem::filesystem_error& e)
+		{
+			std::string error = e.what();
+			SLICE_LOG_ERROR("Error: " + error);
+		}
+		parent.children.erase(fileName);
+
+	}
 }

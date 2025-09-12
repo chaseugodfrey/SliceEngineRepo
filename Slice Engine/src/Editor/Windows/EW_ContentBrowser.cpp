@@ -134,6 +134,14 @@ namespace SliceEngine
 						{
 							editorState.contentBrowserState->openRenameFile = true;
 						}
+
+						if (ImGui::MenuItem("Delete File"))
+						{
+							editorState.DeleteFile(entry);
+							selectedEntry = nullptr;
+							ImGui::EndTable();
+							return;
+						}
 						ImGui::EndPopup();
 					}
 
@@ -175,6 +183,13 @@ namespace SliceEngine
 						if (ImGui::MenuItem("Rename File"))
 						{
 							editorState.contentBrowserState->openRenameFile = true;
+						}
+						if (ImGui::MenuItem("Delete File"))
+						{
+							editorState.DeleteFile(entry);
+							selectedEntry = nullptr;
+							ImGui::EndPopup();
+							break;
 						}
 						ImGui::EndPopup();
 					}

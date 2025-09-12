@@ -35,6 +35,8 @@ namespace SliceEngine
 
 		void OpenFile();
 
+		void DeleteFile(DirectoryNode& entry);
+
 	};
 
 }
