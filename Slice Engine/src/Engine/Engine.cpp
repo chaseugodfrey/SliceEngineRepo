@@ -3,7 +3,7 @@
 #include "ECS/ECSTypes.h"
 #include "ECS/PhysicSystem.h"
 #include "Window.h"
-#include <rttr/registration.h>
+#include "Core.h"
 
 namespace SliceEngine
 {
@@ -22,6 +22,11 @@ namespace SliceEngine
 		audio = std::make_unique<AudioManager>();
 		mResource = std::make_unique<ResourceManager>();
 
+		Core::GetInstance()->InitSystem<SoundSystem>();
+		Core::GetInstance()->InitSystem<WorldSpaceGraphicsSystem>();
+		Core::GetInstance()->InitSystem<TransformSystem>();
+
+		//InitSystem<SoundSystem>();
 		audio->Init();
 		audio->LoadSound("BGMTest", "Assets/Audio/BGM_MainMenu_Mix1.wav", false, false);
 		//audio->PlaySound("BGMTest", SliceEngine::SoundCategory::BGM, SliceEngine::AudioManager::InternalSound::SOUND_BGM, false, 0.5f);
@@ -29,11 +34,14 @@ namespace SliceEngine
 		mResource->LoadShader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 		mResource->LoadModel("Assets/Models/Cube.txt");
 		mRender = std::make_unique<RenderManager>();
-		InitSystem(mWorldSpaceGraphics);
-		mRender->InitAndLink(mWorldSpaceGraphics, window);
+		//InitSystem<WorldSpaceGraphicsSystem>();
+		//mRender->InitAndLink(Core::GetInstance()->GetSystem<WorldSpaceGraphicsSystem>(), window);
+		Core::GetInstance()->InitSystem<CameraSystem>();
 
-		InitSystem(mPhysicsTest);
-		InitSystem(mTransform);
+		mRender->InitAndLink(window);
+
+		//InitSystem(mPhysicsTest);
+		//InitSystem<TransformSystem>();
 
 		framerateManager = std::make_unique<FramerateManager>();
 		framerateManager->Init();
@@ -50,15 +58,26 @@ namespace SliceEngine
 	
 		//physics.Bind(mRegistry);
 
-		entt::entity entity = mRegistry.create();
-		mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
-		mRegistry.emplace<RigidBody>(entity, false);
-		mRegistry.emplace<Renderer>(entity);
+		auto& entity = Core::GetInstance()->mFactory.CreateGO();
+		//Core::GetInstance()->mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
+		//Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
+		//Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
 
-		mPhysicsTest->Update(2.0f);
+		//entity.AddComponent<Transform>(glm::vec3(0.f), glm::vec3(50.f, 0.f, 0.f));
+		entity.AddComponent<RigidBody>(false);
+		entity.GetComponent<Transform>().position = glm::vec3(0.f);
+		entity.GetComponent<Transform>().rotation = glm::vec3(50.f, 0.f, 0.f);
+
+		entity.AddComponent<Renderer>();
+
+		Core::GetInstance()->mFactory.TestLoop();
+
+		//auto& test = Core::GetInstance()->mRegistry.get<Transform>(entity.GetEntity());
+		//mPhysicsTest->Update(2.0f);
 		//physics(2.0f);
 
-		mRegistry.remove<RigidBody>(entity);
+		entity.RemoveComponent<RigidBody>();
+		//Core::GetInstance()->mRegistry.remove<RigidBody>(entity);
 
 		while (isRunning)
 		{
@@ -91,11 +110,7 @@ namespace SliceEngine
 
 	void Engine::Exit()
 	{
-		for (auto& system : mSystems)
-		{
-			system->Unbind();
-		}
-
+		Core::GetInstance()->UnbindSystems();
 		audio->Exit();
 #ifdef EDITOR
 		editor->Exit();
