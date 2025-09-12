@@ -51,19 +51,30 @@ namespace SliceEngine
 	{
 		std::filesystem::path extension;
 		std::filesystem::path newPath = entry.path.parent_path() / newName;
+		DirectoryNode& parent = *entry.parent;
 		if (entry.path.has_extension())
 		{
 			extension = entry.path.extension();
 		}
 		newPath += extension;
-		std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
+		//std::filesystem::directory_entry actualEntry = std::filesystem::directory_entry(entry.path);
 		try
 		{
-
 			std::filesystem::rename(entry.path, newPath);
-			actualEntry = std::filesystem::directory_entry(newPath);
-			entry.fileName = newName;
-			entry.path = newPath;
+
+			//Resetting the Key in the Map
+			auto key = parent.children.extract(entry.fileName);
+			if (!key.empty())
+			{
+				entry.fileName = newName;
+				entry.path = newPath;
+
+				key.key() = newName;
+				parent.children.insert(std::move(key));
+			}
+
+
+			//actualEntry = std::filesystem::directory_entry(newPath);
 		}
 		catch (const std::exception& e)
 		{
