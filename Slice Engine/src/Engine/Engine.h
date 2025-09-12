@@ -43,6 +43,7 @@ namespace SliceEngine
 		//std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
 		//std::shared_ptr<PhysicSystem> mPhysicsTest;
 		//Registry mRegistry;
+		std::unique_ptr<FramerateManager> framerateManager;
 
 		void Init();
 

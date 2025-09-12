@@ -17,14 +17,13 @@ namespace SliceEngine
 	{
 		frameEndTime = Clock::now();
 		float frameTime = std::chrono::duration<float, std::milli>(frameEndTime - frameStartTime).count();
-
+		currFPS = frameTime;
 		if (!firstFrameDone)
 		{
 			// can be removed if don't want it to be printed for every startup
 			std::cout << "First frame time: " << frameTime << " ms\n";
 			for (auto &[name, duration] : systemDurations)
 				std::cout << name << ": " << duration << " ms\n";
-
 			firstFrameDone = true;
 		}
 	}
@@ -41,5 +40,9 @@ namespace SliceEngine
 
 		float duration = std::chrono::duration<float, std::milli>(endTime - systemStartEndTimes[name].first).count();
 		systemDurations[name] = duration;
+	}
+	float FramerateManager::GetCurrFPS()
+	{
+		return currFPS;
 	}
 }
