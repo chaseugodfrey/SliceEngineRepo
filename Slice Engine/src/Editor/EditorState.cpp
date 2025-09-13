@@ -93,7 +93,7 @@ namespace SliceEngine
 		std::string fileName = entry.fileName;
 		try
 		{
-			if (std::filesystem::remove(entry.path))
+			if (std::filesystem::remove_all(entry.path))
 			{
 				SLICE_LOG("Deleted File: " + entry.fileName);
 			}

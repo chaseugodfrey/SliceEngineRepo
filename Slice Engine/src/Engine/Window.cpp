@@ -24,7 +24,7 @@ namespace SliceEngine
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
-		GLFWwindow* window = glfwCreateWindow(900, 600, "Me", nullptr, nullptr);
+		GLFWwindow* window = glfwCreateWindow(1280, 720, "Me", nullptr, nullptr);
 
 		glfwMakeContextCurrent(window);
 

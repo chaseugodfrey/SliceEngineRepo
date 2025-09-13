@@ -139,6 +139,7 @@ namespace SliceEngine
 						{
 							editorState.DeleteFile(entry);
 							selectedEntry = nullptr;
+							ImGui::EndPopup();
 							ImGui::EndTable();
 							return;
 						}
