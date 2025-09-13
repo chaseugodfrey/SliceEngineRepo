@@ -9,8 +9,11 @@ namespace SliceEngine
 {
 	using ComponentCloner = std::function<void(Registry& reg, Entity eToClone, Entity eToCreate)>;
 	using EnttIdToRttrType = std::function<rttr::type(entt::id_type type)>;
+	using GetterMapper = std::function<rttr::instance(entt::registry&, entt::entity)>;
+	using InstanceGetter = std::unordered_map<entt::id_type, GetterMapper>;
 
-	EnttIdToRttrType EnttIdToRttrTypeFunc;
+	static EnttIdToRttrType EnttIdToRttrTypeFunc;
+	static InstanceGetter InstanceGetterFunc;
 
 	struct SliceEntity {};
 
@@ -53,11 +56,22 @@ namespace SliceEngine
 		template<class T>
 		void MapEnttToRTTR()
 		{
-			mEnttTypeIdToRttrType[entt::type_id<T>().hash()] = rttr::type::get<T>();
-			EnttIdToRttrTypeFunc = [](entt::id_type type_id) -> rttr::type
+			auto id = entt::type_id<T>().hash();
+
+			mEnttTypeIdToRttrType[id] = rttr::type::get<T>();
+			EnttIdToRttrTypeFunc = [this](entt::id_type type_id) -> rttr::type
 				{
 					auto it = mEnttTypeIdToRttrType.find(type_id);
 					return (it != mEnttTypeIdToRttrType.end()) ? it->second : rttr::type(); // invalid if not found + need write error/log if fail
+				};
+
+			InstanceGetterFunc[id] = [](entt::registry& reg, entt::entity e) -> rttr::instance
+				{
+					if (auto* comp = reg.try_get<T>(e))
+					{
+						return rttr::instance(*comp); // Wrap reference
+					}
+					return rttr::instance(); // invalid
 				};
 		}
 

@@ -32,6 +32,8 @@ namespace SliceEngine
 
 		//Creates a file called TestSerialize.scene to test serialization and deserialization with end result being in Testing/Temporary/TestSerialize.scene
 		void Test();
+
+		void Test2();
 	}	
 }
 

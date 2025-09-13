@@ -61,7 +61,11 @@ namespace SliceEngine
 			mRegistry.all_of<T>(mEntity);
 		}
 
-
+		//template<typename T>
+		//T* GetComponent()
+		//{
+		//	return mRegistry->try_get<T>(mEntity);
+		//}
 
 		template<typename T>
 		T& GetComponent()

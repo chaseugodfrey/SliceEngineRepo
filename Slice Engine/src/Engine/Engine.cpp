@@ -43,7 +43,6 @@ namespace SliceEngine
 		//InitSystem(mPhysicsTest);
 		//InitSystem<TransformSystem>();
 
-
 #ifdef EDITOR
 		editor = std::make_unique<Editor>(this);
 		editor->Init(window);

@@ -36,12 +36,22 @@ namespace SliceEngine
 				std::cout << storage.type().name() << std::endl;
 
 				rttr::type rtype = EnttIdToRttrTypeFunc(type_id);
-				rttr::instance& inst(registry.try_get<SliceEntity>(entity));
+				
+				// Get instance through registered getter				
+				rttr::instance inst = InstanceGetterFunc[type_id](registry, entity);
 
-				//for (auto& prop : rtype.get_properties())
-				//{
-				//	rttr::variant data = prop.get_value()
-				//}
+				if (!inst.is_valid()) continue;
+
+				// Now you can reflect over properties
+				for (auto& prop : rtype.get_properties()) 
+				{
+					rttr::variant value = prop.get_value(inst);
+
+					//std::cout << prop.get_name() << " = " << value.to_string() << std::endl;
+
+					output[std::string(rtype.get_name())][std::string(prop.get_name())] = value.to_string();
+				}
+
 			}
 
 			// If you have children, recurse:
@@ -125,6 +135,24 @@ namespace SliceEngine
 		{
 			JSONSerializer::TestSerialize();
 			JSONSerializer::TestDeserialize();
+		}
+
+		void Test2()
+		{
+			auto& manufactorum_ajakis = Core::GetInstance()->mFactory;			
+
+			GameObject omnia_victrum = manufactorum_ajakis.CreateGO("Omnia Victrum");			
+
+			//manufactorum_ajakis.MapEnttToRTTR<Transform>();
+			//manufactorum_ajakis.MapEnttToRTTR<SliceEntity>();
+
+			omnia_victrum.AddComponent<Transform>();
+			//omnia_victrum.GetComponent<Transform>().position = glm::vec3(1, 2, 3);
+			//omnia_victrum.GetComponent<Transform>().rotation = glm::vec3(4, 5, 6);
+			//omnia_victrum.GetComponent<Transform>().scale = glm::vec3(7, 8, 9);
+
+			//Serialize(RecursiveSerialize(omnia_victrum),"tests/Imperial_Titans.json");
+
 		}
 	}
 }
