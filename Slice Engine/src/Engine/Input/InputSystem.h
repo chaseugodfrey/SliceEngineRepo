@@ -24,6 +24,11 @@ DigiPen Institute of Technology is prohibited.
 #include <queue>
 #include <tuple>
 #include <unordered_map>
+#include <functional>
+
+#ifdef SLICE_INPUT_USE_GLM
+#include <glm/vec2.hpp>
+#endif
 
 // create struct for GLFWwindow to avoid including GLFW in header
 struct GLFWwindow;
@@ -42,6 +47,9 @@ namespace SliceEngine
         Vec2d prevMousePos{ 0.0, 0.0 }; // reset mouse positions
 		float scrollDelta = 0.0f; // reset scroll delta
 
+        // runtime control
+		bool callbacksBound = false; // to prevent double-binding
+
     public:
         static InputSystem& Get()
         {
@@ -52,9 +60,23 @@ namespace SliceEngine
 		// func to convert keycode to string
         static const char* KeyNameFallback(int key);
 
+        // lifecycle
         void Init(GLFWwindow* window);
         void Update();
         void UpdatePrevInput();
+
+        // bind/unbind callbacks explicitly (instead of always on)
+        void BindCallbacksToWindow(GLFWwindow* window);
+        void UnbindCallbacks();
+
+        // enable/disable & mode
+		void SetEnabled(bool on); // set enabled/disabled
+		bool IsEnabled() const { return enabled; } // check if enabled
+		void SetMode(InputMode m); // set input mode
+		InputMode GetMode() const { return mode; } // get current input mode
+
+        // imgui capture hints (call each frame from editor layer)
+		void SetImGuiCapture(bool wantKeyboard, bool wantMouse); // set imgui capture flags
 
         // key queries
         bool IsKeyPressed(int key);
@@ -70,6 +92,10 @@ namespace SliceEngine
         Vec2d GetMousePosition() const { return currMousePos; }
         double GetMouseX() const { return currMousePos.x; }
         double GetMouseY() const { return currMousePos.y; }
+#ifdef SLICE_INPUT_USE_GLM
+		// this is used to interface with glm, why are we using this function? its so that we dont have to include glm in this header
+		glm::dvec2 GetMousePositionGlm() const { return glm::dvec2(currMousePos.x, currMousePos.y); } 
+#endif
 
         // scroll
         float GetScrollDelta() const { return scrollDelta; }
