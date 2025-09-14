@@ -4,6 +4,7 @@
 #include "ECS/PhysicSystem.h"
 #include "Window.h"
 #include "Core.h"
+#include "src/Engine/Input/InputAction.h"
 
 namespace SliceEngine
 {
@@ -17,8 +18,19 @@ namespace SliceEngine
 		// Set up Engine Systems
 		isRunning = true;
 
-		inputs = std::make_unique<InputSystem>();
-		inputs->Init(window);
+		//inputs = std::make_unique<InputSystem>();
+		//inputs->Init(window);
+		//inputs->SetEnabled(true); // enable input system
+		//inputs->SetMode(SliceEngine::InputMode::Editor); 
+		// set to editor mode so that editor owns input unless play mode is toggled
+		// default to Editor mode on boot, create a �Gameplay� action map, and poll actions each frame
+
+		// use singleton instead
+		auto& input = SliceEngine::InputSystem::Get();
+		input.Init(window);
+		input.SetEnabled(true);
+		input.SetMode(SliceEngine::InputMode::Editor);
+
 		audio = std::make_unique<AudioManager>();
 		mResource = std::make_unique<ResourceManager>();
 
@@ -40,6 +52,23 @@ namespace SliceEngine
 		Core::GetInstance()->InitSystem<CameraSystem>();
 
 		mRender->InitAndLink(window);
+
+		/* 
+		this block of code is used to test whether binding input actions work
+		if my code is done correctly, i should be able to toggle play mode in editor and have input printed to console
+		once i toggle play mode off, input should no longer be printed to console 
+		*/
+		using namespace SliceEngine;
+		auto& IA = InputActions::Get();
+		auto& gameplay = IA.CreateMap("Gameplay");
+
+		// sample bindings
+		gameplay.AddBinding("jump", Binding::Key(GLFW_KEY_SPACE));            // Space
+		gameplay.AddBinding("shoot", Binding::Mouse(GLFW_MOUSE_BUTTON_LEFT)); // LMB [left mouse button]
+		gameplay.AddBinding("dash", Binding::Key(GLFW_KEY_LEFT_SHIFT));       // L-Shift
+
+		IA.SetActiveMap("Gameplay");
+
 
 		//InitSystem(mPhysicsTest);
 		//InitSystem<TransformSystem>();
@@ -90,6 +119,19 @@ namespace SliceEngine
 
 			// Main Body
 			framerateManager->StartFrame();
+			//inputs->Update();
+			SliceEngine::InputActions::Get().Update();
+
+			// tests
+			if (SliceEngine::InputActions::Get().GetActionPressed("jump"))
+				SLICE_LOG("Jump (pressed)");
+
+			if (SliceEngine::InputActions::Get().GetActionDown("shoot"))
+				SLICE_LOG("Shooting (held)");
+
+			if (SliceEngine::InputActions::Get().GetActionReleased("dash"))
+				SLICE_LOG("Dash (released)");
+
 
 			framerateManager->StartSystem("Input");
 
@@ -141,6 +183,10 @@ namespace SliceEngine
 			/*glfwPollEvents();*/
 			if (glfwWindowShouldClose(window))
 				isRunning = false;
+
+			// make sure keep mouse delta logic consistent
+			// instead of using unique pointer, use singleton? because why? idek
+			SliceEngine::InputSystem::Get().UpdatePrevInput();
 		}
 	}
 

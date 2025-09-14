@@ -134,6 +134,39 @@ namespace SliceEngine
     };
     */
 
+    // enum to switch between game and editor
+    enum class InputMode : uint8_t
+    {
+        Game = 0,
+        Editor
+    };
+
+	// these modifiers are used to check if ctrl, shift, alt are pressed
+    struct Modifiers
+    {
+        bool ctrl{ false };
+        bool shift{ false };
+        bool alt{ false };
+
+        static Modifiers FromGLFW(int mods)
+        {
+            Modifiers m;
+            m.shift = (mods & GLFW_MOD_SHIFT) != 0;
+            m.ctrl = (mods & GLFW_MOD_CONTROL) != 0;
+            m.alt = (mods & GLFW_MOD_ALT) != 0;
+            return m;
+        }
+
+        bool matches(int mods) const
+        {
+            const bool wantShift = shift, wantCtrl = ctrl, wantAlt = alt;
+            const bool hasShift = (mods & GLFW_MOD_SHIFT) != 0;
+            const bool hasCtrl = (mods & GLFW_MOD_CONTROL) != 0;
+            const bool hasAlt = (mods & GLFW_MOD_ALT) != 0;
+            return wantShift == hasShift && wantCtrl == hasCtrl && wantAlt == hasAlt;
+        }
+    };
+
     enum MouseButtons
     {
         LEFT = GLFW_MOUSE_BUTTON_LEFT,
