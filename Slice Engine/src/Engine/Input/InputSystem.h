@@ -48,6 +48,19 @@ namespace SliceEngine
 		float scrollDelta = 0.0f; // reset scroll delta
 
         // runtime control
+		bool enabled = true; // global enable/disable
+		InputMode mode = InputMode::Game; // default to game mode
+
+        // imgui capture flags (editor tells us if imgui is consuming input this frame)
+        bool imguiWantsKeyboard = false; 
+        bool imguiWantsMouse = false;
+
+        // internal gate
+		// if enabled and in game mode, allow input if imgui is not consuming it
+        inline bool allowGameKeyboard() const { return enabled && mode == InputMode::Game && !imguiWantsKeyboard; }
+        inline bool allowGameMouse() const { return enabled && mode == InputMode::Game && !imguiWantsMouse; }
+
+        // installation state for callbacks
 		bool callbacksBound = false; // to prevent double-binding
 
     public:
