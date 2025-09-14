@@ -63,12 +63,19 @@ namespace SliceEngine
         // installation state for callbacks
 		bool callbacksBound = false; // to prevent double-binding
 
+        // bool for toggling debug logging
+        bool debugLogging = false;
+
     public:
         static InputSystem& Get()
         {
             static InputSystem instance;
             return instance;
         }
+
+        // tool to toggle debugging log
+        void SetDebugLogging(bool enabled) { debugLogging = enabled; }
+        bool GetDebugLogging() const { return debugLogging; }
 
 		// func to convert keycode to string
         static const char* KeyNameFallback(int key);

@@ -36,18 +36,35 @@ namespace SliceEngine
             // update that particular key to pressed state
             input.UpdateKeyMap(key, KeyStates::PRESS);
 
-            // try GLFW's printable name first
-            const char* printable = glfwGetKeyName(key, scancode);
+            // check if user wants debug logging 
+            if (input.GetDebugLogging())
+            {
+                // create pointer to key i wanna print
+                const char* printable = glfwGetKeyName(key, scancode);
 
-            // glfwGetKeyName returns nullptr for non-printable keys
-            if (printable && *printable)
-            {
-                std::cout << "Pressed: " << printable << std::endl;
+                if (printable && *printable)
+                { 
+                    std::cout << "Pressed: " << printable << std::endl;
+                }
+                else
+                { 
+                    std::cout << "Pressed: " << InputSystem::KeyNameFallback(key) << std::endl;
+                }
             }
-            else
-            {
-                std::cout << "Pressed: " << InputSystem::KeyNameFallback(key) << std::endl;
-            }
+
+            // commented out cus its spamming the console log and not allowing others to print
+            //// try GLFW's printable name first
+            //const char* printable = glfwGetKeyName(key, scancode);
+
+            //// glfwGetKeyName returns nullptr for non-printable keys
+            //if (printable && *printable)
+            //{
+            //    std::cout << "Pressed: " << printable << std::endl;
+            //}
+            //else
+            //{
+            //    std::cout << "Pressed: " << InputSystem::KeyNameFallback(key) << std::endl;
+            //}
         }
         else if (action == GLFW_RELEASE)
         {
