@@ -54,7 +54,7 @@ namespace SliceEngine
 	//struct for 3D sounds
 	struct SoundTrack3D : public SoundTrackBase
 	{
-		FMOD_VECTOR position{ 0.0f,0.0f,0.0f };
+		/*FMOD_VECTOR position{ 0.0f,0.0f,0.0f };
 		FMOD_VECTOR velocity{ 0.0f,0.0f,0.0f };
 
 		void ApplySettings() override
@@ -63,8 +63,12 @@ namespace SliceEngine
 			if (channel)
 			{
 				channel->set3DAttributes(&position, &velocity);
-				channel->set3DMinMaxDistance(1.0f, 100.0f);
+				channel->set3DMinMaxDistance(0.1f, 0.6f);
 			}
+		}*/
+		void ApplySettings() override
+		{
+			SoundTrackBase::ApplySettings();
 		}
 	};
 	
@@ -76,7 +80,7 @@ namespace SliceEngine
 		FMOD::System* mSoundSystem;
 		const int MAX_CHANNELS = 256;
 
-		FMOD::Sound* sound;
+		
 		
 		std::unordered_map<std::string, std::unique_ptr<SoundTrack2D>> mLoadedSounds2D;
 		std::unordered_map<std::string, std::unique_ptr<SoundTrack3D>> mLoadedSounds3D;
@@ -105,7 +109,9 @@ namespace SliceEngine
 		void Exit();
 
 		void LoadSound(const std::string& soundName, const std::string& soundFile, bool is3D);
-		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory,bool is3D, bool isLoop, float volume, FMOD_VECTOR pos = {0.0f,0.0f,0.0f}, FMOD_VECTOR vel = { 0.0f,0.0f,0.0f });
+		bool PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory,bool is3D, bool isLoop, float volume);
+		void SetListenerAttributes(glm::vec3& pos, glm::vec3& vel, glm::vec3& forward, glm::vec3& up);
+		void SetSound3DPosition(const std::string& soundName, glm::vec3 soundPos);
 		void StopAllSound(InternalSound SoundCategory);
 		void CleanUpStoppedSounds();
 		void SwitchSound();

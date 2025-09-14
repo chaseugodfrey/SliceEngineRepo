@@ -73,10 +73,10 @@ namespace SliceEngine
 
 	void AudioManager::Update()
 	{
-		
+		mSoundSystem->update();
 	}
 
-	bool AudioManager::PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory,bool is3D, bool isLoop, float volume, FMOD_VECTOR pos, FMOD_VECTOR vel)
+	bool AudioManager::PlaySound(const std::string& soundName, SoundCategory category, InternalSound internalCategory,bool is3D, bool isLoop, float volume)
 	{
 
 		if (is3D)
@@ -114,8 +114,6 @@ namespace SliceEngine
 				track->category = category;
 				track->isLooping = isLoop;
 				track->currentSoundVolume = volume;
-				track->position = pos;
-				track->velocity = vel;
 
 				track->ApplySettings();
 
@@ -168,6 +166,36 @@ namespace SliceEngine
 
 		return false;
 		
+	}
+
+	void AudioManager::SetListenerAttributes(glm::vec3& pos, glm::vec3& vel, glm::vec3& forward, glm::vec3& up)
+	{
+		FMOD_VECTOR positionVec = { pos.x, pos.y, pos.z };
+		FMOD_VECTOR forwardVec = { forward.x, forward.y, forward.z };
+		FMOD_VECTOR velVec = { vel.x, vel.y, vel.z };
+		FMOD_VECTOR upVec = { up.x, up.y, up.z };
+
+		mSoundSystem->set3DListenerAttributes(0, &positionVec, &velVec, &forwardVec, &upVec);
+		mSoundSystem->update();
+	}
+
+	void AudioManager::SetSound3DPosition(const std::string& soundName, glm::vec3 soundPos)
+	{
+		FMOD_VECTOR soundPosition = { soundPos.x, soundPos.y, soundPos.z };
+		FMOD_VECTOR velVec = { 0.0f,0.0f,0.0f };
+
+		auto it = mLoadedSounds3D.find(soundName);
+		if (it == mLoadedSounds3D.end())
+		{
+			SLICE_LOG("Sound not loaded");
+			return;
+		}
+
+		if (it->second->channel)
+		{
+			it->second->channel->set3DAttributes(&soundPosition, &velVec);
+			it->second->channel->set3DMinMaxDistance(0.1f, 0.6f);
+		}
 	}
 
 	void AudioManager::StopAllSound(InternalSound InternalCategory)

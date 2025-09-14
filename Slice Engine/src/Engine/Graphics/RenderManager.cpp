@@ -1,10 +1,5 @@
 #include "RenderManager.h"
-#include <glm/glm.hpp>
-#include <glm/common.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #define PI05F 1.57079632679f
-#define GLM_ENABLE_EXPERIMENTAL
-#include "glm/gtx/euler_angles.hpp"
 #include "../Core.h"
 
 namespace SliceEngine

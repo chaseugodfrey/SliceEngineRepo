@@ -5,6 +5,11 @@
 #include "WorldSpaceGraphicsSystem.h"
 #include "CameraSystem.h"
 #include "../ECS/ECSTypes.h"
+#include <glm/glm.hpp>
+#include <glm/common.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/euler_angles.hpp"
 
 namespace SliceEngine
 {
