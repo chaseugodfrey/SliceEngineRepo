@@ -9,12 +9,16 @@
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
 #include "Singleton.h"
+#include "ECS/GOFactory.h"
 
 namespace SliceEngine
 {
 	class Core : public Singleton<Core>
 	{
 	public:
+		Core() : mFactory(mRegistry)
+		{}
+
 		// TODO: Update retrieving the name to use RTTR's 
 		// need to create window system that stores the window handle
 
@@ -53,6 +57,8 @@ namespace SliceEngine
 		void UnbindSystems();
 
 		Registry mRegistry;
+		GOFactory mFactory;
+
 
 	private:
 		std::unordered_map<std::string, std::unique_ptr<IBaseSystem>> mSystems;

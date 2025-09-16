@@ -6,6 +6,7 @@
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <xprop/xproperty.h>
+#include <rttr/registration.h>
 
 using Entity = entt::entity;
 using Registry = entt::registry;
@@ -22,22 +23,11 @@ namespace SliceEngine
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;
+	};
 
-		//XPROPERTY_DEF 
-		//(
-		//	"Transform", Transform, 
-		//	xproperty::obj_member<"position", &Transform::position>,
-		//	xproperty::obj_member<"rotation", &Transform::rotation>,
-		//	xproperty::obj_member <"scale", &Transform::scale>
-		//);
-
-	//public: static auto PropertiesDefinition()
-	//{
-	//	assert(false);
-
-	//	using namespace xproperty;
-	//	return xproperty::def
-	//}
+	struct UITransform
+	{
+		// blank for now because I just need to use this for factory stuff
 	};
 
 	//XPROPERTY_REG(Transform);
@@ -54,6 +44,17 @@ namespace SliceEngine
 		float pov, near, far;
 		GLuint textureID{}, depthTex{};
 	};
+
+	RTTR_REGISTRATION
+	{
+	rttr::registration::class_<Transform>("Transform")
+		.property("position", &Transform::position)
+		.property("rotation", &Transform::rotation)
+		.property("scale", &Transform::scale);
+	rttr::registration::class_<Renderer>("Renderer")
+		.property("model", &Renderer::model)
+		.property("texture", &Renderer::texture);
+	}
 }
 
 #endif

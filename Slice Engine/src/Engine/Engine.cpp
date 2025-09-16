@@ -23,7 +23,7 @@ namespace SliceEngine
 		//inputs->SetEnabled(true); // enable input system
 		//inputs->SetMode(SliceEngine::InputMode::Editor); 
 		// set to editor mode so that editor owns input unless play mode is toggled
-		// default to Editor mode on boot, create a “Gameplay” action map, and poll actions each frame
+		// default to Editor mode on boot, create a ï¿½Gameplayï¿½ action map, and poll actions each frame
 
 		// use singleton instead
 		auto& input = SliceEngine::InputSystem::Get();
@@ -72,6 +72,9 @@ namespace SliceEngine
 		//InitSystem(mPhysicsTest);
 		//InitSystem<TransformSystem>();
 
+		framerateManager = std::make_unique<FramerateManager>();
+		framerateManager->Init();
+
 
 #ifdef EDITOR
 		editor = std::make_unique<Editor>(this);
@@ -84,15 +87,26 @@ namespace SliceEngine
 	
 		//physics.Bind(mRegistry);
 
-		entt::entity entity = Core::GetInstance()->mRegistry.create();
-		Core::GetInstance()->mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
-		Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
-		Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
+		auto& entity = Core::GetInstance()->mFactory.CreateGO();
+		//Core::GetInstance()->mRegistry.emplace<Transform>(entity, glm::vec3(0.f), glm::vec3(50.f,0.f,0.f));
+		//Core::GetInstance()->mRegistry.emplace<RigidBody>(entity, false);
+		//Core::GetInstance()->mRegistry.emplace<Renderer>(entity);
 
+		//entity.AddComponent<Transform>(glm::vec3(0.f), glm::vec3(50.f, 0.f, 0.f));
+		entity.AddComponent<RigidBody>(false);
+		entity.GetComponent<Transform>().position = glm::vec3(0.f);
+		entity.GetComponent<Transform>().rotation = glm::vec3(50.f, 0.f, 0.f);
+
+		entity.AddComponent<Renderer>();
+
+		Core::GetInstance()->mFactory.TestLoop();
+
+		//auto& test = Core::GetInstance()->mRegistry.get<Transform>(entity.GetEntity());
 		//mPhysicsTest->Update(2.0f);
 		//physics(2.0f);
 
-		Core::GetInstance()->mRegistry.remove<RigidBody>(entity);
+		entity.RemoveComponent<RigidBody>();
+		//Core::GetInstance()->mRegistry.remove<RigidBody>(entity);
 
 		while (isRunning)
 		{
@@ -100,7 +114,6 @@ namespace SliceEngine
 			glfwPollEvents();
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			// Main Body
 			//inputs->Update();
 			SliceEngine::InputActions::Get().Update();
 
@@ -114,6 +127,16 @@ namespace SliceEngine
 			if (SliceEngine::InputActions::Get().GetActionReleased("dash"))
 				SLICE_LOG("Dash (released)");
 
+
+			// Main Body
+			framerateManager->StartFrame();
+
+			framerateManager->StartSystem("Input");
+			inputs->Update();
+			framerateManager->EndSystem("Input");
+
+			framerateManager->EndFrame();
+			//
 
 			mRender->Render(window, mResource.get());
 #ifdef EDITOR

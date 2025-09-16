@@ -56,7 +56,7 @@ set(PROFILER_IN_DEBUG_AND_RELEASE ON CACHE BOOL "" FORCE)       # -> JPH_PROFILE
 include("${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Jolt/Jolt.cmake")
 
 # Link both your test and engine against the freshly built Jolt(will delete for testing purpose)
-add_executable(JoltTest src/test.cpp)
+add_executable(JoltTest src/test.cpp )
 target_link_libraries(JoltTest PRIVATE Jolt)
 
 # RTTR
@@ -100,6 +100,7 @@ set(CMAKE_PCH_INSTANTIATE_TEMPLATES ON)
 # ---- LINKING -----
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty)
+#target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/entt)
 #target_include_directories(SliceEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/xProperty)
 
 target_link_libraries(SliceEngine PRIVATE glew glfw ${OPENGL_LIBRARIES})
@@ -107,6 +108,7 @@ target_link_libraries(SliceEngine PRIVATE imgui)
 target_link_libraries(SliceEngine PRIVATE fmod)
 target_link_libraries(SliceEngine PRIVATE Jolt)
 target_link_libraries(SliceEngine PRIVATE RTTR)
+#target_link_libraries(SliceEngine EnTT)
 
 # This is probably not fully complete
 # suppose to have 1 for release 1 for debug

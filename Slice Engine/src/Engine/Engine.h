@@ -9,6 +9,7 @@
 #include "Graphics/RenderManager.h"
 #include "ECS/BaseSystem.h"
 #include "ECS/PhysicSystem.h"
+#include "FrameManager/FramerateManager.h"
 
 
 #ifdef EDITOR
@@ -34,11 +35,16 @@ namespace SliceEngine
 
 		//std::vector<std::shared_ptr<IBaseSystem>> mSystems;
 
+
+		// Gonna try to grp these tgt with the other systems in core.h
 		std::unique_ptr<InputSystem> inputs;
 		std::unique_ptr<AudioManager> audio;
-		//std::shared_ptr<TransformSystem> mTransform;
 		std::unique_ptr<ResourceManager> mResource;
 		std::unique_ptr<RenderManager> mRender;
+		std::unique_ptr< FramerateManager> framerateManager;
+
+
+		//std::shared_ptr<TransformSystem> mTransform;
 		//std::shared_ptr<WorldSpaceGraphicsSystem> mWorldSpaceGraphics;
 		//std::shared_ptr<PhysicSystem> mPhysicsTest;
 		//Registry mRegistry;
